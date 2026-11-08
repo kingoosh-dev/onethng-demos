@@ -1,0 +1,361 @@
+<title>Five-Niche Theme Bundle</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Outfit:wght@800&family=Playfair+Display:ital,wght@0,400;1,400&family=Oswald:wght@600&family=Petrona:ital,wght@0,400;1,400&family=Nunito:wght@900&display=swap">
+<style>
+  /* Layout: a quiet graphite showroom; each theme gets a full-bleed band painted in its own hero colours. */
+  :root {
+    --paper: #f2f1ed;
+    --ink: #17171a;
+    --muted: #5c5b61;
+    --line: #d9d7d0;
+    --chip: #e7e5df;
+    --focus: #3b5bdb;
+    --font-display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+    --font-body: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+    --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --paper: #141416; --ink: #ecebe6; --muted: #a3a2a8; --line: #2c2c31; --chip: #222226; --focus: #8ea6ff; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --paper: #141416; --ink: #ecebe6; --muted: #a3a2a8; --line: #2c2c31; --chip: #222226; --focus: #8ea6ff; color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+  @media (min-width: 760px) { .wrap { padding-left: max(40px, env(safe-area-inset-left, 0px)); padding-right: max(40px, env(safe-area-inset-right, 0px)); } }
+
+  /* Intro */
+  .intro { padding-block: clamp(40px, 7vw, 88px) clamp(28px, 4vw, 48px); display: grid; gap: 28px; }
+  @media (min-width: 900px) { .intro { grid-template-columns: 1.3fr 1fr; align-items: end; } }
+  .kicker { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
+  h1 { font: 700 clamp(2.4rem, 6vw, 4.6rem)/0.98 var(--font-display); letter-spacing: -0.03em; margin: 0; text-wrap: balance; }
+  .intro p { margin: 0; color: var(--muted); max-width: 52ch; font-size: 1.05rem; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; padding: 0; list-style: none; }
+  .jump a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 99px; text-decoration: none; font-size: .9rem; font-weight: 500; }
+  .jump a:hover { background: var(--chip); }
+  .jump i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+  /* Theme bands */
+  .band { background: var(--b-bg); color: var(--b-fg); }
+  .band__inner { padding-block: clamp(36px, 6vw, 72px); display: grid; gap: clamp(28px, 4vw, 56px); align-items: center; }
+  @media (min-width: 980px) { .band__inner { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.3fr); } }
+  .band__copy { min-width: 0; }
+  .band__niche { font: 500 12px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; opacity: .72; margin: 0 0 14px; }
+  .band__name { margin: 0 0 14px; line-height: .95; font-size: clamp(3rem, 7vw, 5.2rem); letter-spacing: var(--b-track, -0.02em); }
+  .band__name em { color: var(--b-accent); }
+  .band__lede { margin: 0 0 24px; max-width: 46ch; opacity: .86; }
+  .specs { display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; margin: 0 0 26px; font-size: .92rem; }
+  .specs dt { font: 500 11px/1.9 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; opacity: .62; }
+  .specs dd { margin: 0; min-width: 0; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sw { display: inline-flex; align-items: center; gap: 6px; padding: 3px 8px 3px 3px; border-radius: 99px; background: color-mix(in srgb, var(--b-fg) 9%, transparent); font: 400 11px/1 var(--font-mono); }
+  .sw i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--b-fg) 22%, transparent); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 99px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid transparent; transition: transform .25s, background-color .25s; }
+  .btn--main { background: var(--b-btn); color: var(--b-btn-fg); }
+  .btn--ghost { border-color: color-mix(in srgb, var(--b-fg) 30%, transparent); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn svg { width: 16px; height: 16px; }
+
+  .shots { position: relative; min-width: 0; padding-right: clamp(36px, 9%, 110px); padding-bottom: clamp(24px, 5%, 56px); }
+  .browser { border-radius: 12px; overflow: hidden; background: #0d0d0f; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .55), 0 0 0 1px rgba(0, 0, 0, .12); }
+  .browser__bar { display: flex; gap: 6px; padding: 9px 12px; background: #1c1c20; }
+  .browser__bar i { width: 9px; height: 9px; border-radius: 50%; background: #3a3a40; }
+  .browser img { display: block; width: 100%; height: auto; aspect-ratio: 1440 / 900; object-fit: cover; }
+  .phone { position: absolute; right: 0; bottom: 0; width: clamp(96px, 24%, 210px); border-radius: 22px; padding: 6px; background: #0d0d0f; box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .6); }
+  .phone img { display: block; width: 100%; height: auto; aspect-ratio: 390 / 844; object-fit: cover; border-radius: 17px; }
+  .shots a { display: block; text-decoration: none; }
+
+  /* Shared toolkit */
+  .section { padding-block: clamp(48px, 7vw, 96px); }
+  h2 { font: 700 clamp(1.8rem, 3.6vw, 2.8rem)/1.02 var(--font-display); letter-spacing: -0.02em; margin: 0 0 12px; text-wrap: balance; }
+  .section > .wrap > p { margin: 0 0 32px; color: var(--muted); max-width: 60ch; }
+  .kit { display: grid; gap: 0; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); border-top: 1px solid var(--line); }
+  .kit div { padding: 20px 20px 20px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .kit h3 { margin: 0 0 4px; font: 600 1rem/1.3 var(--font-body); }
+  .kit p { margin: 0; color: var(--muted); font-size: .93rem; }
+  .kit span { display: block; font: 500 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+  .install { display: grid; gap: 32px; }
+  @media (min-width: 900px) { .install { grid-template-columns: 1fr 1fr; } }
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 14px; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 36px 1fr; gap: 12px; align-items: start; }
+  ol.steps li::before { content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--chip); font: 500 13px/1 var(--font-mono); }
+  ol.steps li p { margin: 3px 0 0; min-width: 0; }
+  .notes { margin: 0; padding: 22px 24px; border: 1px solid var(--line); border-radius: 14px; }
+  .notes h3 { margin: 0 0 10px; font: 600 1rem/1.3 var(--font-body); }
+  .notes ul { margin: 0; padding-left: 18px; color: var(--muted); display: grid; gap: 8px; font-size: .95rem; }
+  code { font: 400 .88em var(--font-mono); background: var(--chip); padding: 1px 6px; border-radius: 5px; }
+  .offer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 22px; }
+  .buy { display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 99px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 1.02rem; text-decoration: none; transition: transform .25s; }
+  .buy:hover { transform: translateY(-2px); }
+  .buy svg { width: 18px; height: 18px; }
+  .offer__note { margin: 0; font-size: .88rem; color: var(--muted); max-width: 34ch; }
+  .offer__note b { color: var(--ink); font-weight: 600; }
+  .plans { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); align-items: stretch; }
+  .plan { display: flex; flex-direction: column; gap: 14px; padding: 26px 24px; border: 1px solid var(--line); border-radius: 16px; min-width: 0; }
+  .plan--best { border: 2px solid var(--ink); }
+  .plan__tag { align-self: flex-start; padding: 5px 10px; border-radius: 99px; background: var(--ink); color: var(--paper); font: 500 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; }
+  .plan h3 { margin: 0; font: 600 1.1rem/1.3 var(--font-body); }
+  .plan .plan__price { margin: 0; color: var(--ink); font: 700 clamp(2.4rem, 5vw, 3rem)/1 var(--font-display); letter-spacing: -0.03em; }
+  .plan .plan__price small { font: 500 .9rem/1 var(--font-body); color: var(--muted); letter-spacing: 0; }
+  .plan p { margin: 0; color: var(--muted); font-size: .95rem; }
+  .plan ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; color: var(--muted); font-size: .93rem; }
+  .plan__cta { margin-top: auto; display: grid; gap: 8px; }
+  .plan .buy { justify-content: center; }
+  .plan__pick { display: flex; flex-wrap: wrap; gap: 6px; }
+  .plan__pick a { padding: 8px 12px; border: 1px solid var(--line); border-radius: 99px; text-decoration: none; font-size: .88rem; font-weight: 600; }
+  .plan__pick a:hover { background: var(--chip); }
+  .buy--ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+  .faq { display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 860px; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; padding: 18px 0; font-weight: 600; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font: 400 1.3rem/1 var(--font-mono); color: var(--muted); }
+  .faq details[open] summary::after { content: "&#8722;"; }
+  .faq details p { margin: 0 0 18px; color: var(--muted); max-width: 66ch; }
+  .closer { background: var(--ink); color: var(--paper); }
+  .closer .wrap { padding-block: clamp(48px, 7vw, 88px); display: grid; gap: 20px; justify-items: start; }
+  .closer h2 { color: var(--paper); max-width: 20ch; }
+  .closer p { margin: 0; opacity: .75; max-width: 52ch; }
+  .closer .buy { background: var(--paper); color: var(--ink); }
+  footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+</style>
+
+<header class="wrap intro">
+  <div>
+    <p class="kicker">Shopify themes &#183; 5-theme bundle</p>
+    <h1>Stop launching on the same theme as everyone else.</h1>
+    <div class="offer">
+      <a class="buy" href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener">Get all 5 for $99 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <p class="offer__note"><b>Under $20 a theme.</b> Premium Shopify Theme Store themes usually cost $140&#8211;$400 each. Need just one? <a href="#pricing">$50 a theme</a>.</p>
+    </div>
+  </div>
+  <div>
+    <p>Shoppers can't tell your store apart from the last one they left, so they leave yours too. Here are five complete Shopify themes, one for each of the biggest store niches, each opening with a live 3D scene that stops the scroll. Try every demo: touch the 3D, add something to the cart, open the drawer. What you see is what you get.</p>
+    <ul class="jump" aria-label="Jump to a theme">
+      <li><a href="#vigor"><i style="background:#c6f432"></i>Vigor</a></li>
+      <li><a href="#dewy"><i style="background:#e9a796"></i>Dewy</a></li>
+      <li><a href="#drape"><i style="background:#ff5a1f"></i>Drape</a></li>
+      <li><a href="#ember"><i style="background:#f2a65a"></i>Ember</a></li>
+      <li><a href="#fetch"><i style="background:#4cc9f0"></i>Fetch</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="band" id="vigor" style="--b-bg:#0b120e;--b-fg:#f2f5ee;--b-accent:#c6f432;--b-btn:#c6f432;--b-btn-fg:#0f1712;--b-track:-0.035em">
+  <div class="wrap band__inner">
+    <div class="band__copy">
+      <p class="band__niche">Health, fitness &amp; wellness</p>
+      <h2 class="band__name" style="font-family:'Outfit',sans-serif;font-weight:800">Vig<em>or</em></h2>
+      <p class="band__lede">A contour-lined energy core that beats like a heart, circled by orbit rings and rising particles. Built for supplement, gym and wellness brands.</p>
+      <dl class="specs">
+        <dt>Type</dt><dd>Outfit ExtraBold / Nunito Sans</dd>
+        <dt>Palette</dt><dd class="swatches"><span class="sw"><i style="background:#0f1712"></i>0F1712</span><span class="sw"><i style="background:#c6f432"></i>C6F432</span><span class="sw"><i style="background:#1f6b52"></i>1F6B52</span><span class="sw"><i style="background:#f4f6f1"></i>F4F6F1</span></dd>
+        <dt>Homepage</dt><dd>Hero, ticker, best sellers, problem story, stats, comparison, daily stack, reviews, guarantee, FAQ, email</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn btn--main" href="vigor/index.html">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="vigor/product-daily-plant-protein.html">Product page</a>
+        <a class="btn btn--ghost" href="vigor/collection.html">Shop page</a>
+        <a class="btn btn--ghost" href="https://onethng.store/cart/59803773272396:1" target="_blank" rel="noopener">Just Vigor, $50</a>
+      </div>
+    </div>
+    <div class="shots"><a href="vigor/index.html" aria-label="Open the Vigor demo"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="shots/vigor-desktop.jpg" alt="Vigor homepage on desktop: dark hero with a glowing green 3D energy core" width="1440" height="900"></div><div class="phone"><img src="shots/vigor-mobile.jpg" alt="Vigor homepage on a phone" width="585" height="1266" loading="lazy"></div></a></div>
+  </div>
+</section>
+
+<section class="band" id="dewy" style="--b-bg:#f7ece8;--b-fg:#3a2b2b;--b-accent:#c4705c;--b-btn:#3a2b2b;--b-btn-fg:#fbf6f3">
+  <div class="wrap band__inner">
+    <div class="band__copy">
+      <p class="band__niche">Beauty &amp; skincare</p>
+      <h2 class="band__name" style="font-family:'Playfair Display',serif;font-weight:400">De<em style="font-style:italic">wy</em></h2>
+      <p class="band__lede">Iridescent glass serum drops that refract soft pastel forms, wobble gently and drift as bubbles. Built for skincare, cosmetics and self-care brands.</p>
+      <dl class="specs">
+        <dt>Type</dt><dd>Playfair Display / Outfit</dd>
+        <dt>Palette</dt><dd class="swatches"><span class="sw"><i style="background:#3a2b2b"></i>3A2B2B</span><span class="sw"><i style="background:#c4705c"></i>C4705C</span><span class="sw"><i style="background:#c9b6e4"></i>C9B6E4</span><span class="sw"><i style="background:#fbf6f3"></i>FBF6F3</span></dd>
+        <dt>Homepage</dt><dd>Hero, benefits, cult trio, 3-step routine, problem story, reviews, guarantee, FAQ, email</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn btn--main" href="dewy/index.html">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="dewy/product-barrier-repair-serum.html">Product page</a>
+        <a class="btn btn--ghost" href="dewy/collection.html">Shop page</a>
+        <a class="btn btn--ghost" href="https://onethng.store/cart/59803775926604:1" target="_blank" rel="noopener">Just Dewy, $50</a>
+      </div>
+    </div>
+    <div class="shots"><a href="dewy/index.html" aria-label="Open the Dewy demo"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="shots/dewy-desktop.jpg" alt="Dewy homepage on desktop: blush hero with glassy 3D serum droplets" width="1440" height="900" loading="lazy"></div><div class="phone"><img src="shots/dewy-mobile.jpg" alt="Dewy homepage on a phone" width="585" height="1266" loading="lazy"></div></a></div>
+  </div>
+</section>
+
+<section class="band" id="drape" style="--b-bg:#0e0e0e;--b-fg:#f2efe9;--b-accent:#ff5a1f;--b-btn:#f2efe9;--b-btn-fg:#111111;--b-track:0">
+  <div class="wrap band__inner">
+    <div class="band__copy">
+      <p class="band__niche">Fashion &amp; apparel</p>
+      <h2 class="band__name" style="font-family:'Oswald',sans-serif;font-weight:600;text-transform:uppercase">Dra<em style="font-style:italic">pe</em></h2>
+      <p class="band__lede">Heavy black satin that folds in the wind, with twin sport stripes and a ripple that follows your cursor. Built for streetwear and clothing brands.</p>
+      <dl class="specs">
+        <dt>Type</dt><dd>Oswald (uppercase) / Outfit</dd>
+        <dt>Palette</dt><dd class="swatches"><span class="sw"><i style="background:#111111"></i>111111</span><span class="sw"><i style="background:#ff5a1f"></i>FF5A1F</span><span class="sw"><i style="background:#d6cfc2"></i>D6CFC2</span><span class="sw"><i style="background:#f2efe9"></i>F2EFE9</span></dd>
+        <dt>Homepage</dt><dd>Hero, tilted ticker, categories, new drop, problem story, spec sheet, reviews, returns promise, early-access email</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn btn--main" href="drape/index.html">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="drape/product-heavyweight-boxy-tee.html">Product page</a>
+        <a class="btn btn--ghost" href="drape/collection.html">Shop page</a>
+        <a class="btn btn--ghost" href="https://onethng.store/cart/59803780415820:1" target="_blank" rel="noopener">Just Drape, $50</a>
+      </div>
+    </div>
+    <div class="shots"><a href="drape/index.html" aria-label="Open the Drape demo"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="shots/drape-desktop.jpg" alt="Drape homepage on desktop: black satin 3D fabric with orange stripes" width="1440" height="900" loading="lazy"></div><div class="phone"><img src="shots/drape-mobile.jpg" alt="Drape homepage on a phone" width="585" height="1266" loading="lazy"></div></a></div>
+  </div>
+</section>
+
+<section class="band" id="ember" style="--b-bg:#17110e;--b-fg:#f6efe6;--b-accent:#f2a65a;--b-btn:#b4532a;--b-btn-fg:#fffaf3">
+  <div class="wrap band__inner">
+    <div class="band__copy">
+      <p class="band__niche">Home &amp; candles</p>
+      <h2 class="band__name" style="font-family:'Petrona',serif;font-weight:400">Em<em style="font-style:italic">ber</em></h2>
+      <p class="band__lede">A candle in a glass jar with a flickering shader flame, warm glow and drifting embers. Move your cursor and the flame leans away. Built for candle, fragrance and homeware brands.</p>
+      <dl class="specs">
+        <dt>Type</dt><dd>Petrona / PT Sans</dd>
+        <dt>Palette</dt><dd class="swatches"><span class="sw"><i style="background:#2a1d16"></i>2A1D16</span><span class="sw"><i style="background:#b4532a"></i>B4532A</span><span class="sw"><i style="background:#f2a65a"></i>F2A65A</span><span class="sw"><i style="background:#f6efe6"></i>F6EFE6</span></dd>
+        <dt>Homepage</dt><dd>Hero, ritual intro, best sellers, problem story, candle care, stats, reviews, burn guarantee, FAQ, email</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn btn--main" href="ember/index.html">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="ember/product-fig-cedar.html">Product page</a>
+        <a class="btn btn--ghost" href="ember/collection.html">Shop page</a>
+        <a class="btn btn--ghost" href="https://onethng.store/cart/59803784675660:1" target="_blank" rel="noopener">Just Ember, $50</a>
+      </div>
+    </div>
+    <div class="shots"><a href="ember/index.html" aria-label="Open the Ember demo"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="shots/ember-desktop.jpg" alt="Ember homepage on desktop: dark warm hero with a lit 3D candle" width="1440" height="900" loading="lazy"></div><div class="phone"><img src="shots/ember-mobile.jpg" alt="Ember homepage on a phone" width="585" height="1266" loading="lazy"></div></a></div>
+  </div>
+</section>
+
+<section class="band" id="fetch" style="--b-bg:#fff3df;--b-fg:#1f2a44;--b-accent:#e4572e;--b-btn:#ff7a59;--b-btn-fg:#1f2a44">
+  <div class="wrap band__inner">
+    <div class="band__copy">
+      <p class="band__niche">Pet products</p>
+      <h2 class="band__name" style="font-family:'Nunito',sans-serif;font-weight:900">Fet<em>ch</em></h2>
+      <p class="band__lede">Cartoon-outlined balls, bones, rings and paws that pop in, float, dodge your cursor and bounce when tapped. Built for pet toy, treat and accessory brands.</p>
+      <dl class="specs">
+        <dt>Type</dt><dd>Nunito Black / Nunito</dd>
+        <dt>Palette</dt><dd class="swatches"><span class="sw"><i style="background:#1f2a44"></i>1F2A44</span><span class="sw"><i style="background:#ff7a59"></i>FF7A59</span><span class="sw"><i style="background:#ffd23f"></i>FFD23F</span><span class="sw"><i style="background:#4cc9f0"></i>4CC9F0</span></dd>
+        <dt>Homepage</dt><dd>Hero, benefits, best sellers, problem story, comparison, size finder steps, reviews, chew guarantee, FAQ, email</dd>
+      </dl>
+      <div class="actions">
+        <a class="btn btn--main" href="fetch/index.html">Open live demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="fetch/product-tough-bounce-ball.html">Product page</a>
+        <a class="btn btn--ghost" href="fetch/collection.html">Shop page</a>
+        <a class="btn btn--ghost" href="https://onethng.store/cart/59803786903884:1" target="_blank" rel="noopener">Just Fetch, $50</a>
+      </div>
+    </div>
+    <div class="shots"><a href="fetch/index.html" aria-label="Open the Fetch demo"><div class="browser"><div class="browser__bar"><i></i><i></i><i></i></div><img src="shots/fetch-desktop.jpg" alt="Fetch homepage on desktop: cream hero with bouncing cartoon dog toys" width="1440" height="900" loading="lazy"></div><div class="phone"><img src="shots/fetch-mobile.jpg" alt="Fetch homepage on a phone" width="585" height="1266" loading="lazy"></div></a></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2>Built to sell, not just to look good</h2>
+    <p>All five themes share the same sales engine, so whichever one fits your niche, you get every feature below. Everything is edited in Shopify's theme editor, no code needed.</p>
+    <div class="kit">
+      <div><span>Product page</span><h3>Sticky add-to-cart bar</h3><p>Slides in once the main button scrolls away, so buying is always one tap.</p></div>
+      <div><span>Product page</span><h3>Real low-stock alerts</h3><p>"Only 3 left" appears from your actual inventory, never a fake countdown.</p></div>
+      <div><span>Cart</span><h3>Slide-out cart with upsells</h3><p>Free-shipping progress bar plus one-tap add-ons from a collection you choose.</p></div>
+      <div><span>Collection</span><h3>Quick add, filters and sort</h3><p>Add single-variant products from the grid, with Shopify's native filtering.</p></div>
+      <div><span>Homepage</span><h3>Objection-busting sections</h3><p>Comparison table, guarantee banner with rotating seal, FAQ with Google rich-result markup.</p></div>
+      <div><span>Homepage</span><h3>Proof and capture</h3><p>Reviews, animated stats, steps, email signup and announcement bar.</p></div>
+      <div><span>Motion</span><h3>Scroll-stopping sections</h3><p>A pinned story that holds the page while each point plays, text that lights up word by word, a hero that fades out as you leave it, count-up numbers and a progress bar. All off for visitors who prefer reduced motion.</p></div>
+      <div><span>Speed</span><h3>3D that never blocks the page</h3><p>Scenes load after the page is ready, pause off-screen and skip on data saver.</p></div>
+      <div><span>Editor</span><h3>16 drag-and-drop sections</h3><p>Online Store 2.0 with app blocks, colour and font pickers, per-section colour schemes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap install">
+    <div>
+      <h2>Live in ten minutes</h2>
+      <ol class="steps">
+        <li><p>In Shopify admin, go to <strong>Online Store &#8594; Themes</strong>.</p></li>
+        <li><p>Click <strong>Add theme &#8594; Upload zip file</strong> and choose the theme for your niche, for example <code>Vigor-Shopify-Theme-v1.0.zip</code>.</p></li>
+        <li><p>Click <strong>Customize</strong>, pick your products, add your logo and swap in your own words. The setup guide walks you through it.</p></li>
+        <li><p>Preview on your phone, then <strong>Publish</strong>.</p></li>
+      </ol>
+    </div>
+    <div class="notes">
+      <h3>What you get with the $99 bundle</h3>
+      <ul>
+        <li>Five complete Shopify themes: Vigor, Dewy, Drape, Ember and Fetch.</li>
+        <li>A PDF setup guide covering install, homepage setup and theme settings.</li>
+        <li>Instant download after checkout.</li>
+        <li>Use them on stores you own or run, as many as you like.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pricing" style="padding-top:0">
+  <div class="wrap">
+    <h2>Pick what fits your store</h2>
+    <p>Every option is a one-off payment. No subscription, no monthly fee.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>One theme</h3>
+        <p class="plan__price">$50</p>
+        <p>You know your niche and want its theme today.</p>
+        <ul><li>One complete theme plus setup guide</li><li>Instant download after checkout</li></ul>
+        <div class="plan__cta"><p>Choose your theme:</p><div class="plan__pick" aria-label="Choose a theme"><a href="https://onethng.store/cart/59803773272396:1" target="_blank" rel="noopener">Vigor</a><a href="https://onethng.store/cart/59803775926604:1" target="_blank" rel="noopener">Dewy</a><a href="https://onethng.store/cart/59803780415820:1" target="_blank" rel="noopener">Drape</a><a href="https://onethng.store/cart/59803784675660:1" target="_blank" rel="noopener">Ember</a><a href="https://onethng.store/cart/59803786903884:1" target="_blank" rel="noopener">Fetch</a></div></div>
+      </div>
+      <div class="plan plan--best">
+        <span class="plan__tag">Best value</span>
+        <h3>All 5 themes</h3>
+        <p class="plan__price">$99 <small>vs $250 separately</small></p>
+        <p>Try different looks, change niche later or run more than one store.</p>
+        <ul><li>Vigor, Dewy, Drape, Ember and Fetch</li><li>Setup guide and instant download</li></ul>
+        <div class="plan__cta"><a class="buy" href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener">Get all 5 for $99 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+      </div>
+      <div class="plan">
+        <h3>Custom theme</h3>
+        <p class="plan__price">$200</p>
+        <p>A theme designed from scratch around your brand, products and customers.</p>
+        <ul><li>Your logo, colours, fonts and copy</li><li>Motion built around your product</li><li>Two rounds of changes included</li><li>Delivery date confirmed within 2 working days of your brief</li></ul>
+        <div class="plan__cta"><a class="buy buy--ghost" href="https://onethng.store/cart/59804227240268:1" target="_blank" rel="noopener">Order a custom theme <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <h2>Questions</h2>
+    <p>The things people ask before buying.</p>
+    <div class="faq">
+      <details open><summary>Do I need to know how to code?</summary><p>No. Every section, colour, font and piece of text is changed in Shopify's drag-and-drop theme editor. Upload the theme, click Customize and edit what you see.</p></details>
+      <details><summary>Will the 3D slow my store down?</summary><p>The 3D scene loads only after the rest of your page has loaded, pauses when it scrolls out of view and switches off for visitors who use data saver or reduced motion. Your text, products and buttons appear first.</p></details>
+      <details><summary>Will it work on my Shopify plan?</summary><p>Yes. These are standard Online Store 2.0 themes and work on every Shopify plan, with your existing products, collections and apps.</p></details>
+      <details><summary>Can I use one theme now and switch later?</summary><p>Yes. Install as many of the five as you like and keep them in your theme library. Your products stay the same whichever theme is live.</p></details>
+      <details><summary>What do I get with a custom theme?</summary><p>After checkout you get a short brief to fill in: your brand, logo, colours, products and customers. We design and build a theme around it, confirm your delivery date within 2 working days of receiving the brief, and include two rounds of changes. You get an install-ready theme file and a setup guide.</p></details>
+      <details><summary>Do the demos show real products?</summary><p>The demos use a sample catalogue with illustrated products so you can try every feature. Once installed, the theme shows your own products and photos.</p></details>
+      <details><summary>Can I use the themes on client or multiple stores?</summary><p>You can use them on any store you own or run. Reselling or sharing the theme files themselves isn't allowed.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="closer">
+  <div class="wrap">
+    <h2>Six months from now, your store either stands out or it doesn't.</h2>
+    <p>Pick the theme for your niche, install it this afternoon and give shoppers a reason to stay.</p>
+    <a class="buy" href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener">Get all 5 themes for $99 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&#169; 2026 One Thng &#183; <a href="https://onethng.store" target="_blank" rel="noopener">onethng.store</a> &#183; Themes built with Shopify Liquid and three.js (MIT licence). Shopify is a trademark of Shopify Inc.; these themes are independent and not affiliated with Shopify.</div>
+</footer>
