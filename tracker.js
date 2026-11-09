@@ -13,6 +13,7 @@
       try { ref = document.referrer ? new URL(document.referrer).hostname : null; } catch (e) {}
       var body = {
         event: event,
+        host: cut(location.hostname, 120),
         path: cut(location.pathname, 200),
         hash: cut(location.hash.replace('#', ''), 40),
         target: cut(target, 200),
