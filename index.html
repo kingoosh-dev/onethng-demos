@@ -27,6 +27,7 @@
   :root[data-theme="dark"] { --paper: #141416; --ink: #ecebe6; --muted: #a3a2a8; --line: #2c2c31; --chip: #222226; --focus: #8ea6ff; color-scheme: dark; }
 
   * { box-sizing: border-box; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
   body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16px/1.6 var(--font-body); -webkit-font-smoothing: antialiased; }
   a { color: inherit; }
   :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
@@ -99,6 +100,13 @@
   .buy { display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 99px; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 1.02rem; text-decoration: none; transition: transform .25s; }
   .buy:hover { transform: translateY(-2px); }
   .buy svg { width: 18px; height: 18px; }
+  .offer__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .buy--demo svg { animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateY(-1px); } 50% { transform: translateY(3px); } }
+  .jump__label { margin: 22px 0 0 !important; font: 500 12px/1 var(--font-mono) !important; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .jump { margin-top: 12px !important; }
+  .jump svg { width: 14px; height: 14px; opacity: .6; }
+  @media (prefers-reduced-motion: reduce) { .buy--demo svg { animation: none; } }
   .offer__note { margin: 0; font-size: .88rem; color: var(--muted); max-width: 34ch; }
   .offer__note b { color: var(--ink); font-weight: 600; }
   .plans { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); align-items: stretch; }
@@ -137,18 +145,22 @@
     <p class="kicker">Shopify themes &#183; 5-theme bundle</p>
     <h1>Stop launching on the same theme as everyone else.</h1>
     <div class="offer">
-      <a class="buy" href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener">Get all 5 for $99 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      <div class="offer__btns">
+        <a class="buy buy--demo" href="#vigor">Try the live demos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
+        <a class="buy buy--ghost" href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener">Get all 5 for $99 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+      </div>
       <p class="offer__note"><b>Under $20 a theme.</b> Premium Shopify Theme Store themes usually cost $140&#8211;$400 each. Need just one? <a href="#pricing">$50 a theme</a>.</p>
     </div>
   </div>
   <div>
     <p>Shoppers can't tell your store apart from the last one they left, so they leave yours too. Here are five complete Shopify themes, one for each of the biggest store niches, each opening with a live 3D scene that stops the scroll. Try every demo: touch the 3D, add something to the cart, open the drawer. What you see is what you get.</p>
-    <ul class="jump" aria-label="Jump to a theme">
-      <li><a href="#vigor"><i style="background:#c6f432"></i>Vigor</a></li>
-      <li><a href="#dewy"><i style="background:#e9a796"></i>Dewy</a></li>
-      <li><a href="#drape"><i style="background:#ff5a1f"></i>Drape</a></li>
-      <li><a href="#ember"><i style="background:#f2a65a"></i>Ember</a></li>
-      <li><a href="#fetch"><i style="background:#4cc9f0"></i>Fetch</a></li>
+    <p class="jump__label">Tap a theme to try its demo</p>
+    <ul class="jump" aria-label="Try a theme demo">
+      <li><a href="#vigor"><i style="background:#c6f432"></i>Vigor<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></li>
+      <li><a href="#dewy"><i style="background:#e9a796"></i>Dewy<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></li>
+      <li><a href="#drape"><i style="background:#ff5a1f"></i>Drape<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></li>
+      <li><a href="#ember"><i style="background:#f2a65a"></i>Ember<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></li>
+      <li><a href="#fetch"><i style="background:#4cc9f0"></i>Fetch<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a></li>
     </ul>
   </div>
 </header>
