@@ -24,7 +24,7 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10002":0,"10100":1,"10101":1,"10102":1,"10200":2,"10201":2,"10300":3,"10400":4,"10500":5,"10600":6,"10601":6,"10602":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,p=V[fd.get('id')];if(p==null)p=0;var q=parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10002":0,"10100":1,"10101":1,"10102":1,"10200":2,"10201":2,"10300":3,"10400":4,"10500":5,"10600":6,"10601":6,"10602":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,j=typeof fd==='string'?JSON.parse(fd):null,p=V[j?j.items[0].id:fd.get('id')];if(p==null)p=0;var q=j?1:parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
 
     <style>
   
@@ -67,7 +67,7 @@
     <script src="assets/theme.js" defer="defer"></script>
   </head>
 
-  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Fetch</b> demo · sample products</span><a href="../index.html#fetch" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div>
+  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Fetch</b> demo · sample products</span><a href="../index.html#fetch" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div><style>main > .shopify-section:first-child .hero--pin .hero__inner{margin-bottom:calc(var(--announce-h,0px) + var(--demo-h,0px))}</style><script>(function(){var b=document.querySelector('.demo-bar');function s(){document.documentElement.style.setProperty('--demo-h',b.offsetHeight+'px')}s();addEventListener('resize',s)})();</script>
     <a class="skip-link" href="#MainContent">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div><div id="shopify-section-sections--header-group__announcement" class="shopify-section shopify-section-group-header-group"><div class="announcement scheme-inverse">
     <div class="page-width announcement__inner">
       <div class="announcement__slides" data-rotator data-interval="5000"><p class="announcement__msg is-active" >Free delivery on orders over £40</p><p class="announcement__msg" >Destroyed in 30 days? We'll replace it</p></div>
@@ -125,7 +125,8 @@
 </button>
     </div>
     <nav class="drawer__body menu-drawer" aria-label="Primary">
-      <ul role="list"><li><details>
+      <ul role="list"><li><a href="index.html" aria-current="page">Home<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a></li><li><details>
                 <summary>Shop<svg class="icon icon--chevron-down" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 </summary>
                 <ul role="list"><li><a href="collection.html">Best sellers</a></li><li><a href="collection.html">New in</a></li><li><a href="collection.html">Bundles</a></li><li><a href="collection.html">View all</a></li>
@@ -148,54 +149,147 @@
 
     <main id="MainContent" class="main" role="main" tabindex="-1">
       <div id="shopify-section-template--hero" class="shopify-section section-hero"><section
-  class="hero hero--left"
+  class="hero hero--play hero--pin"
   data-hero
-  style="--hero-bg: #fff3df; --hero-fg: #1f2a44; --em-color: #ff7a59; --hero-h: 90svh; --scene-1: #ff7a59; --scene-2: #ffd23f; --scene-3: #4cc9f0; --shade: 0.7;"
+  data-pin
+  style="--hero-bg: #fff3df; --hero-fg: #1f2a44; --em-color: #ff7a59; --hero-h: 100svh; --hero-pin: 120svh; --scene-bg: #fff3df; --scene-1: #ff7a59; --scene-2: #ffd23f; --scene-3: #4cc9f0; --shade: 0.7;"
 >
-  <div class="hero__media" aria-hidden="true">
-    <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="normal"></canvas><div class="hero__shade"></div></div>
-
-  <div class="page-width hero__inner">
-    <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>For dogs who destroy everything</p><h1 class="h0 hero__heading" data-split>Toys that survive the <em>zoomies.</em></h1><div class="hero__sub" data-reveal style="--d: 3"><p>Tough, non-toxic toys and treats built for the dogs who shred everything else in a day. Go on — tap the toys.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop tough toys</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Find their size</span></a></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+  <div class="hero__stage" data-pin-stage>
+    <div class="hero__media" aria-hidden="true">
+      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="normal" data-layout="play"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100" focusable="false"><defs><path id="hero-badge-template--hero" d="M50 50 m-39 0 a39 39 0 1 1 78 0 a39 39 0 1 1 -78 0"/></defs><text><textPath href="#hero-badge-template--hero">Chew tested &#8226; Chew tested &#8226;</textPath></text></svg>
+        <span class="hero__badge-line">Chew tested</span>
+      </div><div class="page-width hero__inner">
+      <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>For dogs who destroy everything</p><h1 class="h0 hero__heading" data-split>Toys that survive the <em>zoomies.</em></h1><div class="hero__lower"><div class="hero__sub" data-reveal style="--d: 3"><p>Tough, non-toxic toys and treats built for the dogs who shred everything else in a day. Go on, tap the toys.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop tough toys</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Find their size</span></a></div></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
 <span>Chew-tested by our pack</span></li><li ><svg class="icon icon--shield" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
 <span>Non-toxic natural rubber</span></li><li ><svg class="icon icon--return" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
 <span>Free returns</span></li></ul></div>
-  </div><div class="hero__cue" aria-hidden="true"><span></span></div></section>
-
-
-</div>
-<div id="shopify-section-template--features" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
-  <div class="page-width"><div class="section-head section-head--center">
-        <div><p class="eyebrow" data-reveal>Why Fetch</p><h2 class="h2" data-split>Built for big <em>chewers</em></h2></div>
-      </div><ul class="features" role="list"><li class="feature" data-reveal style="--d: 0" >
-          <span class="feature__icon"><svg class="icon icon--shield" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
-</span>
-          <h3 class="h3">Seriously tough</h3>
-          <p>Thick natural rubber that stands up to power chewers.</p>
-        </li><li class="feature" data-reveal style="--d: 1" >
-          <span class="feature__icon"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
-</span>
-          <h3 class="h3">Safe to chew</h3>
-          <p>Non-toxic, BPA-free materials — nothing nasty in their mouth.</p>
-        </li><li class="feature" data-reveal style="--d: 2" >
-          <span class="feature__icon"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
-</span>
-          <h3 class="h3">Sized right</h3>
-          <p>Every toy in three sizes, so it's never too small to be safe.</p>
-        </li></ul>
-  </div>
+    </div><div class="hero__act2">
+        <div class="page-width hero__act2-inner"><p class="h1 hero__act2-heading">Chewed. Thrown. <em>Still standing.</em></p><ul class="hero__moments" role="list"><li class="hero__moment" style="--i: 0" >
+                  <span class="hero__moment-value">30</span>
+                  <span class="hero__moment-label">Day chew guarantee</span>
+                </li><li class="hero__moment" style="--i: 1" >
+                  <span class="hero__moment-value">3</span>
+                  <span class="hero__moment-label">Sizes for every dog</span>
+                </li><li class="hero__moment" style="--i: 2" >
+                  <span class="hero__moment-value">0</span>
+                  <span class="hero__moment-label">Stuffing to rip out</span>
+                </li></ul></div>
+      </div></div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
-  <div class="page-width">
-    <div class="section-head">
-      <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>Zoomie-<em>approved</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>View all<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a></div>
+<div id="shopify-section-template--marquee" class="shopify-section"><div class="section scheme-default" style="--pad-top: 8px; --pad-bottom: 8px;">
+  <div class="marquee marquee--tilt scheme-accent" style="--marquee-dur: 28s; --marquee-size: 1.8rem;">
+    <div class="marquee__track" data-marquee><ul class="marquee__group" role="list"><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li></ul><ul class="marquee__group" role="list" aria-hidden="true"><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Chew tested</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Non-toxic rubber</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Dishwasher safe</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li><li class="marquee__item" >
+                <span>Replaced if destroyed</span>
+                <span class="marquee__sep"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+              </li></ul></div>
+  </div>
+</div>
 
-    <ul class="grid grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card">
+
+</div>
+<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-default" style="--pad-top: 72px; --pad-bottom: 112px;">
+    <div class="page-width">
+      <div class="section-head section-head--center">
+    <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>Zoomie-<em>approved</em></h2></div></div>
+      <ul class="grid grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card" data-spot>
     <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Tough Bounce Ball" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-tough-bounce-ball.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -210,7 +304,7 @@
   <span class="price__current">£14.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 1"><div class="card">
+  </div></li><li data-reveal style="--d: 1"><div class="card" data-spot>
     <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Forever Bone" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><a href="product-forever-bone.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -225,7 +319,7 @@
   <span class="price__current">£16.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 2"><div class="card">
+  </div></li><li data-reveal style="--d: 2"><div class="card" data-spot>
     <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Tug Ring" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge badge--sale">-18%</span></div><div class="card__quick"><a href="product-tug-ring.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -240,7 +334,7 @@
   <span class="price__current"><span class="visually-hidden">Sale price</span>£18.00</span><s class="price__compare"><span class="visually-hidden">Regular price</span>£22.00</s></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 3"><div class="card">
+  </div></li><li data-reveal style="--d: 3"><div class="card" data-spot>
     <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Paw Flyer Frisbee" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10300">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
@@ -258,20 +352,18 @@
 
     </div>
   </div></li></ul>
-  </div>
-</section>
-
-
+    </div>
+  </section>
 </div>
-<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width split split--reverse">
-    <div class="split__media" data-reveal="scale"><div class="sticker" aria-hidden="true">
+    <div class="split__media" data-reveal="clip" data-view><div class="sticker" aria-hidden="true">
           <svg viewBox="0 0 100 100"><defs><path id="sticker-template--problem" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text><textPath href="#sticker-template--problem">Chew guarantee &#8226; Chew guarantee &#8226;</textPath></text></svg>
           <svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
 
         </div><div class="split__frame" style="--ratio: 1 / 1;"><img src="img/scene.svg" loading="lazy" data-parallax="50" alt="" width="800" height="1000"></div>
     </div>
-    <div class="split__content"><p class="eyebrow" data-reveal>Sound familiar?</p><h2 class="h2" data-split>£10 toy. <em>Ten minutes.</em> Stuffing everywhere.</h2><div class="subtext rte" data-reveal style="--d: 2"><p>If your dog treats every toy like a challenge, you're not alone. We design for the destroyers — so playtime lasts longer than the car ride home.</p></div><ul class="checklist" role="list"><li data-reveal style="--d: 3" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+    <div class="split__content"><p class="eyebrow" data-reveal>Sound familiar?</p><h2 class="h2" data-split>£10 toy. <em>Ten minutes.</em> Stuffing everywhere.</h2><div class="subtext rte" data-reveal style="--d: 2"><p>If your dog treats every toy like a challenge, you're not alone. We design for the destroyers, so playtime lasts longer than the car ride home.</p></div><ul class="checklist" role="list"><li data-reveal style="--d: 3" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
 <span>No stuffing, no squeaker to rip out</span></li><li data-reveal style="--d: 4" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
 <span>Floats and bounces unpredictably</span></li><li data-reveal style="--d: 5" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
 <span>Dishwasher safe</span></li></ul><a href="collection.html" class="btn btn--magnetic" data-reveal style="--d: 6"><span>Shop indestructibles</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
@@ -281,36 +373,37 @@
 
 
 </div>
-<div id="shopify-section-template--statement" class="shopify-section"><section class="section scheme-default" style="--pad-top: 120px; --pad-bottom: 120px;">
-  <div class="page-width">
-    <div class="rich"><h2 class="h1" data-scrub>Your dog will find the weak spot in any toy. We made ones that <em>don't have one</em>.</h2></div>
-  </div>
-</section>
-
-
+<div id="shopify-section-template--statement" class="shopify-section"><section class="statement scheme-default" data-pin style="--pad-top: 120px; --pad-bottom: 120px;">
+    <div class="statement__stage" data-pin-stage>
+      <div class="page-width">
+        <div class="rich"><h2 class="h1 statement__text" data-scrub>Your dog will find the weak spot in any toy. We made ones that <em>don't have one</em>.</h2></div>
+        <div class="statement__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
 </div>
-<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-inverse" data-story data-count="4" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
-  <div class="story__stage">
+<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-inverse" data-pin data-active="0" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
+  <div class="story__stage" data-pin-stage>
     <div class="page-width story__grid">
-      <div class="story__copy"><p class="eyebrow">Built for play</p><h2 class="h2">Made for dogs who <em>destroy</em> everything</h2><ol class="story__list" role="list"><li class="story__item is-active" data-story-item >
+      <div class="story__copy"><p class="eyebrow">Built for play</p><h2 class="h2">Made for dogs who <em>destroy</em> everything</h2><ol class="story__list" role="list"><li class="story__item is-active" data-step >
               <span class="story__idx">01</span>
               <div>
                 <h3 class="story__title">Chew-tested</h3>
                 <div class="story__body"><p>Tested by real dogs with real jaws, so it lasts longer than a weekend.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">02</span>
               <div>
                 <h3 class="story__title">Safe materials</h3>
                 <div class="story__body"><p>Non-toxic and made without harsh dyes, because it goes in their mouth.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">03</span>
               <div>
                 <h3 class="story__title">The right size for your dog</h3>
                 <div class="story__body"><p>Sizes from small to large, so a big dog can't swallow a small toy.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">04</span>
               <div>
                 <h3 class="story__title">Easy to clean</h3>
@@ -318,15 +411,23 @@
               </div>
             </li></ol>
       </div>
-      <div class="story__visual" aria-hidden="true">
-        <span class="story__glow"></span>
-        <svg class="story__ring" viewBox="0 0 100 100" focusable="false">
-          <circle class="story__ring-track" cx="50" cy="50" r="48" pathLength="1"></circle>
-          <circle class="story__ring-bar" cx="50" cy="50" r="48" pathLength="1"></circle>
-        </svg><div class="story__panel is-active" data-story-panel><span class="story__value">Tough</span><span class="story__cap">Chew-tested</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Safe</span><span class="story__cap">Safe materials</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Sized</span><span class="story__cap">The right size for your dog</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Wash</span><span class="story__cap">Easy to clean</span>
+      <div class="story__visual story__visual--ball" aria-hidden="true">
+        <svg class="sv sv--ball" viewBox="0 0 400 400" focusable="false">
+      <path class="sv-ball__ground" d="M16 352h368"/>
+      <path class="sv-ball__trail" d="M36 326Q78 120 120 326q36-150 72 0 30-106 60 0 24-70 48 0 16-40 32 0" pathLength="1"/>
+      <g class="sv-ball__paws">
+        <g class="sv-paw sv-paw--1" transform="translate(64 372)"><ellipse cx="0" cy="4" rx="8" ry="6.5"/><circle cx="-10" cy="-5" r="3.5"/><circle cx="-3.5" cy="-10" r="3.5"/><circle cx="3.5" cy="-10" r="3.5"/><circle cx="10" cy="-5" r="3.5"/></g>
+        <g class="sv-paw sv-paw--2" transform="translate(150 380)"><ellipse cx="0" cy="4" rx="8" ry="6.5"/><circle cx="-10" cy="-5" r="3.5"/><circle cx="-3.5" cy="-10" r="3.5"/><circle cx="3.5" cy="-10" r="3.5"/><circle cx="10" cy="-5" r="3.5"/></g>
+        <g class="sv-paw sv-paw--3" transform="translate(236 372)"><ellipse cx="0" cy="4" rx="8" ry="6.5"/><circle cx="-10" cy="-5" r="3.5"/><circle cx="-3.5" cy="-10" r="3.5"/><circle cx="3.5" cy="-10" r="3.5"/><circle cx="10" cy="-5" r="3.5"/></g>
+        <g class="sv-paw sv-paw--4" transform="translate(322 380)"><ellipse cx="0" cy="4" rx="8" ry="6.5"/><circle cx="-10" cy="-5" r="3.5"/><circle cx="-3.5" cy="-10" r="3.5"/><circle cx="3.5" cy="-10" r="3.5"/><circle cx="10" cy="-5" r="3.5"/></g>
+      </g>
+      <g class="sv-ball__mover">
+        <g class="sv-ball__ball"><circle r="26"/><path d="M-22-14q22 14 0 28M22-14q-22 14 0 28"/></g>
+      </g>
+    </svg><div class="story__panel is-active" data-step-panel><span class="story__value">Tough</span><span class="story__cap">Chew-tested</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Safe</span><span class="story__cap">Safe materials</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Sized</span><span class="story__cap">The right size for your dog</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Wash</span><span class="story__cap">Easy to clean</span>
           </div></div>
     </div>
   </div>
@@ -334,7 +435,46 @@
 
 
 </section>
-<div id="shopify-section-template--compare" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
+  <div class="page-width">
+    <div class="section-head">
+      <div><p class="eyebrow" data-reveal>How it works</p><h2 class="h2" data-split>Find their perfect <em>toy</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>Start with size<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a></div><ol class="stack" data-stack role="list"><li class="stack__card" data-stack-card style="--i: 0;" >
+            <div class="stack__inner">
+              <span class="stack__num">01</span>
+              <div class="stack__text">
+                <h3 class="h2">Pick their size</h3>
+                <p>Small, medium or large, chosen by your dog's weight.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
+</span>
+            </div>
+          </li><li class="stack__card" data-stack-card style="--i: 1;" >
+            <div class="stack__inner">
+              <span class="stack__num">02</span>
+              <div class="stack__text">
+                <h3 class="h2">Pick their chew style</h3>
+                <p>Nibbler, chewer or full-on destroyer.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--bolt" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 3 5 13.5h6.2L10.6 21 19 10.5h-6.2L13.2 3Z"/></svg>
+</span>
+            </div>
+          </li><li class="stack__card" data-stack-card style="--i: 2;" >
+            <div class="stack__inner">
+              <span class="stack__num">03</span>
+              <div class="stack__text">
+                <h3 class="h2">Play, then repeat</h3>
+                <p>If it doesn't last 30 days, we'll replace it.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</span>
+            </div>
+          </li></ol></div>
+</section>
+
+
+</div>
+<div id="shopify-section-template--compare" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width" style="max-width: 980px;">
     <div class="section-head section-head--center">
       <div><p class="eyebrow" data-reveal>The difference</p><h2 class="h2" data-split>Fetch vs <em>pet-store</em> toys</h2></div>
@@ -380,31 +520,7 @@
 
 
 </div>
-<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
-  <div class="page-width">
-    <div class="section-head">
-      <div><p class="eyebrow" data-reveal>How it works</p><h2 class="h2" data-split>Find their perfect <em>toy</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>Start with size<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a></div>
-    <ol class="steps" data-observe role="list">
-      <li class="steps__line" aria-hidden="true"></li><li class="step" data-reveal style="--d: 0" >
-          <span class="step__num">01</span>
-          <h3 class="h3">Pick their size</h3>
-          <p>Small, medium or large — chosen by your dog's weight.</p>
-        </li><li class="step" data-reveal style="--d: 2" >
-          <span class="step__num">02</span>
-          <h3 class="h3">Pick their chew style</h3>
-          <p>Nibbler, chewer or full-on destroyer.</p>
-        </li><li class="step" data-reveal style="--d: 4" >
-          <span class="step__num">03</span>
-          <h3 class="h3">Play, then repeat</h3>
-          <p>If it doesn't last 30 days, we'll replace it.</p>
-        </li></ol>
-  </div>
-</section>
-
-
-</div>
-<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head section-head--center">
       <div><p class="eyebrow" data-reveal>Reviews</p><h2 class="h2" data-split>Tails are <em>wagging</em></h2></div>
@@ -454,7 +570,7 @@
 
 
 </div>
-<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 48px; --pad-bottom: 48px;">
+<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 0px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="banner scheme-accent" data-reveal="scale" style="--banner-bg: var(--color-accent);">
       <div class="banner__seal" aria-hidden="true">
@@ -462,14 +578,14 @@
         <span class="banner__seal-core"><svg class="icon icon--paw" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="10" r="1.9"/><circle cx="10" cy="6" r="1.9"/><circle cx="14.5" cy="6" r="1.9"/><circle cx="18" cy="10" r="1.9"/><path d="M8.2 17.4c0-3 1.9-5.6 4-5.6s4.1 2.6 4.1 5.3c0 1.9-1.6 2.6-3.2 2.1-.6-.2-1.2-.2-1.8 0-1.6.6-3.1-.1-3.1-1.8Z"/></svg>
 </span>
       </div>
-      <div><h2 class="h2" data-split>Destroyed in 30 days? We'll replace it.</h2><p>Send us a photo of what's left. We'll send a new one — no awkward questions.</p></div><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop with confidence</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+      <div><h2 class="h2" data-split>Destroyed in 30 days? We'll replace it.</h2><p>Send us a photo of what's left. We'll send a new one, with no awkward questions.</p></div><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop with confidence</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a></div>
   </div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width faq">
     <div class="faq__intro"><p class="eyebrow" data-reveal>Questions</p><h2 class="h2" data-split>Ask the <em>pack</em></h2><div class="subtext rte" data-reveal style="--d: 2"><p>What other dog owners ask before ordering.</p></div><a href="index.html" class="btn btn--secondary" data-reveal style="--d: 3; margin-top: 24px;">Ask us</a></div>
     <div class="faq__list" data-reveal style="--d: 2"><details class="accordion"  open>
@@ -510,14 +626,14 @@
   }
 </script>
 </div>
-<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-accent" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-accent" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="newsletter"><p class="eyebrow" data-reveal>Join the pack</p><h2 class="h1" data-split>10% off their <em>first</em> toy</h2><div class="subtext" data-reveal style="--d: 2; margin-inline: auto;"><p>Plus birthday treats for your dog. Really.</p></div><form method="post" action="#" accept-charset="UTF-8" id="NewsletterForm"><input type="hidden" name="contact[tags]" value="newsletter">
         <div class="inline-form" data-reveal style="--d: 3">
           <label for="NewsletterEmail-template--newsletter" class="visually-hidden">Email</label>
           <input id="NewsletterEmail-template--newsletter" class="input" type="email" name="contact[email]" required autocomplete="email" placeholder="Your email">
           <button type="submit" class="btn btn--magnetic"><span>Join the pack</span></button>
-        </div></form><p class="small" style="margin-top: 14px;">No spam — we're too busy playing fetch.</p></div>
+        </div></form><p class="small" style="margin-top: 14px;">No spam. We're too busy playing fetch.</p></div>
   </div>
 </section>
 
@@ -541,6 +657,34 @@
 </footer>
 
 
+</div>
+
+    <div id="shopify-section-sections--overlay-group__popup" class="shopify-section shopify-section-group-overlay-group section-promo"><div
+    class="promo scheme-default promo--image_left"
+    data-promo
+    data-trigger="delay"
+    data-delay="6"
+    data-days="7"
+    data-mode="instant"
+    data-editor-preview="true"
+    data-teaser="true"
+    hidden
+  >
+    <div class="promo__overlay" data-promo-close></div>
+    <div class="promo__panel" role="dialog" aria-modal="true" aria-labelledby="PromoHeading-sections--overlay-group__popup" tabindex="-1">
+      <button type="button" class="promo__close" data-promo-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button><div class="promo__media"><div class="promo__art" aria-hidden="true"><span>10% OFF</span></div></div><div class="promo__body"><p class="eyebrow">New pack member?</p><div class="promo__step" data-promo-step="offer">
+          <h2 class="promo__heading h2" id="PromoHeading-sections--overlay-group__popup">Treat them: <em>10% off</em> your first order</h2><div class="promo__text rte"><p>Join for new toys, treat drops and the odd good-boy giveaway.</p></div><button type="button" class="btn btn--full" data-promo-reveal>Fetch my code</button><button type="button" class="promo__decline link" data-promo-close>No thanks, I'll pay full price</button>
+        </div>
+
+        <div class="promo__step" data-promo-step="code" hidden>
+          <h2 class="promo__heading h2">You're in. Here's your code</h2><div class="promo__text rte"><p>Use it at checkout. One use per customer.</p></div><div class="promo__code">
+              <span data-promo-code>WELCOME10</span>
+              <button type="button" class="btn btn--secondary" data-promo-copy data-copied="Copied">Copy</button>
+            </div><a class="btn btn--full" href="collection.html">Shop with 10% off</a></div><p class="promo__small small">New customers only. Unsubscribe any time.</p></div>
+    </div>
+  </div><button type="button" class="promo-teaser" data-promo-teaser hidden><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
+<span>Get 10% off</span></button>
 </div><div class="drawer" id="CartDrawer" data-drawer aria-hidden="true">
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your cart">
@@ -585,6 +729,5 @@
         }
       };
     </script>
-  <script defer src="/tracker.js"></script>
-</body>
+  <script defer src="/tracker.js"></script></body>
 </html>

@@ -24,7 +24,7 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10100":1,"10101":1,"10200":2,"10201":2,"10300":3,"10301":3,"10400":4,"10500":5,"10600":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,p=V[fd.get('id')];if(p==null)p=0;var q=parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,700;1,400;1,700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10100":1,"10101":1,"10200":2,"10201":2,"10300":3,"10301":3,"10400":4,"10500":5,"10600":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,j=typeof fd==='string'?JSON.parse(fd):null,p=V[j?j.items[0].id:fd.get('id')];if(p==null)p=0;var q=j?1:parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
 
     <style>
   
@@ -67,7 +67,7 @@
     <script src="assets/theme.js" defer="defer"></script>
   </head>
 
-  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Ember</b> demo · sample products</span><a href="../index.html#ember" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div>
+  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Ember</b> demo · sample products</span><a href="../index.html#ember" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div><style>main > .shopify-section:first-child .hero--pin .hero__inner{margin-bottom:calc(var(--announce-h,0px) + var(--demo-h,0px))}</style><script>(function(){var b=document.querySelector('.demo-bar');function s(){document.documentElement.style.setProperty('--demo-h',b.offsetHeight+'px')}s();addEventListener('resize',s)})();</script>
     <a class="skip-link" href="#MainContent">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div><div id="shopify-section-sections--header-group__announcement" class="shopify-section shopify-section-group-header-group"><div class="announcement scheme-inverse">
     <div class="page-width announcement__inner">
       <div class="announcement__slides" data-rotator data-interval="5000"><p class="announcement__msg is-active" >Free shipping on orders over £50</p><p class="announcement__msg" >Gift-ready packaging on every order</p></div>
@@ -125,7 +125,8 @@
 </button>
     </div>
     <nav class="drawer__body menu-drawer" aria-label="Primary">
-      <ul role="list"><li><details>
+      <ul role="list"><li><a href="index.html" aria-current="page">Home<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a></li><li><details>
                 <summary>Shop<svg class="icon icon--chevron-down" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 </summary>
                 <ul role="list"><li><a href="collection.html">Best sellers</a></li><li><a href="collection.html">New in</a></li><li><a href="collection.html">Bundles</a></li><li><a href="collection.html">View all</a></li>
@@ -148,38 +149,50 @@
 
     <main id="MainContent" class="main" role="main" tabindex="-1">
       <div id="shopify-section-template--hero" class="shopify-section section-hero"><section
-  class="hero hero--left"
+  class="hero hero--title hero--pin"
   data-hero
-  style="--hero-bg: #17110e; --hero-fg: #f6efe6; --em-color: #f2a65a; --hero-h: 95svh; --scene-1: #f2a65a; --scene-2: #6b3f2a; --scene-3: #f3e6d3; --shade: 0.85;"
+  data-pin
+  style="--hero-bg: #17110e; --hero-fg: #f6efe6; --em-color: #f2a65a; --hero-h: 100svh; --hero-pin: 130svh; --scene-bg: #17110e; --scene-1: #f2a65a; --scene-2: #6b3f2a; --scene-3: #f3e6d3; --shade: 0.85;"
 >
-  <div class="hero__media" aria-hidden="true">
-    <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm"></canvas><div class="hero__shade"></div><div class="hero__grain"></div></div>
-
-  <div class="page-width hero__inner">
-    <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>Hand-poured in small batches</p><h1 class="h0 hero__heading" data-split>Make home feel like a <em>deep breath.</em></h1><div class="hero__sub" data-reveal style="--d: 3"><p>Clean-burning soy candles with a 50-hour burn — for the evenings when your head won't switch off.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop candles</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Find your scent</span></a></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--flame" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.6-8.3 1 1.6 1.4 2.8 1.4 4.2 1.2-.9 2.4-2.9 2.4-6.7 3.4 2.4 5.6 6.4 5.6 10.6 0 3.8-2.6 6.4-6.5 6.4Z"/></svg>
+  <div class="hero__stage" data-pin-stage>
+    <div class="hero__media" aria-hidden="true">
+      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="title"></canvas><div class="hero__shade"></div><div class="hero__grain"></div></div><div class="page-width hero__inner">
+      <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>Hand-poured in small batches</p><h1 class="h0 hero__heading" data-split>Make home feel like a <em>deep breath.</em></h1><div class="hero__lower"><div class="hero__sub" data-reveal style="--d: 3"><p>Clean-burning soy candles with a 50-hour burn, for the evenings when your head won't switch off.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop candles</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Find your scent</span></a></div></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--flame" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.6-8.3 1 1.6 1.4 2.8 1.4 4.2 1.2-.9 2.4-2.9 2.4-6.7 3.4 2.4 5.6 6.4 5.6 10.6 0 3.8-2.6 6.4-6.5 6.4Z"/></svg>
 <span>50-hour burn</span></li><li ><svg class="icon icon--leaf" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13.2 15-14-.6 9.6-5.8 14.8-14 15"/><path d="M5 19c2.8-4 5.8-6.4 9-8"/></svg>
 <span>100% soy wax</span></li><li ><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
 <span>Gift-ready packaging</span></li></ul></div>
-  </div><div class="hero__cue" aria-hidden="true"><span></span></div></section>
-
-
-</div>
-<div id="shopify-section-template--ritual" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 64px;">
-  <div class="page-width">
-    <div class="rich"><p class="eyebrow" data-reveal>The ritual</p><h2 class="h1" data-split>Your evening, <em>reclaimed.</em></h2><div class="subtext rte" data-reveal style="--d: 3"><p>Light one when you get home. Phone down, lights low. Give your mind a clear signal that the day is done.</p></div></div>
-  </div>
+    </div><div class="hero__act2">
+        <div class="page-width hero__act2-inner"><p class="h1 hero__act2-heading">Light one. <em>Exhale.</em></p><ul class="hero__moments" role="list"><li class="hero__moment" style="--i: 0" >
+                  <span class="hero__moment-value">50h</span>
+                  <span class="hero__moment-label">Of clean, even burn</span>
+                </li><li class="hero__moment" style="--i: 1" >
+                  <span class="hero__moment-value">100%</span>
+                  <span class="hero__moment-label">Natural soy wax</span>
+                </li><li class="hero__moment" style="--i: 2" >
+                  <span class="hero__moment-value">0</span>
+                  <span class="hero__moment-label">Black soot on your walls</span>
+                </li></ul></div>
+      </div></div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-default" style="--pad-top: 32px; --pad-bottom: 96px;">
-  <div class="page-width">
-    <div class="section-head">
-      <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>Scents people <em>re-order</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>View all<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+<div id="shopify-section-template--ritual" class="shopify-section"><section class="statement scheme-default" data-pin style="--pad-top: 120px; --pad-bottom: 120px;">
+    <div class="statement__stage" data-pin-stage>
+      <div class="page-width">
+        <div class="rich"><p class="eyebrow">The ritual</p><h2 class="h1 statement__text" data-scrub>Light one when you get home. Phone down, lights low. <em>The day is done.</em></h2></div>
+        <div class="statement__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-default" style="--pad-top: 48px; --pad-bottom: 112px;">
+    <div class="page-width">
+      <div class="section-head">
+    <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>Scents people <em>re-order</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>View all<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a></div>
-
-    <ul class="grid grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card">
+      <ul class="grid grid--stagger grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card" data-spot>
     <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Fig & Cedar" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-fig-cedar.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -194,7 +207,7 @@
   <span class="price__current">From £32.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 1"><div class="card">
+  </div></li><li data-reveal style="--d: 1"><div class="card" data-spot>
     <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Amber Smoke" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><a href="product-amber-smoke.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -209,7 +222,7 @@
   <span class="price__current">From £32.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 2"><div class="card">
+  </div></li><li data-reveal style="--d: 2"><div class="card" data-spot>
     <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Linen & Rain" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge badge--sale">-16%</span></div><div class="card__quick"><a href="product-linen-rain.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -224,7 +237,7 @@
   <span class="price__current"><span class="visually-hidden">Sale price</span>From £32.00</span><s class="price__compare"><span class="visually-hidden">Regular price</span>£38.00</s></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 3"><div class="card">
+  </div></li><li data-reveal style="--d: 3"><div class="card" data-spot>
     <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Tobacco Vanilla" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><a href="product-tobacco-vanilla.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -240,14 +253,12 @@
 
     </div>
   </div></li></ul>
-  </div>
-</section>
-
-
+    </div>
+  </section>
 </div>
-<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width split">
-    <div class="split__media" data-reveal="scale"><div class="sticker" aria-hidden="true">
+    <div class="split__media" data-reveal="clip" data-view><div class="sticker" aria-hidden="true">
           <svg viewBox="0 0 100 100"><defs><path id="sticker-template--problem" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text><textPath href="#sticker-template--problem">Hand poured &#8226; Hand poured &#8226;</textPath></text></svg>
           <svg class="icon icon--flame" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.6-8.3 1 1.6 1.4 2.8 1.4 4.2 1.2-.9 2.4-2.9 2.4-6.7 3.4 2.4 5.6 6.4 5.6 10.6 0 3.8-2.6 6.4-6.5 6.4Z"/></svg>
 
@@ -255,7 +266,7 @@
     </div>
     <div class="split__content"><p class="eyebrow" data-reveal>Why ours</p><h2 class="h2" data-split>Not another candle that smells of <em>nothing</em></h2><div class="subtext rte" data-reveal style="--d: 2"><p>Cheap paraffin candles tunnel, soot up your walls and lose their scent halfway down. Ours are poured slowly with natural soy and a cotton wick, so the last hour smells as good as the first.</p></div><ul class="checklist" role="list"><li data-reveal style="--d: 3" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
 <span>A scent that fills the whole room</span></li><li data-reveal style="--d: 4" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
-<span>Cotton wick — no black soot</span></li><li data-reveal style="--d: 5" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+<span>Cotton wick, so no black soot</span></li><li data-reveal style="--d: 5" ><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
 <span>Burns evenly, edge to edge</span></li></ul><a href="collection.html" class="btn btn--magnetic" data-reveal style="--d: 6"><span>Shop the collection</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a></div>
   </div>
@@ -263,36 +274,28 @@
 
 
 </div>
-<div id="shopify-section-template--statement" class="shopify-section"><section class="section scheme-default" style="--pad-top: 120px; --pad-bottom: 120px;">
-  <div class="page-width">
-    <div class="rich"><h2 class="h1" data-scrub>A home should smell like somewhere you <em>want to be</em>. Light one and the day slows down.</h2></div>
-  </div>
-</section>
-
-
-</div>
-<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-surface" data-story data-count="4" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
-  <div class="story__stage">
+<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-inverse" data-pin data-active="0" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
+  <div class="story__stage" data-pin-stage>
     <div class="page-width story__grid">
-      <div class="story__copy"><p class="eyebrow">The craft</p><h2 class="h2">Slow made, <em>slow burning</em></h2><ol class="story__list" role="list"><li class="story__item is-active" data-story-item >
+      <div class="story__copy"><p class="eyebrow">The craft</p><h2 class="h2">Slow made, <em>slow burning</em></h2><ol class="story__list" role="list"><li class="story__item is-active" data-step >
               <span class="story__idx">01</span>
               <div>
                 <h3 class="story__title">Hand-poured in small batches</h3>
                 <div class="story__body"><p>Every candle is made by hand, so each one gets the attention it needs.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">02</span>
               <div>
                 <h3 class="story__title">Clean-burning wicks</h3>
                 <div class="story__body"><p>Cotton wicks burn evenly, with no black smoke on your walls.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">03</span>
               <div>
                 <h3 class="story__title">A long, even burn</h3>
                 <div class="story__body"><p>It burns down level, so you use all of the wax you paid for.</p></div>
               </div>
-            </li><li class="story__item" data-story-item >
+            </li><li class="story__item" data-step >
               <span class="story__idx">04</span>
               <div>
                 <h3 class="story__title">Rested before it ships</h3>
@@ -300,15 +303,37 @@
               </div>
             </li></ol>
       </div>
-      <div class="story__visual" aria-hidden="true">
-        <span class="story__glow"></span>
-        <svg class="story__ring" viewBox="0 0 100 100" focusable="false">
-          <circle class="story__ring-track" cx="50" cy="50" r="48" pathLength="1"></circle>
-          <circle class="story__ring-bar" cx="50" cy="50" r="48" pathLength="1"></circle>
-        </svg><div class="story__panel is-active" data-story-panel><span class="story__value">Poured</span><span class="story__cap">Hand-poured in small batches</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Cotton</span><span class="story__cap">Clean-burning wicks</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">40h</span><span class="story__cap">A long, even burn</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Cured</span><span class="story__cap">Rested before it ships</span>
+      <div class="story__visual story__visual--candle" aria-hidden="true">
+        <svg class="sv sv--candle" viewBox="0 0 400 400" focusable="false">
+      <defs>
+        <radialGradient id="sv-glow-template--story"><stop offset="0" stop-color="currentColor" stop-opacity=".5"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/></radialGradient>
+        <clipPath id="sv-jar-template--story"><path d="M126 172h148v176a10 10 0 0 1-10 10H136a10 10 0 0 1-10-10Z"/></clipPath>
+      </defs>
+      <g class="sv-candle__burn">
+        <circle class="sv-candle__glow" cx="200" cy="148" r="140" fill="url(#sv-glow-template--story)"/>
+      </g>
+      <g clip-path="url(#sv-jar-template--story)">
+        <g class="sv-candle__burn">
+          <rect class="sv-candle__wax" x="126" y="196" width="148" height="280"/>
+          <ellipse class="sv-candle__pool" cx="200" cy="196" rx="74" ry="9"/>
+        </g>
+      </g>
+      <g class="sv-candle__burn">
+        <path class="sv-candle__wick" d="M200 196v-22"/>
+        <g class="sv-candle__flame">
+          <path class="sv-candle__flame-outer" d="M200 104c26 34 20 66 0 70-20-4-26-36 0-70Z"/>
+          <path class="sv-candle__flame-inner" d="M200 134c11 16 8 32 0 34-8-2-11-18 0-34Z"/>
+        </g>
+      </g>
+      <path class="sv-candle__jar" d="M118 160h164v190a16 16 0 0 1-16 16H134a16 16 0 0 1-16-16Z"/>
+      <path class="sv-candle__label" d="M118 262h164v60H118Z"/>
+      <path class="sv-candle__rule" d="M150 284h100M170 300h60"/>
+      <g class="sv-candle__scale"><path d="M318 196v150"/><path d="M312 196h12M312 233.5h8M312 271h12M312 308.5h8M312 346h12"/></g>
+      <g class="sv-candle__burn"><path class="sv-candle__marker" d="M306 196l-12-7v14Z"/></g>
+    </svg><div class="story__panel is-active" data-step-panel><span class="story__value">Poured</span><span class="story__cap">Hand-poured in small batches</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Cotton</span><span class="story__cap">Clean-burning wicks</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">50h</span><span class="story__cap">A long, even burn</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Cured</span><span class="story__cap">Rested before it ships</span>
           </div></div>
     </div>
   </div>
@@ -316,33 +341,31 @@
 
 
 </section>
-<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-inverse" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head">
-      <div><p class="eyebrow" data-reveal>Candle care</p><h2 class="h2" data-split>Burn it <em>right</em></h2><div class="subtext" data-reveal style="--d: 2"><p>Three habits that double the life of any candle.</p></div></div></div>
-    <ol class="steps" data-observe role="list">
-      <li class="steps__line" aria-hidden="true"></li><li class="step" data-reveal style="--d: 0" >
-          <span class="step__num">01</span>
-          <h3 class="h3">First burn: 3 hours</h3>
-          <p>Let the wax melt to the edges so it never tunnels.</p>
-        </li><li class="step" data-reveal style="--d: 2" >
-          <span class="step__num">02</span>
-          <h3 class="h3">Trim the wick</h3>
-          <p>Keep it at 5mm for a clean, steady flame.</p>
-        </li><li class="step" data-reveal style="--d: 4" >
-          <span class="step__num">03</span>
-          <h3 class="h3">Snuff, don't blow</h3>
-          <p>Less smoke, and the scent stays in the room.</p>
-        </li></ol>
-  </div>
+      <div><p class="eyebrow" data-reveal>Candle care</p><h2 class="h2" data-split>Burn it <em>right</em></h2><div class="subtext" data-reveal style="--d: 2"><p>Three habits that double the life of any candle.</p></div></div></div><ol class="steps" data-observe role="list">
+        <li class="steps__line" aria-hidden="true"></li><li class="step" data-reveal style="--d: 0" >
+            <span class="step__num">01</span>
+            <h3 class="h3">First burn: 3 hours</h3>
+            <p>Let the wax melt to the edges so it never tunnels.</p>
+          </li><li class="step" data-reveal style="--d: 2" >
+            <span class="step__num">02</span>
+            <h3 class="h3">Trim the wick</h3>
+            <p>Keep it at 5mm for a clean, steady flame.</p>
+          </li><li class="step" data-reveal style="--d: 4" >
+            <span class="step__num">03</span>
+            <h3 class="h3">Snuff, don't blow</h3>
+            <p>Less smoke, and the scent stays in the room.</p>
+          </li></ol></div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--stats" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--stats" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width"><div class="section-head">
         <div><p class="eyebrow" data-reveal>In every jar</p><h2 class="h2" data-split>Made <em>slowly</em></h2></div>
-      </div><ul class="stats" role="list"><li class="stat" data-reveal style="--d: 0" >
+      </div><ul class="stats" role="list" data-observe><li class="stat" data-reveal style="--d: 0" >
           <p class="stat__num"><span data-count-to="50">50</span><span>h</span></p>
           <p class="stat__label">Of clean, even burn time</p>
         </li><li class="stat" data-reveal style="--d: 1" >
@@ -357,7 +380,7 @@
 
 
 </div>
-<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head">
       <div><p class="eyebrow" data-reveal>Reviews</p><h2 class="h2" data-split>Lit, loved, <em>re-ordered</em></h2></div>
@@ -407,7 +430,7 @@
 
 
 </div>
-<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 48px; --pad-bottom: 48px;">
+<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 0px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="banner scheme-accent" data-reveal="scale" style="--banner-bg: var(--color-accent);">
       <div class="banner__seal" aria-hidden="true">
@@ -422,7 +445,7 @@
 
 
 </div>
-<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width faq">
     <div class="faq__intro"><p class="eyebrow" data-reveal>Questions</p><h2 class="h2" data-split>Good to <em>know</em></h2><div class="subtext rte" data-reveal style="--d: 2"><p>Answers to what people ask before their first order.</p></div><a href="index.html" class="btn btn--secondary" data-reveal style="--d: 3; margin-top: 24px;">Contact us</a></div>
     <div class="faq__list" data-reveal style="--d: 2"><details class="accordion"  open>
@@ -463,7 +486,7 @@
   }
 </script>
 </div>
-<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-inverse" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="newsletter"><p class="eyebrow" data-reveal>First sniff</p><h2 class="h1" data-split>New scents, before <em>anyone</em> else</h2><div class="subtext" data-reveal style="--d: 2; margin-inline: auto;"><p>Plus 10% off your first order.</p></div><form method="post" action="#" accept-charset="UTF-8" id="NewsletterForm"><input type="hidden" name="contact[tags]" value="newsletter">
         <div class="inline-form" data-reveal style="--d: 3">
@@ -494,6 +517,34 @@
 </footer>
 
 
+</div>
+
+    <div id="shopify-section-sections--overlay-group__popup" class="shopify-section shopify-section-group-overlay-group section-promo"><div
+    class="promo scheme-default promo--image_left"
+    data-promo
+    data-trigger="delay"
+    data-delay="6"
+    data-days="7"
+    data-mode="instant"
+    data-editor-preview="true"
+    data-teaser="true"
+    hidden
+  >
+    <div class="promo__overlay" data-promo-close></div>
+    <div class="promo__panel" role="dialog" aria-modal="true" aria-labelledby="PromoHeading-sections--overlay-group__popup" tabindex="-1">
+      <button type="button" class="promo__close" data-promo-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button><div class="promo__media"><div class="promo__art" aria-hidden="true"><span>10% OFF</span></div></div><div class="promo__body"><p class="eyebrow">Welcome in</p><div class="promo__step" data-promo-step="offer">
+          <h2 class="promo__heading h2" id="PromoHeading-sections--overlay-group__popup">Light up your first order with <em>10% off</em></h2><div class="promo__text rte"><p>Join for new scents, seasonal pours and a little something on your first candle.</p></div><button type="button" class="btn btn--full" data-promo-reveal>Unlock 10% off</button><button type="button" class="promo__decline link" data-promo-close>No thanks, I'll pay full price</button>
+        </div>
+
+        <div class="promo__step" data-promo-step="code" hidden>
+          <h2 class="promo__heading h2">You're in. Here's your code</h2><div class="promo__text rte"><p>Use it at checkout. One use per customer.</p></div><div class="promo__code">
+              <span data-promo-code>WELCOME10</span>
+              <button type="button" class="btn btn--secondary" data-promo-copy data-copied="Copied">Copy</button>
+            </div><a class="btn btn--full" href="collection.html">Shop with 10% off</a></div><p class="promo__small small">New customers only. Unsubscribe any time.</p></div>
+    </div>
+  </div><button type="button" class="promo-teaser" data-promo-teaser hidden><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
+<span>Get 10% off</span></button>
 </div><div class="drawer" id="CartDrawer" data-drawer aria-hidden="true">
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your cart">
@@ -538,6 +589,5 @@
         }
       };
     </script>
-  <script defer src="/tracker.js"></script>
-</body>
+  <script defer src="/tracker.js"></script></body>
 </html>

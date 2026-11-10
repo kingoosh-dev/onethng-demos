@@ -24,7 +24,7 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;700&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10100":1,"10200":2,"10300":3,"10400":4,"10500":5,"10600":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,p=V[fd.get('id')];if(p==null)p=0;var q=parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;700&display=swap"><script>(function(){var V={"10000":0,"10001":0,"10100":1,"10200":2,"10300":3,"10400":4,"10500":5,"10600":6,"10700":7},S=null,c={p:-1,q:0},F=window.fetch;function L(){return S?Promise.resolve(S):F('cart-states.json').then(function(r){return r.json()}).then(function(j){return S=j})}function R(h){return new Response(JSON.stringify({sections:{'cart-drawer':h}}),{status:200,headers:{'Content-Type':'application/json'}})}window.fetch=function(u,o){u=String(u);if(u.indexOf('/cart/add')===0){var fd=o.body,j=typeof fd==='string'?JSON.parse(fd):null,p=V[j?j.items[0].id:fd.get('id')];if(p==null)p=0;var q=j?1:parseInt(fd.get('quantity')||'1',10)||1;if(c.p===p)c.q=Math.min(4,c.q+q);else{c.p=p;c.q=Math.min(4,q)}return L().then(function(s){return R(s[c.p+':'+c.q])})}if(u.indexOf('/cart/change')===0){var b=JSON.parse(o.body);c.q=Math.max(0,Math.min(4,b.quantity));if(!c.q)c.p=-1;return L().then(function(s){return R(c.q?s[c.p+':'+c.q]:s.empty)})}return F.apply(this,arguments)}})();</script>
 
     <style>
   
@@ -67,7 +67,7 @@
     <script src="assets/theme.js" defer="defer"></script>
   </head>
 
-  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Dewy</b> demo · sample products</span><a href="../index.html#dewy" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div>
+  <body class="template-index card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Dewy</b> demo · sample products</span><a href="../index.html#dewy" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div><style>main > .shopify-section:first-child .hero--pin .hero__inner{margin-bottom:calc(var(--announce-h,0px) + var(--demo-h,0px))}</style><script>(function(){var b=document.querySelector('.demo-bar');function s(){document.documentElement.style.setProperty('--demo-h',b.offsetHeight+'px')}s();addEventListener('resize',s)})();</script>
     <a class="skip-link" href="#MainContent">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div><div id="shopify-section-sections--header-group__announcement" class="shopify-section shopify-section-group-header-group"><div class="announcement scheme-inverse">
     <div class="page-width announcement__inner">
       <div class="announcement__slides" data-rotator data-interval="5000"><p class="announcement__msg is-active" >Free shipping on orders over £50</p><p class="announcement__msg" >Not right for your skin? 60-day returns</p></div>
@@ -125,7 +125,8 @@
 </button>
     </div>
     <nav class="drawer__body menu-drawer" aria-label="Primary">
-      <ul role="list"><li><details>
+      <ul role="list"><li><a href="index.html" aria-current="page">Home<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a></li><li><details>
                 <summary>Shop<svg class="icon icon--chevron-down" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
 </summary>
                 <ul role="list"><li><a href="collection.html">Best sellers</a></li><li><a href="collection.html">New in</a></li><li><a href="collection.html">Bundles</a></li><li><a href="collection.html">View all</a></li>
@@ -148,31 +149,46 @@
 
     <main id="MainContent" class="main" role="main" tabindex="-1">
       <div id="shopify-section-template--hero" class="shopify-section section-hero"><section
-  class="hero hero--left"
+  class="hero hero--arch hero--pin"
   data-hero
-  style="--hero-bg: #f7ece8; --hero-fg: #3a2b2b; --em-color: #c4705c; --hero-h: 90svh; --scene-1: #e9a796; --scene-2: #c9b6e4; --scene-3: #fff4e8; --shade: 0.7;"
+  data-pin
+  style="--hero-bg: #f7ece8; --hero-fg: #3a2b2b; --em-color: #c4705c; --hero-h: 100svh; --hero-pin: 120svh; --scene-bg: #ecdff0; --scene-1: #e9a796; --scene-2: #c9b6e4; --scene-3: #fff4e8; --shade: 0.7;"
 >
-  <div class="hero__media" aria-hidden="true">
-    <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm"></canvas><div class="hero__shade"></div></div>
-
-  <div class="page-width hero__inner">
-    <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>Barrier-first skincare</p><h1 class="h0 hero__heading" data-split>Skin that finally <em>behaves.</em></h1><div class="hero__sub" data-reveal style="--d: 3"><p>Gentle, fragrance-free formulas for skin that's tired of breakouts, tightness and ten-step routines that don't work.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Find your routine</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Shop best sellers</span></a></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--droplet" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11Z"/></svg>
+  <div class="hero__stage" data-pin-stage>
+    <div class="hero__media" aria-hidden="true">
+      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="arch"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 100 100" focusable="false"><defs><path id="hero-badge-template--hero" d="M50 50 m-39 0 a39 39 0 1 1 78 0 a39 39 0 1 1 -78 0"/></defs><text><textPath href="#hero-badge-template--hero">Fragrance free &#8226; Fragrance free &#8226;</textPath></text></svg>
+        <span class="hero__badge-line">Fragrance free</span>
+      </div><div class="page-width hero__inner">
+      <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>Barrier-first skincare</p><h1 class="h0 hero__heading" data-split>Skin that finally <em>behaves.</em></h1><div class="hero__lower"><div class="hero__sub" data-reveal style="--d: 3"><p>Gentle, fragrance-free formulas for skin that's tired of breakouts, tightness and ten-step routines that don't work.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Find your routine</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+</a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Shop best sellers</span></a></div></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--droplet" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11Z"/></svg>
 <span>Fragrance-free</span></li><li ><svg class="icon icon--leaf" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13.2 15-14-.6 9.6-5.8 14.8-14 15"/><path d="M5 19c2.8-4 5.8-6.4 9-8"/></svg>
 <span>Vegan & cruelty-free</span></li><li ><svg class="icon icon--return" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg>
 <span>60-day returns</span></li></ul></div>
-  </div><div class="hero__cue" aria-hidden="true"><span></span></div></section>
+    </div><div class="hero__act2">
+        <div class="page-width hero__act2-inner"><p class="h1 hero__act2-heading">Calm skin, in <em>three steps.</em></p><ul class="hero__moments" role="list"><li class="hero__moment" style="--i: 0" >
+                  <span class="hero__moment-value">3</span>
+                  <span class="hero__moment-label">Steps, morning and night</span>
+                </li><li class="hero__moment" style="--i: 1" >
+                  <span class="hero__moment-value">0</span>
+                  <span class="hero__moment-label">Fragrance, fillers or guesswork</span>
+                </li><li class="hero__moment" style="--i: 2" >
+                  <span class="hero__moment-value">60</span>
+                  <span class="hero__moment-label">Days to see if it suits you</span>
+                </li></ul></div>
+      </div></div>
+</section>
 
 
 </div>
-<div id="shopify-section-template--features" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--features" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 72px;">
   <div class="page-width"><div class="section-head section-head--center">
-        <div><h2 class="h2" data-split>Gentle by <em>design</em></h2></div>
-      </div><ul class="features" role="list"><li class="feature" data-reveal style="--d: 0" >
+        <div><p class="eyebrow" data-reveal>Why it works</p><h2 class="h2" data-split>Gentle by <em>design</em></h2></div>
+      </div><ul class="features features--plain" role="list"><li class="feature" data-reveal style="--d: 0" >
           <span class="feature__icon"><svg class="icon icon--droplet" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11Z"/></svg>
 </span>
           <h3 class="h3">Barrier-first</h3>
-          <p>Formulated to calm, not strip — so your skin stops overreacting.</p>
+          <p>Formulated to calm, not strip, so your skin stops overreacting.</p>
         </li><li class="feature" data-reveal style="--d: 1" >
           <span class="feature__icon"><svg class="icon icon--leaf" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13.2 15-14-.6 9.6-5.8 14.8-14 15"/><path d="M5 19c2.8-4 5.8-6.4 9-8"/></svg>
 </span>
@@ -189,13 +205,11 @@
 
 
 </div>
-<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
-  <div class="page-width">
-    <div class="section-head section-head--center">
-      <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>The <em>cult</em> trio</h2><div class="subtext" data-reveal style="--d: 2"><p>The three products most people start with.</p></div></div><a href="collection.html" class="link-arrow" data-reveal>View all<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a></div>
-
-    <ul class="grid grid--slider" role="list" style="--cols: 3;"><li data-reveal style="--d: 0"><div class="card">
+<div id="shopify-section-template--featured" class="shopify-section"><section class="section scheme-default" style="--pad-top: 72px; --pad-bottom: 112px;">
+    <div class="page-width">
+      <div class="section-head section-head--center">
+    <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>The <em>cult</em> trio</h2><div class="subtext" data-reveal style="--d: 2"><p>The three products most people start with.</p></div></div></div>
+      <ul class="grid grid--slider" role="list" style="--cols: 3;"><li data-reveal style="--d: 0"><div class="card" data-spot>
     <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Barrier Repair Serum" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-barrier-repair-serum.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
@@ -210,7 +224,7 @@
   <span class="price__current">From £32.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 1"><div class="card">
+  </div></li><li data-reveal style="--d: 1"><div class="card" data-spot>
     <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Calm Gel Cleanser" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10100">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
@@ -227,7 +241,7 @@
   <span class="price__current">£18.00</span></div>
 
     </div>
-  </div></li><li data-reveal style="--d: 2"><div class="card">
+  </div></li><li data-reveal style="--d: 2"><div class="card" data-spot>
     <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Night Repair Cream" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge badge--sale">-18%</span></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10200">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
@@ -245,38 +259,115 @@
 
     </div>
   </div></li></ul>
-  </div>
-</section>
-
-
+    </div>
+  </section>
 </div>
-<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head">
       <div><p class="eyebrow" data-reveal>How it works</p><h2 class="h2" data-split>Your 3-step <em>routine</em></h2><div class="subtext" data-reveal style="--d: 2"><p>Morning and night. Five minutes, tops.</p></div></div><a href="collection.html" class="link-arrow" data-reveal>Shop the routine<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
-</a></div>
-    <ol class="steps" data-observe role="list">
-      <li class="steps__line" aria-hidden="true"></li><li class="step" data-reveal style="--d: 0" >
-          <span class="step__num">01</span>
-          <h3 class="h3">Cleanse</h3>
-          <p>A low-foam gel that lifts the day without that tight, squeaky feeling.</p>
-        </li><li class="step" data-reveal style="--d: 2" >
-          <span class="step__num">02</span>
-          <h3 class="h3">Treat</h3>
-          <p>A lightweight serum that targets redness and dullness.</p>
-        </li><li class="step" data-reveal style="--d: 4" >
-          <span class="step__num">03</span>
-          <h3 class="h3">Protect</h3>
-          <p>A barrier cream that locks everything in overnight.</p>
-        </li></ol>
-  </div>
+</a></div><ol class="stack" data-stack role="list"><li class="stack__card" data-stack-card style="--i: 0;" >
+            <div class="stack__inner">
+              <span class="stack__num">01</span>
+              <div class="stack__text">
+                <h3 class="h2">Cleanse</h3>
+                <p>A low-foam gel that lifts the day without that tight, squeaky feeling.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--droplet" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11Z"/></svg>
+</span>
+            </div>
+          </li><li class="stack__card" data-stack-card style="--i: 1;" >
+            <div class="stack__inner">
+              <span class="stack__num">02</span>
+              <div class="stack__text">
+                <h3 class="h2">Treat</h3>
+                <p>A lightweight serum that targets redness and dullness.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--sparkle" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3c.9 4.9 2.5 6.6 7.4 7.4-4.9.9-6.5 2.5-7.4 7.4-.9-4.9-2.5-6.5-7.4-7.4C8.5 9.6 10.1 7.9 11 3Z"/><path d="M19 15v5M16.5 17.5h5"/></svg>
+</span>
+            </div>
+          </li><li class="stack__card" data-stack-card style="--i: 2;" >
+            <div class="stack__inner">
+              <span class="stack__num">03</span>
+              <div class="stack__text">
+                <h3 class="h2">Protect</h3>
+                <p>A barrier cream that locks everything in overnight.</p>
+              </div>
+              <span class="stack__icon" aria-hidden="true"><svg class="icon icon--shield" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+</span>
+            </div>
+          </li></ol></div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--statement" class="shopify-section"><section class="statement scheme-default" data-pin style="--pad-top: 120px; --pad-bottom: 120px;">
+    <div class="statement__stage" data-pin-stage>
+      <div class="page-width">
+        <div class="rich"><h2 class="h1 statement__text" data-scrub>Your skin isn't the problem. <em>Harsh routines</em> are. Gentle formulas, fewer steps, calmer skin.</h2></div>
+        <div class="statement__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
+</div>
+<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-surface" data-pin data-active="0" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
+  <div class="story__stage" data-pin-stage>
+    <div class="page-width story__grid">
+      <div class="story__copy"><p class="eyebrow">What to expect</p><h2 class="h2">Kinder to your skin, <em>from day one</em></h2><ol class="story__list" role="list"><li class="story__item is-active" data-step >
+              <span class="story__idx">01</span>
+              <div>
+                <h3 class="story__title">Nothing stings</h3>
+                <div class="story__body"><p>Fragrance-free and gentle, so it feels comfortable from the first use.</p></div>
+              </div>
+            </li><li class="story__item" data-step >
+              <span class="story__idx">02</span>
+              <div>
+                <h3 class="story__title">Less tight, less shiny</h3>
+                <div class="story__body"><p>Skin feels balanced instead of stripped, then over-oiled.</p></div>
+              </div>
+            </li><li class="story__item" data-step >
+              <span class="story__idx">03</span>
+              <div>
+                <h3 class="story__title">Calmer and more even</h3>
+                <div class="story__body"><p>A simple routine you can keep up is what makes the difference.</p></div>
+              </div>
+            </li><li class="story__item" data-step >
+              <span class="story__idx">04</span>
+              <div>
+                <h3 class="story__title">A routine you keep</h3>
+                <div class="story__body"><p>Three steps, five minutes. Easy enough to do every day.</p></div>
+              </div>
+            </li></ol>
+      </div>
+      <div class="story__visual story__visual--drop" aria-hidden="true">
+        <svg class="sv sv--drop" viewBox="0 0 400 400" focusable="false">
+      <defs><clipPath id="sv-drop-template--story"><path d="M200 30C200 30 72 186 72 262a128 128 0 0 0 256 0C328 186 200 30 200 30Z"/></clipPath></defs>
+      <g clip-path="url(#sv-drop-template--story)">
+        <rect class="sv-drop__bg" width="400" height="400"/>
+        <g class="sv-drop__level">
+          <path class="sv-drop__wave sv-drop__wave--back" d="M-400 26q50-22 100 0t100 0 100 0 100 0 100 0 100 0 100 0 100 0V460H-400Z"/>
+          <path class="sv-drop__wave" d="M-400 30q50 22 100 0t100 0 100 0 100 0 100 0 100 0 100 0 100 0V460H-400Z"/>
+        </g>
+      </g>
+      <path class="sv-drop__outline" d="M200 30C200 30 72 186 72 262a128 128 0 0 0 256 0C328 186 200 30 200 30Z"/>
+      <path class="sv-drop__shine" d="M112 262c2 44 26 78 62 92"/>
+      <path class="sv-spark sv-spark--1" d="M330 96c2 12 6 16 18 18-12 2-16 6-18 18-2-12-6-16-18-18 12-2 16-6 18-18Z"/>
+      <path class="sv-spark sv-spark--2" d="M62 130c1.5 8 4 11 12 12-8 1.5-10.5 4-12 12-1.5-8-4-10.5-12-12 8-1 10.5-4 12-12Z"/>
+      <path class="sv-spark sv-spark--3" d="M352 300c1.5 8 4 11 12 12-8 1.5-10.5 4-12 12-1.5-8-4-10.5-12-12 8-1 10.5-4 12-12Z"/>
+    </svg><div class="story__panel is-active" data-step-panel><span class="story__value">Day 1</span><span class="story__cap">Nothing stings</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Week 1</span><span class="story__cap">Less tight, less shiny</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Week 4</span><span class="story__cap">Calmer and more even</span>
+          </div><div class="story__panel" data-step-panel><span class="story__value">Week 8</span><span class="story__cap">A routine you keep</span>
+          </div></div>
+    </div>
+  </div>
+</section>
+
+
+</section>
+<div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width split split--reverse">
-    <div class="split__media" data-reveal="scale"><div class="sticker" aria-hidden="true">
+    <div class="split__media" data-reveal="clip" data-view><div class="sticker" aria-hidden="true">
           <svg viewBox="0 0 100 100"><defs><path id="sticker-template--problem" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0"/></defs><text><textPath href="#sticker-template--problem">Fragrance free &#8226; Fragrance free &#8226;</textPath></text></svg>
           <svg class="icon icon--droplet" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11Z"/></svg>
 
@@ -292,60 +383,7 @@
 
 
 </div>
-<div id="shopify-section-template--statement" class="shopify-section"><section class="section scheme-default" style="--pad-top: 120px; --pad-bottom: 120px;">
-  <div class="page-width">
-    <div class="rich"><h2 class="h1" data-scrub>Your skin isn't the problem. <em>Harsh routines</em> are. Gentle formulas, fewer steps, calmer skin.</h2></div>
-  </div>
-</section>
-
-
-</div>
-<section id="shopify-section-template--story" class="shopify-section"><section class="story scheme-inverse" data-story data-count="4" style="--n: 4; --pad-top: 80px; --pad-bottom: 80px;">
-  <div class="story__stage">
-    <div class="page-width story__grid">
-      <div class="story__copy"><p class="eyebrow">What to expect</p><h2 class="h2">Kinder to your skin, <em>from day one</em></h2><ol class="story__list" role="list"><li class="story__item is-active" data-story-item >
-              <span class="story__idx">01</span>
-              <div>
-                <h3 class="story__title">Nothing stings</h3>
-                <div class="story__body"><p>Fragrance-free and gentle, so it feels comfortable from the first use.</p></div>
-              </div>
-            </li><li class="story__item" data-story-item >
-              <span class="story__idx">02</span>
-              <div>
-                <h3 class="story__title">Less tight, less shiny</h3>
-                <div class="story__body"><p>Skin feels balanced instead of stripped, then over-oiled.</p></div>
-              </div>
-            </li><li class="story__item" data-story-item >
-              <span class="story__idx">03</span>
-              <div>
-                <h3 class="story__title">Calmer and more even</h3>
-                <div class="story__body"><p>A simple routine you can keep up is what makes the difference.</p></div>
-              </div>
-            </li><li class="story__item" data-story-item >
-              <span class="story__idx">04</span>
-              <div>
-                <h3 class="story__title">A routine you keep</h3>
-                <div class="story__body"><p>Three steps, five minutes. Easy enough to do every day.</p></div>
-              </div>
-            </li></ol>
-      </div>
-      <div class="story__visual" aria-hidden="true">
-        <span class="story__glow"></span>
-        <svg class="story__ring" viewBox="0 0 100 100" focusable="false">
-          <circle class="story__ring-track" cx="50" cy="50" r="48" pathLength="1"></circle>
-          <circle class="story__ring-bar" cx="50" cy="50" r="48" pathLength="1"></circle>
-        </svg><div class="story__panel is-active" data-story-panel><span class="story__value">Day 1</span><span class="story__cap">Nothing stings</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Week 1</span><span class="story__cap">Less tight, less shiny</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Week 4</span><span class="story__cap">Calmer and more even</span>
-          </div><div class="story__panel" data-story-panel><span class="story__value">Week 8</span><span class="story__cap">A routine you keep</span>
-          </div></div>
-    </div>
-  </div>
-</section>
-
-
-</section>
-<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--reviews" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head section-head--center">
       <div><p class="eyebrow" data-reveal>Reviews</p><h2 class="h2" data-split>Real skin, real <em>words</em></h2></div>
@@ -395,7 +433,7 @@
 
 
 </div>
-<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 48px; --pad-bottom: 48px;">
+<div id="shopify-section-template--guarantee" class="shopify-section"><section class="section" style="--pad-top: 64px; --pad-bottom: 64px;">
   <div class="page-width">
     <div class="banner scheme-accent" data-reveal="scale" style="--banner-bg: var(--color-accent);">
       <div class="banner__seal" aria-hidden="true">
@@ -403,14 +441,14 @@
         <span class="banner__seal-core"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
 </span>
       </div>
-      <div><h2 class="h2" data-split>Love your skin, or your money back.</h2><p>Use it for up to 60 days. If your skin doesn't feel calmer, we'll refund you — even if the bottle's empty.</p></div><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop risk-free</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
+      <div><h2 class="h2" data-split>Love your skin, or your money back.</h2><p>Use it for up to 60 days. If your skin doesn't feel calmer, we'll refund you, even if the bottle's empty.</p></div><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop risk-free</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a></div>
   </div>
 </section>
 
 
 </div>
-<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-default" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--faq" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width faq">
     <div class="faq__intro"><p class="eyebrow" data-reveal>Questions</p><h2 class="h2" data-split>Before you <em>try</em></h2><div class="subtext rte" data-reveal style="--d: 2"><p>Everything people ask before their first order.</p></div><a href="index.html" class="btn btn--secondary" data-reveal style="--d: 3; margin-top: 24px;">Ask a question</a></div>
     <div class="faq__list" data-reveal style="--d: 2"><details class="accordion"  open>
@@ -451,7 +489,7 @@
   }
 </script>
 </div>
-<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 96px; --pad-bottom: 96px;">
+<div id="shopify-section-template--newsletter" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="newsletter"><p class="eyebrow" data-reveal>Join the list</p><h2 class="h1" data-split>Get 10% off your <em>first</em> routine</h2><div class="subtext" data-reveal style="--d: 2; margin-inline: auto;"><p>Plus skin tips that actually help. Unsubscribe any time.</p></div><form method="post" action="#" accept-charset="UTF-8" id="NewsletterForm"><input type="hidden" name="contact[tags]" value="newsletter">
         <div class="inline-form" data-reveal style="--d: 3">
@@ -482,6 +520,34 @@
 </footer>
 
 
+</div>
+
+    <div id="shopify-section-sections--overlay-group__popup" class="shopify-section shopify-section-group-overlay-group section-promo"><div
+    class="promo scheme-default promo--image_left"
+    data-promo
+    data-trigger="delay"
+    data-delay="6"
+    data-days="7"
+    data-mode="instant"
+    data-editor-preview="true"
+    data-teaser="true"
+    hidden
+  >
+    <div class="promo__overlay" data-promo-close></div>
+    <div class="promo__panel" role="dialog" aria-modal="true" aria-labelledby="PromoHeading-sections--overlay-group__popup" tabindex="-1">
+      <button type="button" class="promo__close" data-promo-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button><div class="promo__media"><div class="promo__art" aria-hidden="true"><span>10% OFF</span></div></div><div class="promo__body"><p class="eyebrow">First glow</p><div class="promo__step" data-promo-step="offer">
+          <h2 class="promo__heading h2" id="PromoHeading-sections--overlay-group__popup">Your first order is <em>10% off</em></h2><div class="promo__text rte"><p>Join for routine tips and early access to new formulas. We'll show your code straight away.</p></div><button type="button" class="btn btn--full" data-promo-reveal>Reveal my code</button><button type="button" class="promo__decline link" data-promo-close>No thanks, I'll pay full price</button>
+        </div>
+
+        <div class="promo__step" data-promo-step="code" hidden>
+          <h2 class="promo__heading h2">You're in. Here's your code</h2><div class="promo__text rte"><p>Use it at checkout. One use per customer.</p></div><div class="promo__code">
+              <span data-promo-code>WELCOME10</span>
+              <button type="button" class="btn btn--secondary" data-promo-copy data-copied="Copied">Copy</button>
+            </div><a class="btn btn--full" href="collection.html">Shop with 10% off</a></div><p class="promo__small small">New customers only. Unsubscribe any time.</p></div>
+    </div>
+  </div><button type="button" class="promo-teaser" data-promo-teaser hidden><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
+<span>Get 10% off</span></button>
 </div><div class="drawer" id="CartDrawer" data-drawer aria-hidden="true">
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your cart">
@@ -526,6 +592,5 @@
         }
       };
     </script>
-  <script defer src="/tracker.js"></script>
-</body>
+  <script defer src="/tracker.js"></script></body>
 </html>

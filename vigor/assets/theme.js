@@ -99,24 +99,32 @@
     requestAnimationFrame(tick);
   }
 
-  let io;
+  // Reveals are checked against the screen on every scroll frame rather than with an IntersectionObserver,
+  // so an element that starts clipped or masked away is still found.
+  const pending = new Set();
   function finish(el) {
     el.classList.add('is-in');
     if (el.hasAttribute('data-count-to')) countUp(el);
   }
   function observe(scope = doc) {
     const targets = $$('[data-reveal]:not(.is-in), [data-split]:not(.is-in), [data-count-to], [data-observe]:not(.is-in)', scope);
-    if (!motion() || !('IntersectionObserver' in window)) { targets.forEach(finish); return; }
+    if (!motion()) { targets.forEach(finish); return; }
     $$('[data-split]', scope).forEach(splitText);
     $$('[data-count-to]', scope).forEach((el) => {
       if (!el.dataset.counted) el.textContent = fmtNum(0, ((el.dataset.countTo || '').split('.')[1] || '').length);
     });
-    io = io || new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) { finish(entry.target); io.unobserve(entry.target); }
-      });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
-    targets.forEach((t) => io.observe(t));
+    targets.forEach((t) => { if (!t.dataset.counted) pending.add(t); });
+    updateReveals(window.innerHeight);
+  }
+  function updateReveals(vh) {
+    if (!pending.size) return;
+    pending.forEach((el) => {
+      if (!el.isConnected) { pending.delete(el); return; }
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 && r.height === 0) return;
+      if (r.top < vh * 0.93 && r.bottom > -vh * 0.5) { finish(el); pending.delete(el); }
+      else if (r.bottom <= -vh * 0.5) { finish(el); pending.delete(el); }
+    });
   }
 
   /* ---------------------------------------------------------------- Magnetic, tilt, parallax */
@@ -169,34 +177,101 @@
   /* ---------------------------------------------------------------- Scroll motion */
   const clamp01 = (n) => Math.min(1, Math.max(0, n));
 
-  // Pinned story: progress through a tall section drives which point is active.
-  const stories = new Set();
-  function initStories(scope = doc) {
+  // Values are measured on scroll, then eased a little every frame so pinned sections glide instead of stepping.
+  let needsFrame = false;
+  let looping = false;
+  const ease = (el, key, target, k = 0.18) => {
+    const cur = el[key] == null ? target : el[key];
+    const next = Math.abs(target - cur) < 0.0006 ? target : cur + (target - cur) * k;
+    el[key] = next;
+    if (next !== target) needsFrame = true;
+    return next;
+  };
+
+  // Pinned sections: the section is taller than the screen and its stage sticks while --p runs 0 to 1.
+  // Children marked data-step / data-step-panel switch on in turn, and a rail track slides sideways.
+  const pins = new Set();
+  function measureRail(el) {
+    const track = $('[data-rail-track]', el);
+    if (!track) return;
+    const max = Math.max(0, track.scrollWidth - track.parentElement.clientWidth);
+    el._railMax = max;
+    el.style.setProperty('--rail-dist', max + 'px');
+  }
+  function initPins(scope = doc) {
     if (!motion()) return;
-    $$('[data-story]', scope).forEach((el) => {
-      el._items = $$('[data-story-item]', el);
-      el._panels = $$('[data-story-panel]', el);
+    $$('[data-pin]', scope).forEach((el) => {
+      el._steps = $$('[data-step]', el);
+      el._panels = $$('[data-step-panel]', el);
+      el._n = el._steps.length;
       el._idx = -1;
-      stories.add(el);
+      el._stage = $('[data-pin-stage]', el);
+      if (el.hasAttribute('data-rail')) measureRail(el);
+      pins.add(el);
     });
   }
-  function updateStories(vh) {
-    stories.forEach((el) => {
-      if (!el.isConnected) { stories.delete(el); return; }
+  function updatePins(vh) {
+    pins.forEach((el) => {
+      if (!el.isConnected) { pins.delete(el); return; }
       const r = el.getBoundingClientRect();
-      if (r.bottom < -vh * 0.5 || r.top > vh * 1.5) return;
-      const p = clamp01(-r.top / Math.max(1, r.height - vh));
+      if (r.bottom < -vh || r.top > vh * 2) return;
+      const stageH = el._stage ? el._stage.offsetHeight : vh;
+      const dist = Math.max(1, r.height - stageH);
+      const p = ease(el, '_p', clamp01(-r.top / dist));
       el.style.setProperty('--p', p.toFixed(4));
-      const n = el._items.length;
+      if (el.hasAttribute('data-hero')) {
+        el.style.setProperty('--hp', clamp01((-r.top - dist) / Math.max(1, stageH)).toFixed(3));
+        const act = p > 0.24 ? '2' : '1';
+        if (el.dataset.act !== act) el.dataset.act = act;
+      }
+      if (el._railMax != null) el.style.setProperty('--rail-x', (-p * el._railMax).toFixed(1) + 'px');
+      const n = el._n;
+      if (!n) return;
       const idx = Math.min(n - 1, Math.floor(p * n));
       if (idx === el._idx) return;
       el._idx = idx;
-      el._items.forEach((it, i) => it.classList.toggle('is-active', i === idx));
+      el.dataset.active = idx;
+      el._steps.forEach((it, i) => { it.classList.toggle('is-active', i === idx); it.classList.toggle('is-past', i < idx); });
       el._panels.forEach((pn, i) => { pn.classList.toggle('is-active', i === idx); pn.classList.toggle('is-past', i < idx); });
     });
   }
 
-  // Scrubbed text: words light up one by one while the heading crosses the screen.
+  // Stacking cards: each card sticks, and shrinks back a touch as the next one slides over it.
+  const stacks = new Set();
+  function initStacks(scope = doc) {
+    if (!motion()) return;
+    $$('[data-stack]', scope).forEach((el) => { el._cards = $$('[data-stack-card]', el); stacks.add(el); });
+  }
+  function updateStacks(vh) {
+    stacks.forEach((el) => {
+      if (!el.isConnected) { stacks.delete(el); return; }
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > vh) return;
+      const rects = el._cards.map((c) => c.getBoundingClientRect());
+      el._cards.forEach((c, i) => {
+        const next = rects[i + 1];
+        const cover = next ? clamp01(1 - (next.top - rects[i].top) / Math.max(1, rects[i].height)) : 0;
+        c.style.setProperty('--cover', cover.toFixed(3));
+      });
+    });
+  }
+
+  // View progress: --v runs 0 to 1 while an element crosses the screen (drifting type, image scale, meters).
+  const views = new Set();
+  function initViews(scope = doc) {
+    if (!motion()) return;
+    $$('[data-view]', scope).forEach((el) => views.add(el));
+  }
+  function updateViews(vh) {
+    views.forEach((el) => {
+      if (!el.isConnected) { views.delete(el); return; }
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -120 || r.top > vh + 120) return;
+      el.style.setProperty('--v', ease(el, '_v', clamp01((vh - r.top) / (vh + r.height))).toFixed(4));
+    });
+  }
+
+  // Scrubbed text: words light up one by one, either across the screen or across a pinned section.
   const scrubs = new Set();
   function initScrub(scope = doc) {
     if (!motion()) return;
@@ -221,6 +296,7 @@
         walk(el);
         el._words = $$('.scrub-word', el);
         el._lit = -1;
+        el._pin = el.closest('[data-pin]');
       }
       scrubs.add(el);
     });
@@ -228,9 +304,14 @@
   function updateScrubs(vh) {
     scrubs.forEach((el) => {
       if (!el.isConnected) { scrubs.delete(el); return; }
-      const r = el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const p = clamp01((vh * 0.85 - r.top) / (r.height + vh * 0.4));
+      let p;
+      if (el._pin) {
+        p = clamp01(((el._pin._p || 0) - 0.04) / 0.82);
+      } else {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        p = clamp01((vh * 0.85 - r.top) / (r.height + vh * 0.4));
+      }
       const lit = Math.round(p * el._words.length);
       if (lit === el._lit) return;
       el._lit = lit;
@@ -238,19 +319,71 @@
     });
   }
 
-  // Hero exit and the thin page progress bar.
+  // Scroll speed: tickers run faster and lean while the page is moving.
+  let lastSY = window.scrollY;
+  let vel = 0;
+  const marquees = new Set();
+  function initMarquees(scope = doc) {
+    if (!motion()) return;
+    $$('[data-marquee]', scope).forEach((m) => marquees.add(m));
+  }
+  function updateVelocity() {
+    const y = window.scrollY;
+    const d = y - lastSY;
+    lastSY = y;
+    vel += (Math.max(-1, Math.min(1, d / 48)) - vel) * 0.16;
+    if (Math.abs(vel) < 0.002) vel = 0; else needsFrame = true;
+    root.style.setProperty('--vel', vel.toFixed(3));
+    marquees.forEach((m) => {
+      if (!m.isConnected) { marquees.delete(m); return; }
+      if (!m._anim && m.getAnimations) m._anim = m.getAnimations()[0];
+      if (m._anim) m._anim.playbackRate = 1 + Math.abs(vel) * 6;
+    });
+  }
+
+  // Hero exit (when it is not pinned) and the thin page progress bar.
   function updateScrollFx() {
     if (!motion()) return;
     const vh = window.innerHeight;
-    const hero = $('[data-hero]');
+    const hero = $('[data-hero]:not([data-pin])');
     if (hero) {
       const r = hero.getBoundingClientRect();
       if (r.bottom > 0) hero.style.setProperty('--hp', clamp01(-r.top / Math.max(1, r.height)).toFixed(3));
     }
     const max = doc.documentElement.scrollHeight - vh;
     if (max > 0) root.style.setProperty('--sp', clamp01(window.scrollY / max).toFixed(4));
-    updateStories(vh);
+    updateReveals(vh);
+    updatePins(vh);
+    updateStacks(vh);
+    updateViews(vh);
     updateScrubs(vh);
+    updateVelocity();
+  }
+  function frame() {
+    needsFrame = false;
+    onHeaderScroll();
+    updateParallax();
+    updateScrollFx();
+    if (needsFrame) requestAnimationFrame(frame); else looping = false;
+  }
+  function kick() {
+    if (looping) return;
+    looping = true;
+    requestAnimationFrame(frame);
+  }
+
+  // Pointer spotlight for cards that ask for it.
+  function initSpots(scope = doc) {
+    if (!fine || reduce) return;
+    $$('[data-spot]', scope).forEach((el) => {
+      if (el.dataset.spotOn) return;
+      el.dataset.spotOn = '1';
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--sx', (((e.clientX - r.left) / r.width) * 100).toFixed(1) + '%');
+        el.style.setProperty('--sy', (((e.clientY - r.top) / r.height) * 100).toFixed(1) + '%');
+      });
+    });
   }
 
   /* ---------------------------------------------------------------- Header */
@@ -258,11 +391,15 @@
   let lastY = window.scrollY;
   function setHeaderVars() {
     if (header) root.style.setProperty('--header-h', header.offsetHeight + 'px');
+    const bar = $('.announcement');
+    root.style.setProperty('--announce-h', (bar ? bar.offsetHeight : 0) + 'px');
   }
+  let heroUnder = null;
   function initHeaderOverlay() {
     if (!header) return;
     const firstHero = $('main > .shopify-section:first-child [data-hero]');
     const on = header.hasAttribute('data-overlay') && !!firstHero;
+    heroUnder = on && firstHero.hasAttribute('data-pin') ? firstHero : null;
     body.classList.toggle('header-overlay', on);
     if (on) header.style.setProperty('--overlay-fg', getComputedStyle(firstHero).getPropertyValue('--hero-fg').trim());
   }
@@ -271,19 +408,22 @@
     const y = window.scrollY;
     const modal = $('[data-search-modal]', header);
     const menuOpen = !!$('.drawer.is-open') || (modal && !modal.hidden);
-    header.classList.toggle('is-solid', y > 12 || menuOpen);
+    // Over a hero that is held on screen, the header stays clear until the hero has scrolled away.
+    const overHero = heroUnder && heroUnder.isConnected && heroUnder.getBoundingClientRect().bottom > header.offsetHeight;
+    header.classList.toggle('is-solid', (y > 12 && !overHero) || menuOpen);
     const hide = header.dataset.hide !== 'false' && y > lastY && y > 320 && !header.contains(doc.activeElement);
     header.classList.toggle('is-hidden', hide);
     lastY = y;
   }
 
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => { ticking = false; onHeaderScroll(); updateParallax(); updateScrollFx(); });
-  }, { passive: true });
-  window.addEventListener('resize', () => { setHeaderVars(); updateScrollFx(); });
+  window.addEventListener('scroll', kick, { passive: true });
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    setHeaderVars();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { pins.forEach((el) => { if (el.hasAttribute('data-rail')) measureRail(el); }); kick(); }, 120);
+    kick();
+  });
 
   /* ---------------------------------------------------------------- Search modal */
   function openSearch() {
@@ -311,6 +451,9 @@
     lastFocus = doc.activeElement;
     d.classList.add('is-open');
     d.setAttribute('aria-hidden', 'false');
+    // A drawer inside the sticky header must sit above the announcement bar while it is open.
+    const sec = d.closest('.shopify-section');
+    if (sec) { clearTimeout(sec._drawerT); sec.classList.add('has-open-drawer'); }
     body.classList.add('no-scroll');
     $$(`[aria-controls="${id}"]`).forEach((b) => b.setAttribute('aria-expanded', 'true'));
     const f = focusables($('.drawer__panel', d) || d)[0];
@@ -320,6 +463,8 @@
     if (!d) return;
     d.classList.remove('is-open');
     d.setAttribute('aria-hidden', 'true');
+    const sec = d.closest('.shopify-section');
+    if (sec) sec._drawerT = setTimeout(() => { if (!sec.querySelector('.drawer.is-open')) sec.classList.remove('has-open-drawer'); }, 600);
     if (!$('.drawer.is-open')) body.classList.remove('no-scroll');
     $$(`[aria-controls="${d.id}"]`).forEach((b) => b.setAttribute('aria-expanded', 'false'));
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
@@ -418,13 +563,23 @@
 
   doc.addEventListener('submit', async (e) => {
     const form = e.target.closest('form[data-product-form]');
-    if (!form || !Cart.enabled()) return;
+    if (!form) return;
+    if (!Cart.enabled()) {
+      if (form.dataset.discount && !form.dataset.applied) {
+        e.preventDefault();
+        form.dataset.applied = '1';
+        await applyDiscount(form.dataset.discount);
+        form.submit();
+      }
+      return;
+    }
     e.preventDefault();
     const btn = e.submitter && e.submitter.type === 'submit' ? e.submitter : $('[type="submit"]', form);
     const err = $('[data-form-error]', form);
     if (btn) { btn.classList.add('is-loading'); btn.setAttribute('aria-busy', 'true'); }
     if (err) err.hidden = true;
     try {
+      await applyDiscount(form.dataset.discount);
       await Cart.add(form);
     } catch (ex) {
       if (err) { err.textContent = ex.message; err.hidden = false; } else toast(ex.message);
@@ -573,6 +728,9 @@
           if (form.requestSubmit) form.requestSubmit(addBtn); else addBtn.click();
         });
       }
+
+      initQuantityBreaks(p);
+      initBundle(p);
     });
   }
 
@@ -651,7 +809,7 @@
       canvases.forEach((c) => {
         if (scenes.has(c) || !window.ThemeScene || !c.isConnected) return;
         try {
-          const inst = window.ThemeScene.mount(c, { reduceMotion: reduce, intensity: c.dataset.intensity || 'normal' });
+          const inst = window.ThemeScene.mount(c, { reduceMotion: reduce, intensity: c.dataset.intensity || 'normal', layout: c.dataset.layout || 'split' });
           if (inst) scenes.set(c, inst);
         } catch (err) { console.warn('[theme] 3D scene failed', err); }
       });
@@ -669,26 +827,235 @@
     });
   }
 
+  /* ---------------------------------------------------------------- Offers: discount codes, bundles, first-order popup */
+  const store = {
+    get(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  };
+
+  // Visiting /discount/CODE stores the code on the shopper's session so checkout applies it.
+  function applyDiscount(code) {
+    if (!code) return Promise.resolve();
+    const root = (T.routes && T.routes.root) || '/';
+    const base = /\/$/.test(root) ? root : root + '/';
+    return fetch(`${base}discount/${encodeURIComponent(code)}`, { credentials: 'same-origin' }).catch(() => {});
+  }
+
+  function initQuantityBreaks(p) {
+    const qb = $('[data-qbreaks]', p);
+    if (!qb || qb.dataset.ready) return;
+    qb.dataset.ready = '1';
+    const form = doc.getElementById(qb.dataset.form);
+    if (!form) return;
+    let qty = $('input[name="quantity"]', form);
+    if (qty) {
+      const wrap = qty.closest('[data-qty]');
+      if (wrap) wrap.hidden = true;
+    } else {
+      qty = doc.createElement('input');
+      qty.type = 'hidden';
+      qty.name = 'quantity';
+      form.appendChild(qty);
+    }
+    const radios = $$('input[type="radio"]', qb);
+    if (!radios.some((r) => r.checked) && radios[0]) radios[0].checked = true;
+    const sync = () => {
+      const r = radios.find((x) => x.checked);
+      if (!r) return;
+      qty.value = r.value;
+      if (r.dataset.code) form.dataset.discount = r.dataset.code; else delete form.dataset.discount;
+      radios.forEach((x) => x.closest('.qbreak').classList.toggle('is-selected', x === r));
+    };
+    const reprice = (v) => {
+      radios.forEach((r) => {
+        const row = r.closest('.qbreak');
+        const q = parseInt(r.value, 10) || 1;
+        const off = parseInt(r.dataset.off, 10) || 0;
+        const full = v.price * q;
+        const total = Math.floor((full * (100 - off)) / 100);
+        const set = (sel, text) => { const el = $(sel, row); if (el) el.textContent = text; };
+        set('[data-qb-total]', formatMoney(total));
+        set('[data-qb-full]', formatMoney(full));
+        set('[data-qb-each]', qb.dataset.each.replace('[price]', formatMoney(Math.floor(total / q))));
+        set('[data-qb-save]', qb.dataset.save.replace('[amount]', formatMoney(full - total)).replace('[percent]', off));
+      });
+    };
+    qb.addEventListener('change', sync);
+    p.addEventListener('variant:change', (e) => { if (e.detail && e.detail.variant) reprice(e.detail.variant); });
+    sync();
+  }
+
+  function initBundle(p) {
+    const b = $('[data-bundle]', p);
+    if (!b || b.dataset.ready || b.classList.contains('bundle--empty')) return;
+    b.dataset.ready = '1';
+    const rows = $$('.bundle__item', b);
+    const off = parseInt(b.dataset.off, 10) || 0;
+    const addBtn = $('[data-bundle-add]', b);
+    const err = $('[data-bundle-error]', b);
+    const variantOf = (row) => $('[data-bundle-variant]', row);
+    const priceOf = (el) => parseInt(el.tagName === 'SELECT' ? el.selectedOptions[0].dataset.price : el.dataset.price, 10) || 0;
+    const isOn = (row) => { const c = $('input[type="checkbox"]', row); return !c || c.checked; };
+    const update = () => {
+      let full = 0;
+      let count = 0;
+      rows.forEach((row) => {
+        const price = priceOf(variantOf(row));
+        $('[data-bundle-price]', row).textContent = formatMoney(price);
+        row.classList.toggle('is-off', !isOn(row));
+        if (isOn(row)) { full += price; count++; }
+      });
+      $('[data-bundle-total]', b).textContent = formatMoney(count > 1 ? Math.floor((full * (100 - off)) / 100) : full);
+      const fullEl = $('[data-bundle-full]', b);
+      if (fullEl) fullEl.hidden = count < 2;
+      if (fullEl) fullEl.textContent = formatMoney(full);
+      addBtn.disabled = count < 2;
+    };
+    b.addEventListener('change', update);
+    p.addEventListener('variant:change', (e) => {
+      const v = e.detail && e.detail.variant;
+      const cur = $('[data-current]', b);
+      if (v && cur) { cur.value = v.id; cur.dataset.price = v.price; }
+      update();
+    });
+    addBtn.addEventListener('click', async () => {
+      const items = rows.filter(isOn).map((row) => ({ id: parseInt(variantOf(row).value, 10), quantity: 1 }));
+      addBtn.classList.add('is-loading');
+      err.hidden = true;
+      try {
+        await applyDiscount(b.dataset.code);
+        const res = await fetch(T.routes.cartAdd, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items, sections: Cart.section, sections_url: window.location.pathname })
+        });
+        const data = await res.json();
+        if (!res.ok || data.status) throw new Error(data.description || data.message || strings.cartError);
+        if (Cart.enabled()) { Cart.render(data.sections && data.sections[Cart.section]); openDrawer('CartDrawer'); }
+        else window.location.href = T.routes.cart;
+      } catch (ex) {
+        err.textContent = ex.message || strings.cartError;
+        err.hidden = false;
+      } finally {
+        addBtn.classList.remove('is-loading');
+      }
+    });
+    update();
+  }
+
+  const promo = { el: null, last: null };
+  function promoStep(name) {
+    $$('[data-promo-step]', promo.el).forEach((s) => { s.hidden = s.dataset.promoStep !== name; });
+  }
+  function openPromo() {
+    const el = promo.el;
+    if (!el || el.classList.contains('is-open')) return;
+    promo.last = doc.activeElement;
+    el.hidden = false;
+    const teaser = $('[data-promo-teaser]');
+    if (teaser) teaser.hidden = true;
+    doc.documentElement.classList.add('promo-open');
+    requestAnimationFrame(() => {
+      el.classList.add('is-open');
+      const panel = $('.promo__panel', el);
+      if (panel) panel.focus({ preventScroll: true });
+    });
+  }
+  function closePromo(remember = true) {
+    const el = promo.el;
+    if (!el || !el.classList.contains('is-open')) return;
+    el.classList.remove('is-open');
+    doc.documentElement.classList.remove('promo-open');
+    setTimeout(() => { if (!el.classList.contains('is-open')) el.hidden = true; }, 450);
+    if (remember && !(window.Shopify && window.Shopify.designMode)) store.set('promo:closed', String(Date.now()));
+    const teaser = $('[data-promo-teaser]');
+    if (teaser && el.dataset.teaser === 'true' && !store.get('promo:claimed')) teaser.hidden = false;
+    if (promo.last && promo.last.focus) promo.last.focus({ preventScroll: true });
+  }
+  function initPromo(scope = doc) {
+    const el = $('[data-promo]', scope);
+    if (!el || el.dataset.ready) return;
+    el.dataset.ready = '1';
+    promo.el = el;
+    const design = !!(window.Shopify && window.Shopify.designMode);
+    const teaser = $('[data-promo-teaser]');
+    const claimed = store.get('promo:claimed');
+    const closedAt = parseInt(store.get('promo:closed') || '0', 10);
+    const days = parseInt(el.dataset.days, 10) || 7;
+    const snoozed = closedAt && Date.now() - closedAt < days * 864e5;
+
+    el.addEventListener('click', (e) => {
+      if (e.target.closest('[data-promo-close]')) { e.preventDefault(); closePromo(); return; }
+      if (e.target.closest('[data-promo-reveal]')) { promoStep('code'); store.set('promo:claimed', '1'); return; }
+      const copy = e.target.closest('[data-promo-copy]');
+      if (copy) {
+        const code = $('[data-promo-code]', el).textContent.trim();
+        const done = () => { const t = copy.textContent; copy.textContent = copy.dataset.copied; setTimeout(() => { copy.textContent = t; }, 1800); };
+        if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done); else done();
+      }
+    });
+    el.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePromo(); });
+    const form = $('[data-promo-form]', el);
+    if (form) form.addEventListener('submit', () => store.set('promo:claimed', '1'));
+    if (teaser) teaser.addEventListener('click', openPromo);
+
+    if ($('[data-promo-posted]', el)) { promoStep('code'); openPromo(); return; }
+    if (design) { if (el.dataset.editorPreview === 'true') openPromo(); return; }
+    if (claimed) return;
+    if (snoozed) { if (teaser && el.dataset.teaser === 'true') teaser.hidden = false; return; }
+
+    const delay = (parseInt(el.dataset.delay, 10) || 0) * 1000;
+    const show = () => {
+      if ($('.drawer.is-open')) { setTimeout(show, 4000); return; }
+      openPromo();
+    };
+    const trigger = el.dataset.trigger;
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    if (trigger === 'scroll') {
+      const onScroll = () => {
+        const max = doc.documentElement.scrollHeight - window.innerHeight;
+        if (max <= 0 || window.scrollY / max > 0.5) { window.removeEventListener('scroll', onScroll); show(); }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+    } else if (trigger === 'exit' && canHover) {
+      const onLeave = (e) => { if (!e.relatedTarget && e.clientY <= 0) { doc.removeEventListener('mouseout', onLeave); show(); } };
+      setTimeout(() => doc.addEventListener('mouseout', onLeave), 3000);
+    } else {
+      setTimeout(show, delay);
+    }
+  }
+
+  doc.addEventListener('shopify:section:select', (e) => { if ($('[data-promo]', e.target)) { initPromo(e.target); openPromo(); } });
+  doc.addEventListener('shopify:section:deselect', (e) => {
+    const el = $('[data-promo]', e.target);
+    if (el && el.dataset.editorPreview !== 'true') closePromo(false);
+  });
+
   /* ---------------------------------------------------------------- Init */
   function initAll(scope = doc) {
     observe(scope);
     initMagnetic(scope);
     initTilt(scope);
     initParallax(scope);
-    initStories(scope);
+    initPins(scope);
+    initStacks(scope);
+    initViews(scope);
     initScrub(scope);
+    initMarquees(scope);
+    initSpots(scope);
     initProducts(scope);
     initRecommendations(scope);
     initRotators(scope);
     initScenes(scope);
+    initPromo(scope);
   }
 
   setHeaderVars();
   initHeaderOverlay();
   onHeaderScroll();
   initAll();
-  updateParallax();
-  updateScrollFx();
+  kick();
+  window.addEventListener('load', () => { pins.forEach((el) => { if (el.hasAttribute('data-rail')) measureRail(el); }); kick(); }, { once: true });
   window.themeReady = true;
   window.ThemeUtils = { formatMoney, openDrawer, closeDrawer, toast, Cart };
 
@@ -696,7 +1063,7 @@
     initAll(e.target);
     setHeaderVars();
     initHeaderOverlay();
-    updateScrollFx();
+    kick();
   });
   doc.addEventListener('shopify:section:unload', (e) => destroyScenes(e.target));
   doc.addEventListener('shopify:block:select', (e) => {
