@@ -1,1 +1,7 @@
-{ "cleanUrls": false, "trailingSlash": true }
+{
+  "cleanUrls": false,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/:theme(vigor|dewy|drape|ember|fetch)", "destination": "/:theme/", "permanent": false }
+  ]
+}
