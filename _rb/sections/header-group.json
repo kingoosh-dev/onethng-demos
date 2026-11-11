@@ -1,0 +1,48 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg_themes_demo": {
+          "type": "message",
+          "settings": {
+            "text": "5 Shopify themes with live 3D. Try the demos free",
+            "link": "https://demo.onethng.store/"
+          }
+        },
+        "msg_themes_bundle": {
+          "type": "message",
+          "settings": {
+            "text": "All 5 Shopify themes for $99. Instant download",
+            "link": "shopify://products/5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch"
+          }
+        }
+      },
+      "block_order": [
+        "msg_themes_demo",
+        "msg_themes_bundle"
+      ],
+      "settings": {
+        "interval": 5,
+        "text": "Free: the 5-Minute Overwhelm Reset. Grab it here"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "sticky": true,
+        "show_search": true,
+        "show_account": true,
+        "cta_label": "Get all 5 · $99",
+        "cta_link": "shopify://products/5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch"
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header"
+  ]
+}

@@ -1,0 +1,67 @@
+{%- comment -%}Rebrand: pricing cards. One block per option; tick "Highlight" on the one to push.{%- endcomment -%}
+<section class="rb-section rb-offer" id="pricing" {{ section.shopify_attributes }}>
+  <div class="rb-wrap">
+    <header class="rb-head rb-head--center" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rb-h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="rb-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </header>
+    <div class="rb-plans">
+      {%- for block in section.blocks -%}
+        {%- assign p = block.settings.product -%}
+        <article class="rb-plan{% if block.settings.highlight %} rb-plan--hot{% endif %}" data-rb-tilt data-reveal style="--i: {{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.badge != blank -%}<span class="rb-plan__badge">{{ block.settings.badge | escape }}</span>{%- endif -%}
+          <h3 class="rb-h3">{{ block.settings.title | escape }}</h3>
+          <p class="rb-plan__price">
+            {%- if p -%}{{ p.price | money_without_trailing_zeros }}{%- else -%}{{ block.settings.price_text | escape }}{%- endif -%}
+            {%- if block.settings.price_note != blank -%}<small>{{ block.settings.price_note | escape }}</small>{%- endif -%}
+          </p>
+          <p class="rb-plan__text">{{ block.settings.text | escape }}</p>
+          <ul class="rb-list">
+            {%- assign lines = block.settings.points | newline_to_br | split: '<br />' -%}
+            {%- for line in lines -%}
+              {%- assign l = line | strip -%}
+              {%- if l != blank -%}<li>{{ l | escape }}</li>{%- endif -%}
+            {%- endfor -%}
+          </ul>
+          {%- liquid
+            assign href = block.settings.link
+            if p
+              assign href = p.url
+            endif
+          -%}
+          <a class="rb-btn {% if block.settings.highlight %}rb-btn--primary{% else %}rb-btn--ghost{% endif %} rb-btn--full" href="{{ href }}">{{ block.settings.cta | escape }}</a>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.note != blank -%}<p class="rb-note" data-reveal>{{ section.settings.note | escape }}</p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Pricing cards",
+  "class": "section-rb-offer",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Pricing" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Pay once. <em>Keep it forever.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "No subscription and no monthly app fees." },
+    { "type": "text", "id": "note", "label": "Line under the cards", "default": "Premium themes on the Shopify Theme Store usually cost $140 to $400 each." }
+  ],
+  "blocks": [
+    { "type": "plan", "name": "Option", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "One theme" },
+      { "type": "product", "id": "product", "label": "Product (sets price and link)" },
+      { "type": "text", "id": "price_text", "label": "Price text (when no product)", "default": "$50" },
+      { "type": "text", "id": "price_note", "label": "Small text by the price", "default": "one-off" },
+      { "type": "textarea", "id": "text", "label": "Text" },
+      { "type": "textarea", "id": "points", "label": "Points (one per line)" },
+      { "type": "text", "id": "cta", "label": "Button", "default": "Choose" },
+      { "type": "url", "id": "link", "label": "Button link (when no product)" },
+      { "type": "text", "id": "badge", "label": "Badge" },
+      { "type": "checkbox", "id": "highlight", "label": "Highlight", "default": false }
+    ] }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Pricing cards" }]
+}
+{% endschema %}

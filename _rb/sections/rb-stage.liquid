@@ -1,0 +1,144 @@
+{%- comment -%}
+  Rebrand hero + 3D scroll showcase. One "Theme" block per theme card.
+  With motion off (or no JavaScript) it falls back to a simple stacked layout.
+{%- endcomment -%}
+{%- liquid
+  assign themes = section.blocks | where: 'type', 'theme'
+  assign states = themes.size | plus: 2
+  assign bundle = section.settings.bundle_product
+-%}
+<section class="rb-stage" data-rb-stage style="--states: {{ states }}" {{ section.shopify_attributes }}>
+  <div class="rb-stage__sticky">
+    <div class="rb-bg" aria-hidden="true">
+      <span class="rb-bg__glow rb-bg__glow--a"></span>
+      <span class="rb-bg__glow rb-bg__glow--b"></span>
+      <span class="rb-bg__grid"></span>
+    </div>
+
+    <div class="rb-hero rb-layer" data-rb-panel="0">
+      <div class="rb-hero__inner">
+        {%- if section.settings.eyebrow != blank -%}<p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+        <h1 class="rb-h1">{{ section.settings.heading }}</h1>
+        {%- if section.settings.text != blank -%}<p class="rb-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+        <div class="rb-actions">
+          <a class="rb-btn rb-btn--primary" href="{% if bundle %}{{ bundle.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}">{{ section.settings.cta_primary | escape }}</a>
+          <a class="rb-btn rb-btn--ghost" href="#rb-themes" data-rb-goto="1">{{ section.settings.cta_secondary | escape }}</a>
+        </div>
+        {%- if section.settings.trust != blank -%}<p class="rb-trust">{{ section.settings.trust | escape }}</p>{%- endif -%}
+      </div>
+    </div>
+
+    <div class="rb-scene" aria-hidden="true">
+      <div class="rb-cards" data-rb-cards>
+        {%- for block in themes -%}
+          <div class="rb-card" data-rb-card style="--c: {{ block.settings.accent }}">
+            <span class="rb-card__screen">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'eager', alt: '', widths: '350, 700' , sizes: '320px' }}
+              {%- elsif block.settings.asset != blank -%}
+                <img src="{{ block.settings.asset | asset_url }}" alt="" width="585" height="1266" loading="eager" decoding="async">
+              {%- endif -%}
+            </span>
+            <span class="rb-card__glare"></span>
+            <span class="rb-card__label">{{ block.settings.name | escape }}</span>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div id="rb-themes" class="rb-panels">
+      {%- for block in themes -%}
+        {%- assign p = block.settings.product -%}
+        <article class="rb-panel rb-layer" data-rb-panel="{{ forloop.index }}" style="--c: {{ block.settings.accent }}" {{ block.shopify_attributes }}>
+          <div class="rb-panel__thumb">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', alt: block.settings.name }}
+            {%- elsif block.settings.asset != blank -%}
+              <img src="{{ block.settings.asset | asset_url }}" alt="{{ block.settings.name | escape }} Shopify theme" width="585" height="1266" loading="lazy">
+            {%- endif -%}
+          </div>
+          <div class="rb-panel__body">
+            <p class="rb-eyebrow"><span class="rb-count">0{{ forloop.index }}</span> {{ block.settings.niche | escape }}</p>
+            <h2 class="rb-h2">{{ block.settings.name | escape }}</h2>
+            <p class="rb-panel__pain">{{ block.settings.pain | escape }}</p>
+            <ul class="rb-list">
+              {%- assign lines = block.settings.points | newline_to_br | split: '<br />' -%}
+              {%- for line in lines -%}
+                {%- assign l = line | strip -%}
+                {%- if l != blank -%}<li>{{ l | escape }}</li>{%- endif -%}
+              {%- endfor -%}
+            </ul>
+            <div class="rb-actions">
+              {%- if p -%}
+                <a class="rb-btn rb-btn--primary" href="{{ p.url }}">Get {{ block.settings.name | escape }} · {{ p.price | money_without_trailing_zeros }}</a>
+              {%- endif -%}
+              {%- if block.settings.demo != blank -%}
+                <a class="rb-btn rb-btn--ghost" href="{{ block.settings.demo }}" target="_blank" rel="noopener">Live demo</a>
+              {%- endif -%}
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+
+      <article class="rb-panel rb-panel--end rb-layer" data-rb-panel="{{ themes.size | plus: 1 }}">
+        <div class="rb-panel__body">
+          <p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.end_eyebrow | escape }}</p>
+          <h2 class="rb-h2">{{ section.settings.end_heading }}</h2>
+          <p class="rb-lead">{{ section.settings.end_text | escape }}</p>
+          <div class="rb-actions">
+            {%- if bundle -%}
+              <a class="rb-btn rb-btn--primary rb-btn--lg" href="{{ bundle.url }}">{{ section.settings.end_cta | escape }} · {{ bundle.price | money_without_trailing_zeros }}</a>
+            {%- endif -%}
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <nav class="rb-rail" aria-label="Themes">
+      {%- for block in themes -%}
+        <button type="button" class="rb-rail__item" data-rb-goto="{{ forloop.index }}"><span></span>{{ block.settings.name | escape }}</button>
+      {%- endfor -%}
+    </nav>
+    <div class="rb-cue" aria-hidden="true"><span></span>Scroll</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "3D theme showcase",
+  "class": "section-rb-stage",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Shopify themes, one niche each" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Your products are premium. <em>Your store should look it.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Five Shopify themes with a live 3D hero, scroll-stop sections and bundle offers built in. Pick your niche, upload it, start selling." },
+    { "type": "text", "id": "cta_primary", "label": "Main button", "default": "Get all 5 for $99" },
+    { "type": "text", "id": "cta_secondary", "label": "Second button", "default": "See the themes" },
+    { "type": "text", "id": "trust", "label": "Line under the buttons", "default": "Instant download · Setup guide included · No apps or monthly fees" },
+    { "type": "product", "id": "bundle_product", "label": "Bundle product" },
+    { "type": "header", "content": "Last step of the scroll" },
+    { "type": "text", "id": "end_eyebrow", "label": "Small label", "default": "The bundle" },
+    { "type": "inline_richtext", "id": "end_heading", "label": "Heading", "default": "All five themes. <em>Under $20 each.</em>" },
+    { "type": "textarea", "id": "end_text", "label": "Text", "default": "$50 each bought separately. Get Vigor, Dewy, Drape, Ember and Fetch in one download." },
+    { "type": "text", "id": "end_cta", "label": "Button", "default": "Get the bundle" }
+  ],
+  "blocks": [
+    {
+      "type": "theme",
+      "name": "Theme",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Vigor" },
+        { "type": "text", "id": "niche", "label": "Niche", "default": "Health, fitness & supplements" },
+        { "type": "textarea", "id": "pain", "label": "Opening line", "default": "Shoppers don't trust a store that looks like every other one." },
+        { "type": "textarea", "id": "points", "label": "Points (one per line)", "default": "3D hero that moves as shoppers scroll\nBundle and multi-buy discounts built in\nFirst-order discount popup" },
+        { "type": "url", "id": "demo", "label": "Live demo link" },
+        { "type": "color", "id": "accent", "label": "Glow colour", "default": "#FF7A45" },
+        { "type": "image_picker", "id": "image", "label": "Phone screenshot (tall)" },
+        { "type": "text", "id": "asset", "label": "Built-in screenshot file", "info": "Used when no image is chosen. Leave as is." }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "3D theme showcase" }]
+}
+{% endschema %}

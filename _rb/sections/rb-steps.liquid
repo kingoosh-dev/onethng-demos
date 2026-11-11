@@ -1,0 +1,45 @@
+{%- comment -%}Rebrand: numbered steps with a line that draws as you scroll, plus an optional closing call to action.{%- endcomment -%}
+<section class="rb-section rb-steps" {{ section.shopify_attributes }}>
+  <div class="rb-wrap rb-steps__wrap">
+    <header class="rb-head" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rb-h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="rb-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+      {%- if section.settings.cta != blank -%}
+        <div class="rb-actions"><a class="rb-btn rb-btn--ghost" href="{{ section.settings.cta_link }}">{{ section.settings.cta | escape }}</a></div>
+      {%- endif -%}
+    </header>
+    <ol class="rb-steplist" data-rb-line>
+      {%- for block in section.blocks -%}
+        <li class="rb-step" data-reveal style="--i: {{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <span class="rb-step__num">{{ forloop.index }}</span>
+          <div>
+            <h3 class="rb-h3">{{ block.settings.title | escape }}</h3>
+            <p>{{ block.settings.text | escape }}</p>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Steps",
+  "class": "section-rb-steps",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "How it works" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Live on your store <em>in an afternoon.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text" },
+    { "type": "text", "id": "cta", "label": "Button" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "blocks": [
+    { "type": "step", "name": "Step", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Buy and download" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "Your theme file and setup guide arrive by email straight after checkout." }
+    ] }
+  ],
+  "max_blocks": 6,
+  "presets": [{ "name": "Steps" }]
+}
+{% endschema %}

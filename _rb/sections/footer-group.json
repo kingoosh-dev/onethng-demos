@@ -1,0 +1,51 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "themes_menu": {
+          "type": "menu",
+          "settings": {
+            "heading": "Shopify themes",
+            "menu": "footer-themes"
+          }
+        },
+        "menu": {
+          "type": "menu",
+          "settings": {
+            "heading": "Planner",
+            "menu": "footer"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "heading": "Questions?",
+            "text": "<p>Reply to your order email or use the contact page. We answer every message.</p>"
+          }
+        },
+        "newsletter": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "New theme drops",
+            "text": "Be first to hear about new Shopify themes. No spam, unsubscribe any time."
+          }
+        }
+      },
+      "block_order": [
+        "themes_menu",
+        "menu",
+        "text",
+        "newsletter"
+      ],
+      "settings": {
+        "tagline": "Shopify themes that stop the scroll."
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
