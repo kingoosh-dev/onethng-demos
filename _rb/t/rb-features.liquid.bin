@@ -1,0 +1,38 @@
+{%- comment -%}Rebrand: grid of glass feature cards that tilt in 3D.{%- endcomment -%}
+<section class="rb-section rb-features" {{ section.shopify_attributes }}>
+  <div class="rb-wrap">
+    <header class="rb-head" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h2 class="rb-h2">{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="rb-lead">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </header>
+    <div class="rb-grid">
+      {%- for block in section.blocks -%}
+        <article class="rb-glass" data-rb-tilt data-reveal style="--i: {{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <span class="rb-glass__num">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <h3 class="rb-h3">{{ block.settings.title | escape }}</h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Feature cards",
+  "class": "section-rb-features",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "In every theme" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Built to sell, <em>not just to look good.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "The tools most stores pay monthly app fees for are already inside the theme." }
+  ],
+  "blocks": [
+    { "type": "feature", "name": "Feature", "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Live 3D hero" },
+      { "type": "textarea", "id": "text", "label": "Text", "default": "A 3D scene that moves as shoppers scroll, so they stop and look." }
+    ] }
+  ],
+  "max_blocks": 9,
+  "presets": [{ "name": "Feature cards" }]
+}
+{% endschema %}
