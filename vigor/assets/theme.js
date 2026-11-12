@@ -416,6 +416,16 @@
     lastY = y;
   }
 
+  /* ---------------------------------------------------------------- Mobile tab bar */
+  const mtabs = $('[data-mtabs]');
+  const setTabsH = () => {
+    const h = mtabs && getComputedStyle(mtabs).display !== 'none' ? mtabs.offsetHeight : 0;
+    doc.documentElement.style.setProperty('--mtabs-h', h + 'px');
+  };
+  setTabsH();
+  window.addEventListener('resize', setTabsH);
+  doc.addEventListener('shopify:section:load', setTabsH);
+
   window.addEventListener('scroll', kick, { passive: true });
   let resizeTimer;
   window.addEventListener('resize', () => {
@@ -430,6 +440,7 @@
     const modal = $('[data-search-modal]');
     if (!modal) return;
     modal.hidden = false;
+    header && header.classList.remove('is-hidden');
     header && header.classList.add('is-solid');
     const input = $('input[type="search"]', modal);
     input && setTimeout(() => input.focus(), 30);

@@ -68,7 +68,7 @@
     <script src="assets/theme.js" defer="defer"></script>
   </head>
 
-  <body class="template-product card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Fetch</b> demo · sample products</span><a href="../index.html#fetch" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div><style>main > .shopify-section:first-child .hero--pin .hero__inner{margin-bottom:calc(var(--announce-h,0px) + var(--demo-h,0px))}</style><script>(function(){var b=document.querySelector('.demo-bar');function s(){document.documentElement.style.setProperty('--demo-h',b.offsetHeight+'px')}s();addEventListener('resize',s)})();</script>
+  <body class="template-product card-style-framed magnetic-on" data-cart-type="drawer"><div class="demo-bar" style="position:relative;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 16px;padding:8px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));background:#17171a;color:#f2f1ed;font:500 13px/1.3 system-ui,-apple-system,'Segoe UI',sans-serif;text-align:center"><span style="opacity:.7">You're viewing the <b style="opacity:1;color:#fff">Fetch</b> demo · sample products</span><a href="../index.html#fetch" style="color:#f2f1ed">← All 5 themes</a><a href="https://onethng.store/cart/59651559588172:1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;padding:5px 12px;border-radius:99px;background:#f2f1ed;color:#17171a;font-weight:600;text-decoration:none">Get all 5 for $99 →</a></div><style>main > .shopify-section:first-child .hero--pin .hero__inner, html body:has(.mtabs) main > .shopify-section:first-child .hero--pin .hero__inner{margin-bottom:calc(var(--announce-h,0px) + var(--demo-h,0px) + var(--mtabs-h,0px))}</style><script>(function(){var b=document.querySelector('.demo-bar');function s(){document.documentElement.style.setProperty('--demo-h',b.offsetHeight+'px')}s();addEventListener('resize',s)})();</script>
     <a class="skip-link" href="#MainContent">Skip to content</a><div class="scroll-progress" aria-hidden="true"></div><div id="shopify-section-sections--header-group__announcement" class="shopify-section shopify-section-group-header-group"><div class="announcement scheme-inverse">
     <div class="page-width announcement__inner">
       <div class="announcement__slides" data-rotator data-interval="5000"><p class="announcement__msg is-active" >Free delivery on orders over £40</p><p class="announcement__msg" >Destroyed in 30 days? We'll replace it</p></div>
@@ -146,6 +146,41 @@
 </div>
 
 
+</div>
+<div id="shopify-section-sections--header-group__tabs" class="shopify-section shopify-section-group-header-group section-mtabs"><nav class="mtabs mtabs--bar" data-mtabs data-mtabs-replace aria-label="Shop navigation" >
+  <ul class="mtabs__list" role="list"><li >
+        <a href="index.html" class="mtabs__tab">
+          <span class="mtabs__icon"><svg class="icon icon--home" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.4 12 3.6l8.5 6.8V19a1.6 1.6 0 0 1-1.6 1.6h-4.1v-6.1H9.2v6.1H5.1A1.6 1.6 0 0 1 3.5 19z"/></svg>
+</span>
+          <span class="mtabs__label">Home</span>
+        </a>
+      </li><li >
+        <a href="collection.html" class="mtabs__tab is-active" aria-current="page">
+          <span class="mtabs__icon"><svg class="icon icon--shop" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.6" height="6.6" rx="1.6"/><rect x="13.4" y="4" width="6.6" height="6.6" rx="1.6"/><rect x="4" y="13.4" width="6.6" height="6.6" rx="1.6"/><rect x="13.4" y="13.4" width="6.6" height="6.6" rx="1.6"/></svg>
+</span>
+          <span class="mtabs__label">Shop</span>
+        </a>
+      </li><li>
+        <a href="#" class="mtabs__tab" data-search-open>
+          <span class="mtabs__icon"><svg class="icon icon--search" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+</span>
+          <span class="mtabs__label">Search</span>
+        </a>
+      </li><li>
+        <a href="#cart" class="mtabs__tab" data-cart-open>
+          <span class="mtabs__icon"><svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1.1 12.1a1.6 1.6 0 0 1-1.6 1.4H8.2a1.6 1.6 0 0 1-1.6-1.4L5.5 7.5Z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/></svg>
+<span class="cart-count is-empty" data-cart-count>0</span>
+          </span>
+          <span class="mtabs__label">Cart</span>
+        </a>
+      </li><li>
+        <button type="button" class="mtabs__tab" data-drawer-open="MenuDrawer" aria-controls="MenuDrawer" aria-expanded="false">
+          <span class="mtabs__icon"><svg class="icon icon--menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+</span>
+          <span class="mtabs__label">Menu</span>
+        </button>
+      </li></ul>
+</nav>
 </div>
 
     <main id="MainContent" class="main" role="main" tabindex="-1">
@@ -436,5 +471,5 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
         }
       };
     </script>
-  <script defer src="/tracker.js"></script></body>
+    <script defer src="/tracker.js"></script></body>
 </html>
