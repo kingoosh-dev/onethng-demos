@@ -14,7 +14,8 @@
     var n = cards.length, states = n + 2;
     if (!n) return;
     var colors = cards.map(function (c) { return c.style.getPropertyValue('--c') || ''; });
-    var W = 0, H = 0, wide = true, cw = 0, ch = 0, top = 0, range = 1;
+    var W = 0, H = 0, wide = true, cw = 0, ch = 0, top = 0, range = 1, heroB = 0, endB = 0, hdr = 68, panT = 0;
+    var bottomOf = function (sel) { var el = root.querySelector(sel); return el ? el.offsetTop + el.offsetHeight : 0; };
     var cur = 0, target = 0, mx = 0, my = 0, tmx = 0, tmy = 0, visible = false, raf = 0, lastActive = -1;
 
     root.classList.add('is-live');
@@ -23,6 +24,10 @@
       W = sticky.clientWidth; H = sticky.clientHeight; wide = W >= 900;
       cw = wide ? clamp(Math.min(W * 0.125, H * 0.25), 110, 230) : clamp(Math.min(W * 0.27, H * 0.155), 78, 150);
       ch = cw * 1266 / 585;
+      heroB = bottomOf('.rb-hero .rb-actions'); endB = bottomOf('.rb-panel--end .rb-actions');
+      hdr = parseFloat(window.getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 68;
+      panT = H;
+      [].forEach.call(root.querySelectorAll('.rb-panel:not(.rb-panel--end) .rb-panel__body'), function (b) { panT = Math.min(panT, b.offsetTop); });
       root.style.setProperty('--cw', cw.toFixed(1) + 'px');
       var r = root.getBoundingClientRect();
       top = r.top + window.pageYOffset; range = Math.max(1, root.offsetHeight - window.innerHeight);
@@ -34,13 +39,13 @@
       if (state === 0) { // hero fan
         return wide
           ? { x: W * 0.23 + d * cw * 0.66, y: H * 0.03 + a * a * 9, z: -a * 110, ry: -d * 13 - 10, rx: 5, rz: d * 3.2, s: 1, o: 1, lab: 0, glow: 0.3 }
-          : { x: d * cw * 0.62, y: H * 0.27 + a * a * 6, z: -a * 90, ry: -d * 14, rx: 8, rz: d * 3.5, s: 1, o: 1, lab: 0, glow: 0.28 };
+          : (function () { var s0 = clamp((H - heroB - 20) / ch, 0.5, 1); return { x: d * cw * 0.62 * s0, y: H / 2 - ch * s0 / 2 - 8 + a * a * 5, z: -a * 90, ry: -d * 14, rx: 8, rz: d * 3.5, s: s0, o: 1, lab: 0, glow: 0.28 }; })();
       }
       if (state === n + 1) { // bundle line-up
         var fit = wide ? Math.min(1.15, (W * 0.8) / (cw * (n * 1.14)), (H * 0.33) / ch) : Math.min(1.2, (W * 0.94) / (cw * (n * 0.72)), (H * 0.4) / ch);
         return wide
           ? { x: d * cw * 1.14 * fit, y: H * 0.5 - (ch * fit) / 2 - 52, z: -a * 40, ry: -d * 7, rx: 4, rz: 0, s: fit, o: 1, lab: 1, glow: 0.4 }
-          : { x: d * cw * 0.7 * fit, y: H * 0.22 + a * a * 5, z: -a * 70, ry: -d * 12, rx: 8, rz: d * 2.5, s: fit, o: 1, lab: 0, glow: 0.34 };
+          : (function () { var f2 = clamp(Math.min(fit, (H - endB - 22) / ch), 0.5, 1.2); return { x: d * cw * 0.7 * f2, y: H / 2 - ch * f2 / 2 - 10 + a * a * 5, z: -a * 70, ry: -d * 12, rx: 8, rz: d * 2.5, s: f2, o: 1, lab: 0, glow: 0.34 }; })();
       }
       var f = state - 1, k = i - f, ak = Math.abs(k); // focus on card f
       if (wide) {
@@ -48,7 +53,7 @@
         if (k === 0) return { x: fx, y: H * 0.035, z: 140, ry: -16, rx: 4, rz: 0, s: fs, o: 1, lab: 0, glow: 0.62 };
         return { x: fx + (k > 0 ? 1 : -1) * (cw * fs * 0.62 + (ak - 1) * cw * 0.8), y: H * 0.035, z: -420 - ak * 200, ry: -k * 16 - 16, rx: 4, rz: 0, s: fs * 0.82, o: clamp(0.5 - ak * 0.14, 0, 1), lab: 0, glow: 0.1 };
       }
-      var ms = Math.min(2.6, (H * 0.43) / ch), fy = -H * 0.19;
+      var room = panT - hdr - 20, ms = clamp(Math.min(2.6, room / ch), 0.7, 2.6), fy = (hdr + 6 + panT) / 2 - H / 2;
       if (k === 0) return { x: 0, y: fy, z: 120, ry: -10, rx: 4, rz: 0, s: ms, o: 1, lab: 0, glow: 0.6 };
       return { x: (k > 0 ? 1 : -1) * (cw * ms * 0.74 + (ak - 1) * cw * 0.9), y: fy, z: -380 - ak * 200, ry: -k * 22, rx: 4, rz: 0, s: ms * 0.8, o: clamp(0.5 - ak * 0.16, 0, 1), lab: 0, glow: 0.1 };
     }
@@ -83,6 +88,7 @@
         for (var r = 0; r < rail.length; r++) rail[r].classList.toggle('is-active', r === active - 1);
         var c = colors[active - 1];
         if (c) root.style.setProperty('--stage-c', c); else root.style.removeProperty('--stage-c');
+        try { root.dispatchEvent(new CustomEvent('rb:state', { detail: { active: active, states: states } })); } catch (err) {}
       }
       root.classList.toggle('is-scrolling', cur > 0.012);
       root.classList.toggle('is-end', te > states - 1.6);
@@ -99,7 +105,8 @@
     function start() { if (!raf) raf = requestAnimationFrame(tick); }
 
     function goTo(state) {
-      var y = top + range * (state / (states - 1));
+      measure();
+      var y = state === 0 ? 0 : top + range * (state / (states - 1));
       if (window.lenis && window.lenis.scrollTo) window.lenis.scrollTo(y, { duration: 1.4 });
       else window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -119,7 +126,10 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) start(); }, { rootMargin: '200px' }).observe(root);
     } else { visible = true; start(); }
-    root.__rb = { set: function (p) { cur = target = p; render(0); }, states: states };
+    root.__rb = { set: function (p) { cur = target = p; render(0); }, states: states, goTo: goTo };
+    if (window.location.hash === '#rb-themes') {
+      requestAnimationFrame(function () { measure(); window.scrollTo(0, top + range * (1 / (states - 1))); });
+    }
   }
 
   function tilt(el) {
@@ -162,11 +172,47 @@
     els.forEach(function (e) { io.observe(e); });
   }
 
+  // Bottom tab bar: keep its height in a CSS variable, and on the homepage follow the 3D stage.
+  function tabs() {
+    var bar = document.querySelector('[data-rb-tabs]');
+    if (!bar) return;
+    var setH = function () {
+      var h = window.getComputedStyle(bar).display === 'none' ? 0 : bar.offsetHeight;
+      document.documentElement.style.setProperty('--rb-tabs-h', h + 'px');
+    };
+    setH();
+    if (!bar.__rb) { bar.__rb = 1; window.addEventListener('resize', setH); }
+    var stage = document.querySelector('[data-rb-stage]');
+    if (!stage || stage.__rbTabs) return;
+    stage.__rbTabs = 1;
+    var all = [].slice.call(bar.querySelectorAll('.rb-tab'));
+    var home = bar.querySelector('[data-stage="0"]'), themes = bar.querySelector('[data-stage="1"]');
+    var act = 0, inStage = true;
+    var paint = function () {
+      var t = inStage && act >= 1 && themes ? themes : home;
+      if (!t) return;
+      all.forEach(function (x) { var on = x === t; x.classList.toggle('is-active', on); if (on) x.setAttribute('aria-current', 'page'); else x.removeAttribute('aria-current'); });
+    };
+    stage.addEventListener('rb:state', function (e) { act = e.detail.active; paint(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { inStage = en[0].isIntersecting; paint(); }, { rootMargin: '0px 0px -50% 0px' }).observe(stage);
+    }
+    [].forEach.call(bar.querySelectorAll('[data-stage]'), function (el) {
+      el.addEventListener('click', function (ev) {
+        if (!stage.__rb || !stage.__rb.goTo) return;
+        ev.preventDefault();
+        stage.__rb.goTo(+el.getAttribute('data-stage'));
+      });
+    });
+  }
+
   function init() {
+    tabs();
     if (!reduce) [].forEach.call(document.querySelectorAll('[data-rb-stage]'), function (el) { if (!el.__rb) Stage(el); });
     [].forEach.call(document.querySelectorAll('[data-rb-tilt]'), tilt);
     lines(document.querySelectorAll('[data-rb-line]'));
     reveals();
+    tabs();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
   document.addEventListener('shopify:section:load', init);

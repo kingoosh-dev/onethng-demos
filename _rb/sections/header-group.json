@@ -39,10 +39,52 @@
         "cta_label": "Get all 5 · $99",
         "cta_link": "shopify://products/5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch"
       }
+    },
+    "tabs": {
+      "type": "bottom-tabs",
+      "blocks": {
+        "home": {
+          "type": "tab",
+          "settings": {
+            "label": "Home",
+            "link": "/",
+            "icon": "home"
+          }
+        },
+        "themes": {
+          "type": "tab",
+          "settings": {
+            "label": "Themes",
+            "link": "/#rb-themes",
+            "icon": "themes"
+          }
+        },
+        "bundle": {
+          "type": "tab",
+          "settings": {
+            "label": "Bundle",
+            "link": "shopify://products/5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch",
+            "icon": "bundle"
+          }
+        }
+      },
+      "block_order": [
+        "home",
+        "themes",
+        "bundle"
+      ],
+      "settings": {
+        "show_cart": true,
+        "cart_label": "Cart",
+        "show_menu": true,
+        "menu_label": "Menu",
+        "aria_label": "Shop navigation"
+      }
     }
   },
   "order": [
     "announcement",
-    "header"
+    "header",
+    "tabs"
   ]
 }

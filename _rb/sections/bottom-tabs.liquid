@@ -1,0 +1,129 @@
+{%- comment -%}
+  App-style tab bar pinned to the bottom of the screen on phones and small tablets.
+  Link tabs come from blocks. The Cart tab opens the cart drawer and the Menu tab opens the menu drawer.
+  When this section is shown, the header's menu and cart icons hide on phones (the tabs replace them).
+{%- endcomment -%}
+{%- liquid
+  assign path = request.path
+  assign tab_count = section.blocks.size
+  if section.settings.show_cart
+    assign tab_count = tab_count | plus: 1
+  endif
+  if section.settings.show_menu
+    assign tab_count = tab_count | plus: 1
+  endif
+-%}
+{%- if tab_count > 0 -%}
+<nav class="rb-tabs" data-rb-tabs aria-label="{{ section.settings.aria_label | escape }}" {{ section.shopify_attributes }}>
+  <ul class="rb-tabs__list" role="list">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign link = block.settings.link | default: '/'
+        assign base = link | split: '#' | first
+        if base == blank
+          assign base = '/'
+        endif
+        assign is_active = false
+        if block.settings.icon == 'themes' and template.suffix == 'theme'
+          assign is_active = true
+        elsif link contains '#'
+          assign is_active = false
+        elsif base == '/'
+          if template.name == 'index'
+            assign is_active = true
+          endif
+        elsif base == path
+          assign is_active = true
+        endif
+        assign stage = ''
+        if link == '/' and block.settings.icon == 'home'
+          assign stage = '0'
+        elsif link contains '#rb-themes'
+          assign stage = '1'
+        endif
+      -%}
+      <li {{ block.shopify_attributes }}>
+        <a href="{{ link }}" class="rb-tab{% if is_active %} is-active{% endif %}"{% if is_active %} aria-current="page"{% endif %}{% if stage != '' %} data-stage="{{ stage }}"{% endif %}>
+          <span class="rb-tab__icon" aria-hidden="true">
+            {%- case block.settings.icon -%}
+              {%- when 'home' -%}<svg viewBox="0 0 24 24"><path d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5h-4.2v-6h-5.6v6H5A1.5 1.5 0 0 1 3.5 19z"/></svg>
+              {%- when 'themes' -%}<svg viewBox="0 0 24 24"><rect x="8.5" y="2.5" width="10" height="17" rx="2.4"/><path d="M5.5 6.2v12.3a3 3 0 0 0 3 3h6.8"/><path d="M12.2 16.2h2.6"/></svg>
+              {%- when 'bundle' -%}<svg viewBox="0 0 24 24"><path d="M12 3.2 3.5 7.6 12 12l8.5-4.4z"/><path d="m3.5 12 8.5 4.4 8.5-4.4"/><path d="m3.5 16.4 8.5 4.4 8.5-4.4"/></svg>
+              {%- when 'star' -%}<svg viewBox="0 0 24 24"><path d="m12 3.3 2.6 5.5 6 .8-4.4 4.2 1.1 6-5.3-2.9-5.3 2.9 1.1-6-4.4-4.2 6-.8z"/></svg>
+              {%- when 'play' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/><path d="M10.2 8.6 15.4 12l-5.2 3.4z"/></svg>
+              {%- when 'search' -%}<svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m15.8 15.8 4.7 4.7"/></svg>
+              {%- else -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.8"/></svg>
+            {%- endcase -%}
+          </span>
+          <span class="rb-tab__label">{{ block.settings.label | escape }}</span>
+        </a>
+      </li>
+    {%- endfor -%}
+
+    {%- if section.settings.show_cart -%}
+      <li>
+        <a href="{{ routes.cart_url }}" class="rb-tab{% if template.name == 'cart' %} is-active{% endif %}" data-cart-open>
+          <span class="rb-tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5.6 7.5h12.8l-1.1 12.1a1.5 1.5 0 0 1-1.5 1.4H8.2a1.5 1.5 0 0 1-1.5-1.4z"/><path d="M8.8 7.5V7a3.2 3.2 0 0 1 6.4 0v.5"/></svg>
+            <span class="cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
+          </span>
+          <span class="rb-tab__label">{{ section.settings.cart_label | escape }}</span>
+        </a>
+      </li>
+    {%- endif -%}
+
+    {%- if section.settings.show_menu -%}
+      <li>
+        <button type="button" class="rb-tab" data-menu-open aria-controls="MenuDrawer" aria-expanded="false">
+          <span class="rb-tab__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+          </span>
+          <span class="rb-tab__label">{{ section.settings.menu_label | escape }}</span>
+        </button>
+      </li>
+    {%- endif -%}
+  </ul>
+</nav>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Bottom tabs (phones)",
+  "class": "section-rb-tabs",
+  "settings": [
+    { "type": "paragraph", "content": "Shows a tab bar at the bottom of the screen on phones and small tablets. Desktop keeps the normal header menu." },
+    { "type": "checkbox", "id": "show_cart", "label": "Show Cart tab", "default": true },
+    { "type": "text", "id": "cart_label", "label": "Cart tab label", "default": "Cart" },
+    { "type": "checkbox", "id": "show_menu", "label": "Show Menu tab", "default": true, "info": "Opens the full menu drawer." },
+    { "type": "text", "id": "menu_label", "label": "Menu tab label", "default": "Menu" },
+    { "type": "text", "id": "aria_label", "label": "Name read out by screen readers", "default": "Shop navigation" }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Home" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "home", "label": "Home" },
+            { "value": "themes", "label": "Phones (themes)" },
+            { "value": "bundle", "label": "Stack (bundle)" },
+            { "value": "star", "label": "Star" },
+            { "value": "play", "label": "Play (demo)" },
+            { "value": "search", "label": "Search" }
+          ],
+          "default": "home"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "enabled_on": { "groups": ["header"] },
+  "presets": [{ "name": "Bottom tabs (phones)" }]
+}
+{% endschema %}
