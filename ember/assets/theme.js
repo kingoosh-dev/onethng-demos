@@ -472,7 +472,8 @@
   }
   function closeDrawer(d) {
     if (!d) return;
-    d.classList.remove('is-open');
+    d.classList.remove('is-open', 'is-dragging');
+    d.style.removeProperty('--sheet-drag');
     d.setAttribute('aria-hidden', 'true');
     const sec = d.closest('.shopify-section');
     if (sec) sec._drawerT = setTimeout(() => { if (!sec.querySelector('.drawer.is-open')) sec.classList.remove('has-open-drawer'); }, 600);
@@ -519,6 +520,35 @@
     else if (!e.shiftKey && doc.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 
+  /* ---------------------------------------------------------------- Cart sheet: drag down to close on phones */
+  (() => {
+    const d = doc.getElementById('CartDrawer');
+    if (!d || !d.classList.contains('drawer--compact')) return;
+    const phone = window.matchMedia('(max-width: 749px)');
+    let startY = null;
+    let dy = 0;
+    d.addEventListener('touchstart', (e) => {
+      if (!phone.matches || !e.target.closest('[data-sheet-grab], .drawer__head')) return;
+      startY = e.touches[0].clientY;
+      dy = 0;
+      d.classList.add('is-dragging');
+    }, { passive: true });
+    d.addEventListener('touchmove', (e) => {
+      if (startY == null) return;
+      dy = Math.max(0, e.touches[0].clientY - startY);
+      d.style.setProperty('--sheet-drag', `${dy}px`);
+    }, { passive: true });
+    const end = () => {
+      if (startY == null) return;
+      startY = null;
+      d.classList.remove('is-dragging');
+      if (dy > 90) closeDrawer(d);
+      else d.style.removeProperty('--sheet-drag');
+    };
+    d.addEventListener('touchend', end);
+    d.addEventListener('touchcancel', end);
+  })();
+
   /* ---------------------------------------------------------------- Cart */
   const Cart = {
     section: 'cart-drawer',
@@ -551,7 +581,18 @@
       const data = await res.json();
       if (!res.ok || data.status) throw new Error(data.description || data.message || strings.cartError);
       Cart.render(data.sections && data.sections[Cart.section]);
+      Cart.added(data.product_title || (data.items && data.items[0] && data.items[0].product_title));
       openDrawer('CartDrawer');
+    },
+    // A short confirmation at the top of the cart so shoppers know the add worked.
+    added(title) {
+      const bar = $('[data-cart-added]');
+      if (!bar) return;
+      const text = $('[data-cart-added-text]', bar);
+      if (text) text.textContent = title ? `${strings.cartAdded || 'Added'}: ${title}` : (strings.cartAdded || 'Added');
+      bar.hidden = false;
+      clearTimeout(Cart._addedT);
+      Cart._addedT = setTimeout(() => { bar.hidden = true; }, 4200);
     },
     async change(line, quantity) {
       const inner = doc.getElementById('CartDrawerInner');
@@ -673,11 +714,30 @@
       const sticky = $('[data-sticky-atc]', p);
       const stickyBtn = sticky && $('[data-sticky-add]', sticky);
 
+      const buy = $('[data-buy]', p);
+      const preLabel = buy && buy.dataset.preorderLabel;
+      // Pre-order: a tracked variant at 0 stock that Shopify still lets you sell.
+      const isPre = (v) => {
+        if (!preLabel || !v || !v.available) return false;
+        const info = stock[v.id];
+        return !!info && info.m === 'shopify' && info.q <= 0;
+      };
       const setButton = (btn, v) => {
         if (!btn) return;
         const label = $('[data-add-text]', btn) || btn;
         btn.disabled = !v || !v.available;
-        label.textContent = !v ? strings.unavailable : v.available ? strings.addToCart : strings.soldOut;
+        label.textContent = !v ? strings.unavailable : isPre(v) ? preLabel : v.available ? strings.addToCart : strings.soldOut;
+      };
+      const setExtras = (v) => {
+        const pre = isPre(v);
+        const preInput = $('[data-preorder-input]', p);
+        if (preInput) preInput.disabled = !pre;
+        const preNote = $('[data-preorder-note]', p);
+        if (preNote) preNote.hidden = !pre;
+        const notify = $('[data-notify]', p);
+        if (notify && !$('[data-notify-posted]', notify)) {
+          notify.hidden = !v || v.available;
+        }
       };
 
       const renderStock = (v) => {
@@ -687,9 +747,13 @@
         const info = v ? stock[v.id] : null;
         const threshold = parseInt(el.dataset.threshold || '0', 10);
         el.classList.remove('stock--low', 'stock--out');
+        el.classList.remove('stock--pre');
         if (!v || !v.available) {
           el.classList.add('stock--out');
           textEl.textContent = el.dataset.out;
+        } else if (isPre(v) && el.dataset.pre) {
+          el.classList.add('stock--pre');
+          textEl.textContent = el.dataset.pre;
         } else if (info && info.m === 'shopify' && info.q > 0 && info.q <= threshold) {
           el.classList.add('stock--low');
           textEl.textContent = el.dataset.low.replace('[count]', info.q);
@@ -702,6 +766,7 @@
         setButton(addBtn, v);
         setButton(stickyBtn, v);
         renderStock(v);
+        setExtras(v);
         if (!v) return;
         if (idInput) idInput.value = v.id;
         $$('[data-price-wrap]', p).forEach((el) => { el.innerHTML = priceMarkup(v, true); });
@@ -742,6 +807,158 @@
 
       initQuantityBreaks(p);
       initBundle(p);
+      initSubscriptions(p, product);
+      Recent.remember($('[data-recently-viewed]', p));
+    });
+  }
+
+  /* ---------------------------------------------------------------- Subscribe and save (Shopify selling plans) */
+  function initSubscriptions(p, product) {
+    const box = $('[data-subs]', p);
+    if (!box) return;
+    const input = $('[data-subs-input]', box);
+    const select = $('[data-subs-plan]', box);
+    const radios = $$('input[type="radio"]', box);
+    const onceEl = $('[data-subs-once]', box);
+    const priceEl = $('[data-subs-price]', box);
+    const fullEl = $('[data-subs-full]', box);
+    const badge = $('[data-subs-badge]', box);
+    let variant = product.variants.find((v) => String(v.id) === String(($('[data-variant-id]', p) || {}).value)) || product.variants[0];
+    const update = () => {
+      const sub = (radios.find((r) => r.checked) || {}).value !== 'once';
+      box.dataset.mode = sub ? 'sub' : 'once';
+      radios.forEach((r) => r.closest('.subs__opt').classList.toggle('is-selected', r.checked));
+      const planId = select ? select.value : '';
+      input.disabled = !sub;
+      input.value = sub ? planId : '';
+      if (!variant) return;
+      const alloc = (variant.selling_plan_allocations || []).find((a) => String(a.selling_plan_id) === String(planId));
+      const subPrice = alloc ? alloc.price : variant.price;
+      if (onceEl) onceEl.textContent = formatMoney(variant.price);
+      if (priceEl) priceEl.textContent = formatMoney(subPrice);
+      const pct = variant.price > subPrice ? Math.round(((variant.price - subPrice) / variant.price) * 100) : 0;
+      if (fullEl) { fullEl.textContent = formatMoney(variant.price); fullEl.hidden = !pct; }
+      if (badge) { badge.textContent = (box.dataset.save || '').replace('[percent]', pct); badge.hidden = !pct; }
+    };
+    box.addEventListener('change', update);
+    p.addEventListener('variant:change', (e) => { variant = e.detail.variant; update(); });
+    update();
+  }
+
+  /* ---------------------------------------------------------------- Wishlist and recently viewed (saved on this device) */
+  const listStore = {
+    read(k) { try { return JSON.parse(window.localStorage.getItem(k) || '[]'); } catch (e) { return []; } },
+    write(k, v) { try { window.localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } }
+  };
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function cardHtml(item) {
+    const wish = T.wishlist !== false
+      ? `<button type="button" class="wish-btn" data-wish="${esc(item.handle)}" data-wish-item="${esc(JSON.stringify(item))}" aria-pressed="false" aria-label="${esc((strings.wishSave || 'Save [title]').replace('[title]', item.title))}"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg></button>`
+      : '';
+    const img = item.img ? `<img class="card__img" src="${esc(item.img)}" alt="${esc(item.title)}" loading="lazy" width="700" height="875">` : '';
+    const compare = item.compare ? `<s class="price__compare">${esc(item.compare)}</s>` : '';
+    const quick = item.available && item.single && item.variant
+      ? `<form method="post" action="${esc((T.routes && T.routes.cartAdd || '/cart/add').replace(/\.js$/, ''))}" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="${esc(item.variant)}"><input type="hidden" name="quantity" value="1"><button type="submit" class="btn btn--sm btn--full btn--light"><span>${esc(strings.quickAdd || 'Quick add')}</span></button></form>`
+      : `<a href="${esc(item.url)}" class="btn btn--sm btn--full btn--light"><span>${esc(item.available ? strings.chooseOptions || 'Choose options' : strings.soldOut || 'Sold out')}</span></a>`;
+    return `<li><div class="card"><div class="card__media">${img}${wish}<div class="card__quick">${quick}</div></div><div class="card__info"><h3 class="card__title"><a href="${esc(item.url)}" class="card__link">${esc(item.title)}</a></h3><div class="price${compare ? ' price--sale' : ''}"><span class="price__current">${esc(item.price)}</span>${compare}</div></div></div></li>`;
+  }
+
+  const Wish = {
+    key: 'theme:wishlist',
+    list() { return listStore.read(Wish.key); },
+    has(h) { return Wish.list().some((x) => x.handle === h); },
+    toggle(btn) {
+      let item;
+      try { item = JSON.parse(btn.dataset.wishItem); } catch (e) { return; }
+      let list = Wish.list();
+      const on = list.some((x) => x.handle === item.handle);
+      list = on ? list.filter((x) => x.handle !== item.handle) : [item, ...list].slice(0, 60);
+      listStore.write(Wish.key, list);
+      toast(on ? strings.wishRemoved : strings.wishAdded);
+      Wish.sync();
+      Wish.page();
+    },
+    sync(scope = doc) {
+      const set = new Set(Wish.list().map((x) => x.handle));
+      $$('[data-wish]', scope).forEach((b) => b.setAttribute('aria-pressed', String(set.has(b.dataset.wish))));
+      $$('[data-wish-count]').forEach((c) => { c.textContent = set.size; c.classList.toggle('is-empty', !set.size); });
+    },
+    page() {
+      const grid = $('[data-wish-grid]');
+      if (!grid) return;
+      const list = Wish.list();
+      grid.innerHTML = list.map(cardHtml).join('');
+      const empty = $('[data-wish-empty]');
+      if (empty) empty.hidden = list.length > 0;
+      const clear = $('[data-wish-clear]');
+      if (clear) clear.hidden = !list.length;
+      Wish.sync(grid);
+    }
+  };
+  doc.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-wish]');
+    if (btn) { e.preventDefault(); e.stopPropagation(); Wish.toggle(btn); return; }
+    if (e.target.closest('[data-wish-clear]')) { listStore.write(Wish.key, []); Wish.sync(); Wish.page(); }
+  }, true);
+
+  const Recent = {
+    key: 'theme:recent',
+    remember(el) {
+      if (!el || T.recentlyViewed === false) return;
+      let item;
+      try { item = JSON.parse(el.textContent); } catch (e) { return; }
+      const list = listStore.read(Recent.key).filter((x) => x.handle !== item.handle);
+      listStore.write(Recent.key, [item, ...list].slice(0, 12));
+    },
+    render(scope = doc) {
+      $$('[data-recently-grid]', scope).forEach((grid) => {
+        const limit = parseInt(grid.dataset.limit, 10) || 4;
+        const list = listStore.read(Recent.key).filter((x) => x.handle !== grid.dataset.exclude).slice(0, limit);
+        const sec = grid.closest('[data-recently-section]');
+        if (!list.length) { if (sec) sec.hidden = true; return; }
+        grid.innerHTML = list.map(cardHtml).join('');
+        if (sec) sec.hidden = false;
+        Wish.sync(grid);
+      });
+    }
+  };
+
+  /* ---------------------------------------------------------------- Reviews */
+  function initReviews(scope = doc) {
+    $$('[data-reviews]', scope).forEach((sec) => {
+      if (sec.dataset.ready) return;
+      sec.dataset.ready = '1';
+      // Stars under the product title, worked out from this section when the product has no rating metafield.
+      const tpl = $('[data-reviews-stars]', sec);
+      const slot = $('[data-rating-slot]');
+      if (tpl && slot) { slot.innerHTML = tpl.innerHTML; slot.hidden = false; }
+      const toggle = $('[data-review-toggle]', sec);
+      const form = $('[data-review-form]', sec);
+      if (toggle && form) {
+        toggle.addEventListener('click', () => {
+          form.hidden = !form.hidden;
+          toggle.setAttribute('aria-expanded', String(!form.hidden));
+          if (!form.hidden) { const f = $('input:not([type="hidden"]):not([type="radio"]), textarea', form); f && f.focus({ preventScroll: true }); form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); }
+        });
+        if ($('[data-review-posted]', form) || $('.errors', form)) { form.hidden = false; toggle.setAttribute('aria-expanded', 'true'); }
+      }
+      const more = $('[data-reviews-more]', sec);
+      if (more) {
+        more.addEventListener('click', () => {
+          const per = parseInt(sec.dataset.perPage, 10) || 6;
+          const hidden = $$('[data-review-more][hidden]', sec);
+          hidden.slice(0, per).forEach((li) => { li.hidden = false; });
+          if (hidden.length <= per) more.hidden = true;
+        });
+      }
+      const box = $('[data-review-lightbox]', sec);
+      if (box && box.showModal) {
+        sec.addEventListener('click', (e) => {
+          const ph = e.target.closest('[data-review-photo]');
+          if (ph) { const holder = $('[data-review-lightbox-img]', box); holder.innerHTML = ''; const im = new Image(); im.src = ph.dataset.reviewPhoto; im.alt = ''; holder.appendChild(im); box.showModal(); return; }
+          if (e.target.closest('[data-review-lightbox-close]') || e.target === box) box.close();
+        });
+      }
     });
   }
 
@@ -759,6 +976,7 @@
             el.innerHTML = fresh.innerHTML;
             observe(el);
             initMagnetic(el);
+            Wish.sync(el);
           }
         } catch (err) { /* no-op */ }
       };
@@ -1031,6 +1249,25 @@
     } else if (trigger === 'exit' && canHover) {
       const onLeave = (e) => { if (!e.relatedTarget && e.clientY <= 0) { doc.removeEventListener('mouseout', onLeave); show(); } };
       setTimeout(() => doc.addEventListener('mouseout', onLeave), 3000);
+    } else if (trigger === 'exit') {
+      // Phones have no cursor to leave the page, so a quick flick back up after reading counts as leaving.
+      const start = Date.now();
+      let deepest = 0;
+      let samples = [];
+      const onScroll = () => {
+        const y = window.scrollY;
+        const now = Date.now();
+        deepest = Math.max(deepest, y);
+        samples = samples.filter((s) => now - s.t < 350);
+        samples.push({ y, t: now });
+        const climbed = samples[0].y - y;
+        const read = deepest > window.innerHeight * 0.8;
+        if (now - start > 6000 && read && climbed > window.innerHeight * 0.45) { window.removeEventListener('scroll', onScroll); show(); }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      // Shoppers who switch apps and come back also get it once.
+      const onVis = () => { if (doc.visibilityState === 'visible' && Date.now() - start > 15000) { doc.removeEventListener('visibilitychange', onVis); window.removeEventListener('scroll', onScroll); show(); } };
+      doc.addEventListener('visibilitychange', onVis);
     } else {
       setTimeout(show, delay);
     }
@@ -1059,6 +1296,10 @@
     initRotators(scope);
     initScenes(scope);
     initPromo(scope);
+    initReviews(scope);
+    Wish.sync(scope);
+    Wish.page();
+    Recent.render(scope);
   }
 
   setHeaderVars();

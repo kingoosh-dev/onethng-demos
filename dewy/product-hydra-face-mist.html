@@ -95,7 +95,11 @@
 
     <div class="site-header__icons">
       <button type="button" class="icon-btn" data-search-open aria-label="Search"><svg class="icon icon--search" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-</button><a href="#" class="icon-btn hide-mobile" aria-label="Account"><svg class="icon icon--account" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>
+</button><a href="wishlist.html" class="icon-btn wish-link" data-wish-link aria-label="Wishlist">
+          <svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+
+          <span class="cart-count wish-count is-empty" data-wish-count>0</span>
+        </a><a href="#" class="icon-btn hide-mobile" aria-label="Account"><svg class="icon icon--account" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>
 </a><a href="#cart" class="icon-btn cart-btn" data-cart-open aria-label="Your cart">
         <svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1.1 12.1a1.6 1.6 0 0 1-1.6 1.4H8.2a1.6 1.6 0 0 1-1.6-1.4L5.5 7.5Z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/></svg>
 
@@ -200,13 +204,15 @@
                 </button></div></div>
       </div>
 
-      <div class="product__info"><p class="product__eyebrow" >Dewy Skin</p><h1 class="product__title" >Hydra Face Mist</h1><div >
-                  <div class="stars">
+      <div class="product__info"><p class="product__eyebrow" >Dewy Skin</p><div class="product__title-row" >
+                <h1 class="product__title">Hydra Face Mist</h1><button type="button" class="wish-btn wish-btn--lg" data-wish="hydra-face-mist" data-wish-item="{&#34;handle&#34;:&#34;hydra-face-mist&#34;,&#34;title&#34;:&#34;Hydra Face Mist&#34;,&#34;url&#34;:&#34;product-hydra-face-mist.html&#34;,&#34;img&#34;:&#34;img/p4.svg&#34;,&#34;price&#34;:&#34;£16.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10400,&#34;single&#34;:true}" aria-pressed="false" aria-label="Save Hydra Face Mist to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button></div><div class="product__rating" >
+                  <a href="#reviews" class="rating-link"><div class="stars">
   <span class="stars__wrap" role="img" aria-label="4.5 out of 5 stars">
     <span aria-hidden="true">★★★★★</span>
     <span class="stars__fill" style="width: 90%" aria-hidden="true">★★★★★</span>
   </span><span class="stars__count">(64)</span></div>
-
+</a>
                 </div><div class="product__price" >
                 <div data-price-wrap><div class="price" data-price>
   <span class="price__current">£16.00</span></div>
@@ -237,8 +243,7 @@
                           <span data-qb-each>£13.60 each</span><span class="qbreak__save" data-qb-save>Save £7.20</span></span>
                       </span>
                       <span class="qbreak__price">
-                        <span class="qbreak__total" data-qb-total>£40.80</span><s class="qbreak__full" data-qb-full>£48.00</s></span><span class="qbreak__badge">Best value</span></label></div><p class="qbreaks__note small">Discount applied automatically at checkout.</p></div><div class="product__buy" ><form method="post" action="/cart/add" accept-charset="UTF-8" id="ProductForm-template--main" class="product-form" data-product-form="main" novalidate="novalidate"><input type="hidden" name="id" value="10400" data-variant-id>
-                  <div class="buy-row"><div class="qty qty--lg" data-qty>
+                        <span class="qbreak__total" data-qb-total>£40.80</span><s class="qbreak__full" data-qb-full>£48.00</s></span><span class="qbreak__badge">Best value</span></label></div><p class="qbreaks__note small">Discount applied automatically at checkout.</p></div><div class="product__buy" data-buy data-preorder-label="Pre-order" ><form method="post" action="/cart/add" accept-charset="UTF-8" id="ProductForm-template--main" class="product-form" data-product-form="main" novalidate="novalidate"><input type="hidden" name="id" value="10400" data-variant-id><input type="hidden" name="properties[Pre-order]" value="Ships in 2 to 3 weeks. You&#39;re charged today." data-preorder-input disabled><div class="buy-row"><div class="qty qty--lg" data-qty>
                         <button type="button" data-qty-btn="-1" aria-label="Decrease quantity"><svg class="icon icon--minus" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg>
 </button>
                         <input type="number" name="quantity" value="1" min="1" aria-label="Quantity">
@@ -247,9 +252,17 @@
                       </div><button type="submit" name="add" class="btn btn--lg btn--magnetic" data-add-button>
                       <span data-add-text>Add to cart</span>
                     </button>
-                  </div><button type="button" class="btn btn--lg btn--secondary btn--full" style="margin-top:10px" disabled>Buy it now</button><p class="form-error" data-form-error role="alert" hidden></p></form><p class="stock " data-stock data-threshold="5" data-in="In stock, ready to ship" data-out="Out of stock" data-low="Only [count] left — order soon">
+                  </div><p class="preorder-note" data-preorder-note hidden><svg class="icon icon--clock" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
+<span>Ships in 2 to 3 weeks. You're charged today.</span></p><button type="button" class="btn btn--lg btn--secondary btn--full" style="margin-top:10px" disabled>Buy it now</button><p class="form-error" data-form-error role="alert" hidden></p></form><p class="stock " data-stock data-pre="Available to pre-order" data-threshold="5" data-in="In stock, ready to ship" data-out="Out of stock" data-low="Only [count] left — order soon">
                     <span class="stock__dot" aria-hidden="true"></span><span data-stock-text>In stock, ready to ship</span>
-                  </p></div><div class="bundle" data-bundle data-off="15" data-code="" ><p class="bundle__heading">Complete the set and save 15%</p><ul class="bundle__list"><li class="bundle__item is-current">
+                  </p><div class="notify" data-notify hidden><form method="post" action="#" accept-charset="UTF-8" id="NotifyForm" class="notify__form"><p class="notify__heading"><svg class="icon icon--bolt" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.2 3 5 13.5h6.2L10.6 21 19 10.5h-6.2L13.2 3Z"/></svg>
+Sold out. Want it when it's back?</p><p class="notify__text small">Leave your email and we'll tell you the moment it's restocked. You'll also get our emails; unsubscribe anytime.</p><input type="hidden" name="contact[tags]" value="back-in-stock,notify-hydra-face-mist">
+                        <div class="notify__row">
+                          <label class="visually-hidden" for="NotifyEmail-template--main">Email</label>
+                          <input id="NotifyEmail-template--main" class="input" type="email" name="contact[email]" placeholder="Your email" autocomplete="email" required>
+                          <button type="submit" class="btn">Notify me</button>
+                        </div></form></div>
+</div><div class="bundle" data-bundle data-off="15" data-code="" ><p class="bundle__heading">Complete the set and save 15%</p><ul class="bundle__list"><li class="bundle__item is-current">
                         <input type="checkbox" checked disabled aria-label="Hydra Face Mist">
                         <input type="hidden" data-bundle-variant data-current value="10400" data-price="1600"><img src="img/p4.svg" class="bundle__img" loading="lazy" alt="" width="800" height="1000"><span class="bundle__name"><span class="bundle__this">This item:</span> Hydra Face Mist</span>
                         <span class="bundle__price" data-bundle-price>£16.00</span>
@@ -298,9 +311,8 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
           <button type="button" class="btn" data-sticky-add>
             <span data-add-text>Add to cart</span>
           </button>
-        </div><script type="application/json" data-product-json>{"id":104,"title":"Hydra Face Mist","handle":"hydra-face-mist","url":"product-hydra-face-mist.html","vendor":"Dewy Skin","type":"","available":true,"price":1600,"price_min":1600,"price_max":1600,"price_varies":false,"compare_at_price":null,"has_only_default_variant":true,"options":["Title"],"options_with_values":[],"variants":[{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","featured_media":null,"sku":""}],"selected_or_first_available_variant":{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","featured_media":null,"sku":""},"first_available_variant":{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","featured_media":null,"sku":""},"featured_media":{"id":1040,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8},"featured_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"media":[{"id":1040,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8},{"id":1041,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1041},"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8}],"images":[{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},{"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1041}],"description":"<p>A gentle, fragrance-free formula for skin that reacts to everything. Apply morning and night to clean skin.</p><ul><li>Fragrance-free</li><li>Vegan and cruelty-free</li><li>Suitable for sensitive skin</li></ul>","tags":[],"metafields":{"reviews":{"rating":{"value":{"rating":4.5,"scale_max":5}},"rating_count":{"value":64}}}}</script>
-      <script type="application/json" data-variant-stock>
-        {"10400": { "q": 40, "m": "shopify" }}
+        </div><script type="application/json" data-product-json>{"id":104,"title":"Hydra Face Mist","handle":"hydra-face-mist","url":"product-hydra-face-mist.html","vendor":"Dewy Skin","type":"","available":true,"selling_plan_groups":[],"requires_selling_plan":false,"price":1600,"price_min":1600,"price_max":1600,"price_varies":false,"compare_at_price":null,"has_only_default_variant":true,"options":["Title"],"options_with_values":[],"variants":[{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","inventory_policy":"deny","featured_media":null,"sku":"","selling_plan_allocations":[]}],"selected_or_first_available_variant":{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","inventory_policy":"deny","featured_media":null,"sku":"","selling_plan_allocations":[]},"first_available_variant":{"id":10400,"title":"Default Title","name":"Hydra Face Mist - Default Title","options":["Default Title"],"option1":"Default Title","option2":null,"option3":null,"price":1600,"compare_at_price":null,"available":true,"inventory_quantity":40,"inventory_management":"shopify","inventory_policy":"deny","featured_media":null,"sku":"","selling_plan_allocations":[]},"featured_media":{"id":1040,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8},"featured_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"media":[{"id":1040,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8},{"id":1041,"media_type":"image","alt":"Hydra Face Mist","preview_image":{"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1041},"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8}],"images":[{"src":"img/p4.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1040},{"src":"img/p4b.svg","width":800,"height":1000,"aspect_ratio":0.8,"alt":"Hydra Face Mist","id":1041}],"description":"<p>A gentle, fragrance-free formula for skin that reacts to everything. Apply morning and night to clean skin.</p><ul><li>Fragrance-free</li><li>Vegan and cruelty-free</li><li>Suitable for sensitive skin</li></ul>","tags":[],"metafields":{"reviews":{"rating":{"value":{"rating":4.5,"scale_max":5}},"rating_count":{"value":64}}}}</script><script type="application/json" data-recently-viewed>{"handle":"hydra-face-mist","title":"Hydra Face Mist","url":"product-hydra-face-mist.html","img":"img/p4.svg","price":"£16.00","compare":"","available":true,"variant":10400,"single":true}</script><script type="application/json" data-variant-stock>
+        {"10400": { "q": 40, "m": "shopify", "p": "deny" }}
       </script>
     </div>
   </div>
@@ -310,12 +322,105 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
 
 
 </div>
+<div id="shopify-section-template--reviews" class="shopify-section section-reviews"><section id="reviews" class="section scheme-surface prv" data-reviews data-per-page="6" style="--pad-top: 72px; --pad-bottom: 96px;">
+  <div class="page-width">
+    <div class="section-head">
+      <div><p class="eyebrow" data-reveal>Reviews</p><h2 class="h2" data-split>What customers <em>say</em></h2></div><button type="button" class="btn btn--secondary" data-review-toggle aria-controls="ReviewForm-template--reviews" aria-expanded="false"><svg class="icon icon--star" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" stroke="none"><path d="m12 2.8 2.8 5.7 6.3.9-4.5 4.4 1 6.2L12 17l-5.6 3 1-6.2-4.5-4.4 6.3-.9L12 2.8Z"/></svg>
+<span>Write a review</span></button></div>
+
+    <div class="prv__layout"><div class="prv__summary" data-reveal>
+          <p class="prv__avg"><span>4.5</span><small>/ 5</small></p>
+          <div class="stars">
+  <span class="stars__wrap" role="img" aria-label="4.5 out of 5 stars">
+    <span aria-hidden="true">★★★★★</span>
+    <span class="stars__fill" style="width: 90%" aria-hidden="true">★★★★★</span>
+  </span></div>
+
+          <p class="prv__based">Based on 64 reviews</p></div><div class="prv__main"><div class="prv__form" id="ReviewForm-template--reviews" data-review-form hidden><form method="post" action="#" accept-charset="UTF-8" id="ReviewFormEl" class="review-form"><p class="h4">Tell us what you think</p><div class="small rte"><p>Reviews are checked before they go live. Reply to our confirmation email with a photo and we'll add it.</p></div><input type="hidden" name="contact[Review for]" value="Hydra Face Mist (index.htmlproduct-hydra-face-mist.html)">
+                <fieldset class="review-form__stars">
+                  <legend>Your rating</legend>
+                  <div class="star-input"><input type="radio" id="rv-template--reviews-5" name="contact[Rating]" value="5 out of 5" required checked>
+                      <label for="rv-template--reviews-5" title="5">★<span class="visually-hidden">5 out of 5 stars</span></label><input type="radio" id="rv-template--reviews-4" name="contact[Rating]" value="4 out of 5" required>
+                      <label for="rv-template--reviews-4" title="4">★<span class="visually-hidden">4 out of 5 stars</span></label><input type="radio" id="rv-template--reviews-3" name="contact[Rating]" value="3 out of 5" required>
+                      <label for="rv-template--reviews-3" title="3">★<span class="visually-hidden">3 out of 5 stars</span></label><input type="radio" id="rv-template--reviews-2" name="contact[Rating]" value="2 out of 5" required>
+                      <label for="rv-template--reviews-2" title="2">★<span class="visually-hidden">2 out of 5 stars</span></label><input type="radio" id="rv-template--reviews-1" name="contact[Rating]" value="1 out of 5" required>
+                      <label for="rv-template--reviews-1" title="1">★<span class="visually-hidden">1 out of 5 stars</span></label></div>
+                </fieldset>
+                <div class="review-form__row">
+                  <label class="field"><span>Name</span><input class="input" type="text" name="contact[name]" autocomplete="name" required></label>
+                  <label class="field"><span>Email (not shown)</span><input class="input" type="email" name="contact[email]" autocomplete="email" required></label>
+                </div>
+                <label class="field"><span>Review title</span><input class="input" type="text" name="contact[Review title]"></label>
+                <label class="field"><span>Your review</span><textarea class="input" name="contact[body]" rows="4" required></textarea></label>
+                
+                <button type="submit" class="btn">Send review</button></form></div><ul class="prv__list" role="list" data-reviews-list><li class="prv__item" >
+                  <figure class="review prv__review">
+                    <div class="prv__top">
+                      <div class="stars">
+  <span class="stars__wrap" role="img" aria-label="5 out of 5 stars">
+    <span aria-hidden="true">★★★★★</span>
+    <span class="stars__fill" style="width: 100%" aria-hidden="true">★★★★★</span>
+  </span></div>
+</div><p class="prv__title">Short headline from the customer</p><blockquote class="review__quote">Paste the customer's review here, word for word. Reviews that mention a specific result build the most trust.</blockquote><figcaption class="review__author">
+                      <span class="review__avatar">C</span>
+                      <div>
+                        <p class="review__name">Customer name</p>
+                        <p class="review__detail"><span class="prv__verified"><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+Verified buyer</span></p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li><li class="prv__item" >
+                  <figure class="review prv__review">
+                    <div class="prv__top">
+                      <div class="stars">
+  <span class="stars__wrap" role="img" aria-label="5 out of 5 stars">
+    <span aria-hidden="true">★★★★★</span>
+    <span class="stars__fill" style="width: 100%" aria-hidden="true">★★★★★</span>
+  </span></div>
+</div><p class="prv__title">Answer the biggest doubt</p><blockquote class="review__quote">Pick a review that answers the question new customers ask most. It does more than any headline.</blockquote><figcaption class="review__author">
+                      <span class="review__avatar">C</span>
+                      <div>
+                        <p class="review__name">Customer name</p>
+                        <p class="review__detail"><span class="prv__verified"><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+Verified buyer</span></p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li><li class="prv__item" >
+                  <figure class="review prv__review">
+                    <div class="prv__top">
+                      <div class="stars">
+  <span class="stars__wrap" role="img" aria-label="4 out of 5 stars">
+    <span aria-hidden="true">★★★★★</span>
+    <span class="stars__fill" style="width: 80%" aria-hidden="true">★★★★★</span>
+  </span></div>
+</div><p class="prv__title">Specific beats glowing</p><blockquote class="review__quote">Short, specific and real reads better than long and perfect. A 4-star review makes the 5-stars believable.</blockquote><figcaption class="review__author">
+                      <span class="review__avatar">C</span>
+                      <div>
+                        <p class="review__name">Customer name</p>
+                        <p class="review__detail"><span class="prv__verified"><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+Verified buyer</span></p>
+                      </div>
+                    </figcaption>
+                  </figure>
+                </li></ul></div>
+    </div>
+  </div>
+  <dialog class="prv__lightbox" data-review-lightbox>
+    <button type="button" class="icon-btn" data-review-lightbox-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+</button>
+    <div class="prv__lightbox-img" data-review-lightbox-img></div>
+  </dialog>
+</section>
+</div>
 <div id="shopify-section-template--related" class="shopify-section"><section class="section scheme-default" style="--pad-top: 48px; --pad-bottom: 96px;">
   <div class="page-width" data-recommendations data-url="?section_id=template--related&product_id=104&limit=4&intent=related"><div class="section-head">
         <div><h2 class="h2" data-split>Pairs well with</h2></div>
       </div>
       <ul class="grid grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Barrier Repair Serum" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-barrier-repair-serum.html" class="btn btn--sm btn--full btn--light">
+    <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Barrier Repair Serum" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="barrier-repair-serum" data-wish-item="{&#34;handle&#34;:&#34;barrier-repair-serum&#34;,&#34;title&#34;:&#34;Barrier Repair Serum&#34;,&#34;url&#34;:&#34;product-barrier-repair-serum.html&#34;,&#34;img&#34;:&#34;img/p0.svg&#34;,&#34;price&#34;:&#34;From £32.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10000,&#34;single&#34;:false}" aria-pressed="false" aria-label="Save Barrier Repair Serum to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-barrier-repair-serum.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
             </a></div></div>
@@ -330,7 +435,8 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
 
     </div>
   </div></li><li data-reveal style="--d: 1"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Calm Gel Cleanser" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10100">
+    <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Calm Gel Cleanser" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="calm-gel-cleanser" data-wish-item="{&#34;handle&#34;:&#34;calm-gel-cleanser&#34;,&#34;title&#34;:&#34;Calm Gel Cleanser&#34;,&#34;url&#34;:&#34;product-calm-gel-cleanser.html&#34;,&#34;img&#34;:&#34;img/p1.svg&#34;,&#34;price&#34;:&#34;£18.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10100,&#34;single&#34;:true}" aria-pressed="false" aria-label="Save Calm Gel Cleanser to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10100">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
                 <span>Quick add</span><svg class="icon icon--plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -347,7 +453,8 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
 
     </div>
   </div></li><li data-reveal style="--d: 2"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Night Repair Cream" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge badge--sale">-18%</span></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10200">
+    <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Night Repair Cream" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="night-repair-cream" data-wish-item="{&#34;handle&#34;:&#34;night-repair-cream&#34;,&#34;title&#34;:&#34;Night Repair Cream&#34;,&#34;url&#34;:&#34;product-night-repair-cream.html&#34;,&#34;img&#34;:&#34;img/p2.svg&#34;,&#34;price&#34;:&#34;£28.00&#34;,&#34;compare&#34;:&#34;£34.00&#34;,&#34;available&#34;:true,&#34;variant&#34;:10200,&#34;single&#34;:true}" aria-pressed="false" aria-label="Save Night Repair Cream to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"><span class="badge badge--sale">-18%</span></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10200">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
                 <span>Quick add</span><svg class="icon icon--plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -364,7 +471,8 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
 
     </div>
   </div></li><li data-reveal style="--d: 3"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Mineral SPF 50" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10300">
+    <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Mineral SPF 50" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="mineral-spf-50" data-wish-item="{&#34;handle&#34;:&#34;mineral-spf-50&#34;,&#34;title&#34;:&#34;Mineral SPF 50&#34;,&#34;url&#34;:&#34;product-mineral-spf-50.html&#34;,&#34;img&#34;:&#34;img/p3.svg&#34;,&#34;price&#34;:&#34;£24.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10300,&#34;single&#34;:true}" aria-pressed="false" aria-label="Save Mineral SPF 50 to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"></div><div class="card__quick"><form method="post" action="/cart/add" accept-charset="UTF-8" class="card__quick-form" data-product-form="card"><input type="hidden" name="id" value="10300">
               <input type="hidden" name="quantity" value="1">
               <button type="submit" class="btn btn--sm btn--full btn--light">
                 <span>Quick add</span><svg class="icon icon--plus" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -384,6 +492,15 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
 </section>
 
 
+</div>
+<div id="shopify-section-template--recent" class="shopify-section"><section class="section scheme-default" data-recently-section hidden style="--pad-top: 24px; --pad-bottom: 96px;">
+    <div class="page-width">
+      <div class="section-head">
+        <div><h2 class="h2">Recently viewed</h2></div>
+      </div>
+      <ul class="grid grid--slider" role="list" style="--cols: 4;" data-recently-grid data-limit="4" data-exclude="hydra-face-mist"></ul>
+    </div>
+  </section>
 </div>
     </main>
 
@@ -431,12 +548,15 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
     </div>
   </div><button type="button" class="promo-teaser" data-promo-teaser hidden><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
 <span>Get 10% off</span></button>
-</div><div class="drawer" id="CartDrawer" data-drawer aria-hidden="true">
+</div><div class="drawer drawer--cart drawer--compact" id="CartDrawer" data-drawer data-cart-drawer aria-hidden="true">
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your cart">
+    <div class="drawer__grab" data-sheet-grab aria-hidden="true"><span></span></div>
     <div class="cart-drawer__inner" id="CartDrawerInner" data-item-count="0">
   <div class="drawer__head">
     <p class="h4">Your cart</p>
+    <p class="cart-added" data-cart-added hidden><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+<span data-cart-added-text>Added to your cart</span></p>
     <button type="button" class="icon-btn" data-drawer-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
 </button>
   </div>
@@ -449,7 +569,7 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
         <svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1.1 12.1a1.6 1.6 0 0 1-1.6 1.4H8.2a1.6 1.6 0 0 1-1.6-1.4L5.5 7.5Z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/></svg>
 
         <p class="h3">Your cart is empty</p>
-        <a href="collection.html" class="btn">Continue shopping</a>
+        <button type="button" class="btn" data-drawer-close>Continue shopping</button>
       </div></div></div>
 
   </div>
@@ -471,9 +591,17 @@ Our guarantee</span><span class="accordion__icon" aria-hidden="true"></span></su
           soldOut: "Sold out",
           unavailable: "Unavailable",
           save: "Save [amount]",
-          cartError: "Something went wrong. Please try again."
-        }
+          cartError: "Something went wrong. Please try again.",
+          cartAdded: "Added to your cart",
+          wishAdded: "Saved to your wishlist",
+          wishRemoved: "Removed from your wishlist",
+          wishSave: "Save [title] to wishlist",
+          quickAdd: "Quick add",
+          chooseOptions: "Choose options"
+        },
+        wishlist: true,
+        recentlyViewed: true
       };
     </script>
-    <script defer src="/tracker.js"></script></body>
+  </body>
 </html>

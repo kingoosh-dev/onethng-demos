@@ -94,7 +94,11 @@
 
     <div class="site-header__icons">
       <button type="button" class="icon-btn" data-search-open aria-label="Search"><svg class="icon icon--search" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-</button><a href="#" class="icon-btn hide-mobile" aria-label="Account"><svg class="icon icon--account" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>
+</button><a href="wishlist.html" class="icon-btn wish-link" data-wish-link aria-label="Wishlist">
+          <svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+
+          <span class="cart-count wish-count is-empty" data-wish-count>0</span>
+        </a><a href="#" class="icon-btn hide-mobile" aria-label="Account"><svg class="icon icon--account" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>
 </a><a href="#cart" class="icon-btn cart-btn" data-cart-open aria-label="Your cart">
         <svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1.1 12.1a1.6 1.6 0 0 1-1.6 1.4H8.2a1.6 1.6 0 0 1-1.6-1.4L5.5 7.5Z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/></svg>
 
@@ -228,7 +232,8 @@
     <div><p class="eyebrow" data-reveal>Best sellers</p><h2 class="h2" data-split>Scents people <em>re-order</em></h2></div><a href="collection.html" class="link-arrow" data-reveal>View all<svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a></div>
       <ul class="grid grid--stagger grid--slider" role="list" style="--cols: 4;"><li data-reveal style="--d: 0"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Fig & Cedar" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-fig-cedar.html" class="btn btn--sm btn--full btn--light">
+    <div class="card__media"><img src="img/p0.svg" loading="lazy" class="card__img" alt="Fig & Cedar" width="800" height="1000"><img src="img/p0b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="fig-cedar" data-wish-item="{&#34;handle&#34;:&#34;fig-cedar&#34;,&#34;title&#34;:&#34;Fig &amp; Cedar&#34;,&#34;url&#34;:&#34;product-fig-cedar.html&#34;,&#34;img&#34;:&#34;img/p0.svg&#34;,&#34;price&#34;:&#34;From £32.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10000,&#34;single&#34;:false}" aria-pressed="false" aria-label="Save Fig &amp; Cedar to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"><span class="badge">New</span></div><div class="card__quick"><a href="product-fig-cedar.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
             </a></div></div>
@@ -243,7 +248,8 @@
 
     </div>
   </div></li><li data-reveal style="--d: 1"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Amber Smoke" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><a href="product-amber-smoke.html" class="btn btn--sm btn--full btn--light">
+    <div class="card__media"><img src="img/p1.svg" loading="lazy" class="card__img" alt="Amber Smoke" width="800" height="1000"><img src="img/p1b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="amber-smoke" data-wish-item="{&#34;handle&#34;:&#34;amber-smoke&#34;,&#34;title&#34;:&#34;Amber Smoke&#34;,&#34;url&#34;:&#34;product-amber-smoke.html&#34;,&#34;img&#34;:&#34;img/p1.svg&#34;,&#34;price&#34;:&#34;From £32.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10100,&#34;single&#34;:false}" aria-pressed="false" aria-label="Save Amber Smoke to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"></div><div class="card__quick"><a href="product-amber-smoke.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
             </a></div></div>
@@ -258,7 +264,8 @@
 
     </div>
   </div></li><li data-reveal style="--d: 2"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Linen & Rain" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"><span class="badge badge--sale">-16%</span></div><div class="card__quick"><a href="product-linen-rain.html" class="btn btn--sm btn--full btn--light">
+    <div class="card__media"><img src="img/p2.svg" loading="lazy" class="card__img" alt="Linen & Rain" width="800" height="1000"><img src="img/p2b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="linen-rain" data-wish-item="{&#34;handle&#34;:&#34;linen-rain&#34;,&#34;title&#34;:&#34;Linen &amp; Rain&#34;,&#34;url&#34;:&#34;product-linen-rain.html&#34;,&#34;img&#34;:&#34;img/p2.svg&#34;,&#34;price&#34;:&#34;From £32.00&#34;,&#34;compare&#34;:&#34;£38.00&#34;,&#34;available&#34;:true,&#34;variant&#34;:10200,&#34;single&#34;:false}" aria-pressed="false" aria-label="Save Linen &amp; Rain to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"><span class="badge badge--sale">-16%</span></div><div class="card__quick"><a href="product-linen-rain.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
             </a></div></div>
@@ -273,7 +280,8 @@
 
     </div>
   </div></li><li data-reveal style="--d: 3"><div class="card" data-spot>
-    <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Tobacco Vanilla" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><div class="card__badges"></div><div class="card__quick"><a href="product-tobacco-vanilla.html" class="btn btn--sm btn--full btn--light">
+    <div class="card__media"><img src="img/p3.svg" loading="lazy" class="card__img" alt="Tobacco Vanilla" width="800" height="1000"><img src="img/p3b.svg" loading="lazy" class="card__img card__img--2" alt="" width="800" height="1000"><button type="button" class="wish-btn" data-wish="tobacco-vanilla" data-wish-item="{&#34;handle&#34;:&#34;tobacco-vanilla&#34;,&#34;title&#34;:&#34;Tobacco Vanilla&#34;,&#34;url&#34;:&#34;product-tobacco-vanilla.html&#34;,&#34;img&#34;:&#34;img/p3.svg&#34;,&#34;price&#34;:&#34;From £34.00&#34;,&#34;compare&#34;:&#34;&#34;,&#34;available&#34;:true,&#34;variant&#34;:10300,&#34;single&#34;:false}" aria-pressed="false" aria-label="Save Tobacco Vanilla to wishlist"><svg class="icon icon--heart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.4A4.1 4.1 0 0 1 12 7.1a4.1 4.1 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20Z"/></svg>
+</button><div class="card__badges"></div><div class="card__quick"><a href="product-tobacco-vanilla.html" class="btn btn--sm btn--full btn--light">
               <span>Choose options</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 
             </a></div></div>
@@ -580,12 +588,15 @@
     </div>
   </div><button type="button" class="promo-teaser" data-promo-teaser hidden><svg class="icon icon--gift" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5M12 8S10.4 3.6 8 4.4C6.2 5 7.3 8 12 8Zm0 0s1.6-4.4 4-3.6C17.8 5 16.7 8 12 8Z"/></svg>
 <span>Get 10% off</span></button>
-</div><div class="drawer" id="CartDrawer" data-drawer aria-hidden="true">
+</div><div class="drawer drawer--cart drawer--compact" id="CartDrawer" data-drawer data-cart-drawer aria-hidden="true">
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Your cart">
+    <div class="drawer__grab" data-sheet-grab aria-hidden="true"><span></span></div>
     <div class="cart-drawer__inner" id="CartDrawerInner" data-item-count="0">
   <div class="drawer__head">
     <p class="h4">Your cart</p>
+    <p class="cart-added" data-cart-added hidden><svg class="icon icon--check" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+<span data-cart-added-text>Added to your cart</span></p>
     <button type="button" class="icon-btn" data-drawer-close aria-label="Close"><svg class="icon icon--close" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
 </button>
   </div>
@@ -598,7 +609,7 @@
         <svg class="icon icon--cart" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 7.5h13l-1.1 12.1a1.6 1.6 0 0 1-1.6 1.4H8.2a1.6 1.6 0 0 1-1.6-1.4L5.5 7.5Z"/><path d="M9 9.5V7a3 3 0 0 1 6 0v2.5"/></svg>
 
         <p class="h3">Your cart is empty</p>
-        <a href="collection.html" class="btn">Continue shopping</a>
+        <button type="button" class="btn" data-drawer-close>Continue shopping</button>
       </div></div></div>
 
   </div>
@@ -620,9 +631,17 @@
           soldOut: "Sold out",
           unavailable: "Unavailable",
           save: "Save [amount]",
-          cartError: "Something went wrong. Please try again."
-        }
+          cartError: "Something went wrong. Please try again.",
+          cartAdded: "Added to your cart",
+          wishAdded: "Saved to your wishlist",
+          wishRemoved: "Removed from your wishlist",
+          wishSave: "Save [title] to wishlist",
+          quickAdd: "Quick add",
+          chooseOptions: "Choose options"
+        },
+        wishlist: true,
+        recentlyViewed: true
       };
     </script>
-    <script defer src="/tracker.js"></script></body>
+  </body>
 </html>
