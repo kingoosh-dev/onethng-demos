@@ -1227,6 +1227,11 @@
     const form = $('[data-promo-form]', el);
     if (form) form.addEventListener('submit', () => store.set('promo:claimed', '1'));
     if (teaser) teaser.addEventListener('click', openPromo);
+    // On phones the reopen tab waits until the shopper has scrolled past the first screen, so it never covers the hero.
+    const first = $('main > .shopify-section:first-child');
+    if (teaser && first && 'IntersectionObserver' in window) {
+      new IntersectionObserver(([en]) => { root.classList.toggle('hero-in-view', en.isIntersecting && en.intersectionRatio > 0.35); }, { threshold: [0, 0.35, 0.6] }).observe(first);
+    }
 
     if ($('[data-promo-posted]', el)) { promoStep('code'); openPromo(); return; }
     if (design) { if (el.dataset.editorPreview === 'true') openPromo(); return; }
