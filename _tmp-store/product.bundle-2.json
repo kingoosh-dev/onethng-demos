@@ -1,0 +1,148 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "sticky_bar": true,
+        "fallback_pages": ""
+      },
+      "blocks": {
+        "eyebrow_1": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "5 themes, one download"
+          }
+        },
+        "title_2": {
+          "type": "title",
+          "settings": {}
+        },
+        "price_3": {
+          "type": "price",
+          "settings": {}
+        },
+        "description_4": {
+          "type": "description",
+          "settings": {}
+        },
+        "buy_buttons_5": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": false,
+            "skip_cart": false,
+            "show_dynamic": true
+          }
+        },
+        "formats_6": {
+          "type": "formats",
+          "settings": {
+            "format_1": "Five Online Store 2.0 themes in one zip",
+            "format_2": "Setup guide PDF included",
+            "format_3": "Instant download after checkout"
+          }
+        },
+        "checklist_7": {
+          "type": "checklist",
+          "settings": {
+            "heading": "What's included",
+            "items": "Lustre: jewellery and accessories\nRoast: coffee and tea\nNook: furniture, lighting and home decor\nSnug: baby, nursery and kids\nFlux: tech accessories and gadgets\n3D heroes and scroll animations on every theme\nSetup guide PDF\nWorks on any Shopify plan"
+          }
+        },
+        "collapsible_8": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "How do I get my files?",
+            "content": "<p>Right after checkout you'll get an email with your download link. You can download again from the same email any time.</p>"
+          }
+        },
+        "collapsible_9": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "How do I install a theme?",
+            "content": "<p>Unzip the bundle you downloaded. Inside are five theme files. In Shopify admin go to Online Store, then Themes, then Add theme, then Upload zip file, and choose the theme you want. Upload the theme file itself without unzipping it. Your live store doesn't change until you click Publish.</p>"
+          }
+        },
+        "collapsible_10": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Can I use them on more than one store?",
+            "content": "<p>You can install and customise them on stores you own or run. You can't resell or share the theme files.</p>"
+          }
+        },
+        "collapsible_11": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Refunds",
+            "content": "<p>If something's wrong with your file, email us and we'll fix it. See the refund policy in the footer for the full terms.</p>"
+          }
+        },
+        "share_12": {
+          "type": "share",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "eyebrow_1",
+        "title_2",
+        "price_3",
+        "description_4",
+        "buy_buttons_5",
+        "formats_6",
+        "checklist_7",
+        "collapsible_8",
+        "collapsible_9",
+        "collapsible_10",
+        "collapsible_11",
+        "share_12"
+      ]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Good to know",
+        "text": "<p>Anything else? Reply to your order email or use the contact page.</p>"
+      },
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Which Shopify plan do I need?",
+            "answer": "<p>Any plan. The themes work with every Shopify plan.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need to code?",
+            "answer": "<p>No. Colours, fonts, text, images and the 3D scene colours are all changed in the Shopify theme editor.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Will the 3D hero slow my store down?",
+            "answer": "<p>It loads after the rest of the page, pauses when scrolled out of view and switches off for visitors with reduced motion or data saver. You can also turn it off in theme settings.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Want a different mix?",
+            "answer": "<p>Build your own bundle: any 3 themes for $75 or any 5 for $99, from the full library. See the Build your bundle page.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4"
+      ]
+    }
+  },
+  "order": [
+    "main",
+    "faq"
+  ]
+}

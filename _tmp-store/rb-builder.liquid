@@ -1,0 +1,262 @@
+{%- comment -%}
+  Build-your-own bundle: shoppers pick 3 or 5 themes from a collection and add them to the cart in one tap.
+  The prices shown here are display only. The cart price comes from the store's automatic discounts
+  ("Bundle: any 3 themes", "Bundle: any 5 themes"), so change both together.
+{%- endcomment -%}
+{%- liquid
+  assign col = section.settings.collection
+  assign size_small = section.settings.size_small | default: 3
+  assign size_big = section.settings.size_big | default: 5
+  assign price_small = section.settings.price_small | default: 75
+  assign price_big = section.settings.price_big | default: 99
+  assign single = 50
+  if col.products.size > 0
+    assign single = col.products.first.price | divided_by: 100
+  endif
+  assign full_small = single | times: size_small
+  assign full_big = single | times: size_big
+  assign save_small = full_small | minus: price_small
+  assign save_big = full_big | minus: price_big
+-%}
+<section class="rb-section rb-build" id="build" data-rb-build data-default="{{ size_big }}" {{ section.shopify_attributes }}>
+  <div class="rb-wrap">
+    <header class="rb-head rb-head--center" data-reveal>
+      {%- if section.settings.eyebrow != blank -%}<p class="rb-eyebrow"><span class="rb-dot"></span>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+      <h1 class="rb-h2">{{ section.settings.heading }}</h1>
+      {%- if section.settings.text != blank -%}<p class="rb-lead" style="margin-inline:auto">{{ section.settings.text | escape }}</p>{%- endif -%}
+    </header>
+
+    <div class="rb-build__sizes" role="radiogroup" aria-label="Bundle size">
+      <button type="button" class="rb-build__size" role="radio" aria-checked="false" data-size="{{ size_small }}" data-price="{{ price_small }}" data-full="{{ full_small }}">
+        <span class="rb-build__size-n">Any {{ size_small }} themes</span>
+        <span class="rb-build__size-p">${{ price_small }} <s>${{ full_small }}</s></span>
+        <span class="rb-build__size-s">Save ${{ save_small }}</span>
+      </button>
+      <button type="button" class="rb-build__size" role="radio" aria-checked="true" data-size="{{ size_big }}" data-price="{{ price_big }}" data-full="{{ full_big }}">
+        <span class="rb-build__badge">Best value</span>
+        <span class="rb-build__size-n">Any {{ size_big }} themes</span>
+        <span class="rb-build__size-p">${{ price_big }} <s>${{ full_big }}</s></span>
+        <span class="rb-build__size-s">Save ${{ save_big }}, under $20 a theme</span>
+      </button>
+    </div>
+
+    {%- if col == blank or col.products.size == 0 -%}
+      <p class="rb-note">Choose the themes collection for this section in the theme editor.</p>
+    {%- else -%}
+      <ul class="rb-build__grid" role="list">
+        {%- for p in col.products -%}
+          {%- liquid
+            assign name = p.title | split: ' Shopify Theme' | first | strip
+            assign niche = p.title | split: '— ' | last | strip
+            assign key = name | handle
+            assign v = p.selected_or_first_available_variant
+          -%}
+          <li>
+            <label class="rb-build__card" data-build-card>
+              <input type="checkbox" class="rb-build__check" value="{{ v.id }}" data-name="{{ name | escape }}" {% unless v.available %}disabled{% endunless %}>
+              <span class="rb-build__shot">
+                <img src="{{ 'rb-' | append: key | append: '.webp' | asset_url }}" alt="{{ name | escape }} Shopify theme on a phone" width="585" height="1266" loading="lazy">
+                <span class="rb-build__tick" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 12.5l3.6 3.6 7.4-7.6"/></svg></span>
+              </span>
+              <span class="rb-build__meta">
+                <span class="rb-build__name">{{ name | escape }}</span>
+                <span class="rb-build__niche">{{ niche | escape }}</span>
+              </span>
+            </label>
+            <span class="rb-build__links">
+              <a href="https://demo.onethng.store/{{ key }}/" target="_blank" rel="noopener">Live demo</a>
+              <a href="{{ p.url }}">Details</a>
+            </span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+
+    {%- if section.settings.bundle_1 != blank or section.settings.bundle_2 != blank -%}
+      <div class="rb-build__ready">
+        <p class="rb-eyebrow" style="justify-content:center;width:100%"><span class="rb-dot"></span>{{ section.settings.ready_heading | escape }}</p>
+        <div class="rb-build__ready-row">
+          {%- for b in (1..2) -%}
+            {%- liquid
+              if b == 1
+                assign bp = section.settings.bundle_1
+              else
+                assign bp = section.settings.bundle_2
+              endif
+            -%}
+            {%- if bp != blank -%}
+              {%- assign bt = bp.title | split: '— ' -%}
+              <a class="rb-build__ready-card" href="{{ bp.url }}">
+                <span class="rb-build__ready-t">{{ bt.first | strip | escape }}</span>
+                <span class="rb-build__ready-n">{{ bt.last | strip | escape }}</span>
+                <span class="rb-build__ready-p">{{ bp.price | money_without_trailing_zeros }}</span>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="rb-build__bar" data-build-bar>
+    <div class="rb-build__bar-in">
+      <div class="rb-build__status">
+        <span class="rb-build__dots" data-build-dots aria-hidden="true"></span>
+        <span class="rb-build__msg" data-build-msg aria-live="polite"></span>
+      </div>
+      <button type="button" class="rb-btn rb-btn--primary rb-build__go" data-build-go disabled>
+        <span data-build-go-label>Add to cart</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .rb-build { padding-top: clamp(28px, 5vw, 64px); padding-bottom: 140px; }
+  .rb-build .rb-head { margin-bottom: 28px; }
+  .rb-build__sizes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 640px; margin: 0 auto 32px; }
+  .rb-build__size { position: relative; display: grid; gap: 6px; padding: 18px 16px; border-radius: 22px; border: 1px solid var(--rb-glass-line); background: var(--rb-glass); color: var(--color-text); text-align: left; cursor: pointer; font: inherit; transition: border-color .3s, background-color .3s, box-shadow .4s var(--rb-ease); -webkit-tap-highlight-color: transparent; }
+  .rb-build__size[aria-checked="true"] { border-color: rgba(var(--color-accent-rgb), .8); background: linear-gradient(160deg, rgba(var(--color-accent-rgb), .18), rgba(255,255,255,.03) 70%); box-shadow: 0 20px 60px -30px rgba(var(--color-accent-rgb), .9); }
+  .rb-build__size-n { font-weight: 600; font-size: .95rem; }
+  .rb-build__size-p { font-family: var(--font-heading); font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.4rem); letter-spacing: -.04em; line-height: 1; }
+  .rb-build__size-p s { font-family: var(--font-body); font-size: .95rem; font-weight: 500; letter-spacing: 0; color: var(--color-muted); margin-left: 6px; }
+  .rb-build__size-s { font-size: .8rem; color: var(--color-muted); }
+  .rb-build__size[aria-checked="true"] .rb-build__size-s { color: var(--color-accent); }
+  .rb-build__badge { position: absolute; top: -10px; right: 14px; padding: 4px 10px; border-radius: 99px; background: var(--color-accent); color: var(--rb-ink); font-size: .64rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .rb-build__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 14px; }
+  @media (min-width: 750px) { .rb-build__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 20px; } }
+  @media (min-width: 1100px) { .rb-build__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .rb-build__card { position: relative; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .rb-build__check { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .rb-build__shot { position: relative; display: block; aspect-ratio: 585 / 900; overflow: hidden; border-radius: 22px; border: 2px solid var(--rb-glass-line); background: #000; transition: border-color .3s, transform .45s var(--rb-ease), box-shadow .45s var(--rb-ease); }
+  .rb-build__shot img { display: block; width: 100%; height: auto; transition: opacity .3s; }
+  .rb-build__tick { position: absolute; top: 10px; right: 10px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(7,7,8,.6); border: 2px solid rgba(255,255,255,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background-color .25s, border-color .25s, transform .35s var(--ease-spring, cubic-bezier(.34,1.56,.64,1)); }
+  .rb-build__tick svg { width: 18px; height: 18px; fill: none; stroke: var(--rb-ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+  .rb-build__check:checked + .rb-build__shot { border-color: var(--color-accent); box-shadow: 0 18px 50px -24px rgba(var(--color-accent-rgb), .9); transform: translateY(-3px); }
+  .rb-build__check:checked + .rb-build__shot .rb-build__tick { background: var(--color-accent); border-color: var(--color-accent); transform: scale(1.08); }
+  .rb-build__check:checked + .rb-build__shot .rb-build__tick svg { opacity: 1; }
+  .rb-build__check:focus-visible + .rb-build__shot { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+  .rb-build.is-full .rb-build__check:not(:checked) + .rb-build__shot img { opacity: .45; }
+  .rb-build__card.is-nope .rb-build__shot { animation: rb-nope .4s; }
+  @keyframes rb-nope { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .rb-build__meta { display: grid; gap: 2px; margin-top: 12px; }
+  .rb-build__name { font-family: var(--font-heading); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
+  .rb-build__niche { font-size: .82rem; color: var(--color-muted); }
+  .rb-build__links { display: flex; gap: 14px; margin-top: 6px; font-size: .82rem; }
+  .rb-build__links a { color: var(--color-text); text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 3px; }
+  .rb-build__ready { margin-top: clamp(48px, 7vw, 80px); text-align: center; }
+  .rb-build__ready-row { display: grid; gap: 12px; max-width: 760px; margin: 0 auto; }
+  @media (min-width: 750px) { .rb-build__ready-row { grid-template-columns: 1fr 1fr; } }
+  .rb-build__ready-card { display: grid; gap: 4px; padding: 20px 22px; border-radius: 22px; border: 1px solid var(--rb-glass-line); background: var(--rb-glass); color: var(--color-text); text-decoration: none; text-align: left; transition: border-color .3s, transform .45s var(--rb-ease); }
+  .rb-build__ready-card:hover { border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+  .rb-build__ready-t { font-weight: 600; }
+  .rb-build__ready-n { font-size: .85rem; color: var(--color-muted); }
+  .rb-build__ready-p { font-family: var(--font-heading); font-weight: 600; font-size: 1.6rem; letter-spacing: -.03em; margin-top: 6px; }
+  .rb-build__bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 55; padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px)); background: rgba(11,11,13,.86); backdrop-filter: saturate(1.5) blur(18px); -webkit-backdrop-filter: saturate(1.5) blur(18px); border-top: 1px solid var(--rb-glass-line); }
+  @media (max-width: 989px) { body:has(.rb-tabs) .rb-build__bar { bottom: var(--rb-tabs-h, 66px); padding-bottom: 12px; } }
+  .rb-build__bar-in { display: flex; align-items: center; justify-content: space-between; gap: 14px; max-width: var(--page-width); margin: 0 auto; }
+  .rb-build__status { display: grid; gap: 6px; min-width: 0; }
+  .rb-build__dots { display: flex; gap: 5px; }
+  .rb-build__dots i { width: 22px; height: 6px; border-radius: 99px; background: rgba(255,255,255,.16); transition: background-color .3s; }
+  .rb-build__dots i.on { background: var(--color-accent); }
+  .rb-build__msg { font-size: .86rem; line-height: 1.3; color: var(--color-muted); }
+  .rb-build__msg b { color: var(--color-text); font-weight: 600; }
+  .rb-build__go { flex: none; min-height: 50px; padding: 0 22px; }
+  .rb-build__go[disabled] { opacity: .45; pointer-events: none; box-shadow: none; }
+  @media (prefers-reduced-motion: reduce) { .rb-build__shot, .rb-build__tick, .rb-build__card.is-nope .rb-build__shot { transition: none; animation: none; } }
+</style>
+
+<script>
+  (() => {
+    const root = document.currentScript.parentElement.querySelector('[data-rb-build]');
+    if (!root || !root.matches('[data-rb-build]')) return;
+    const sizes = [...root.querySelectorAll('.rb-build__size')];
+    const checks = [...root.querySelectorAll('.rb-build__check')];
+    const dots = root.querySelector('[data-build-dots]');
+    const msg = root.querySelector('[data-build-msg]');
+    const go = root.querySelector('[data-build-go]');
+    const goLabel = root.querySelector('[data-build-go-label]');
+    let size = Number(root.dataset.default);
+    const picked = () => checks.filter((c) => c.checked);
+    const opt = () => sizes.find((s) => Number(s.dataset.size) === size);
+    function render() {
+      const n = picked().length;
+      const o = opt();
+      sizes.forEach((s) => s.setAttribute('aria-checked', String(s === o)));
+      dots.innerHTML = Array.from({ length: size }, (_, i) => `<i class="${i < n ? 'on' : ''}"></i>`).join('');
+      root.classList.toggle('is-full', n >= size);
+      const left = size - n;
+      if (n === 0) msg.innerHTML = `Pick any <b>${size}</b> themes for <b>$${o.dataset.price}</b>`;
+      else if (left > 0) msg.innerHTML = `<b>${n} of ${size}</b> picked. ${left} more to go`;
+      else msg.innerHTML = `<b>${size} themes, $${o.dataset.price}</b> <s>$${o.dataset.full}</s>`;
+      go.disabled = left !== 0;
+      goLabel.textContent = left === 0 ? `Add ${size} to cart` : `Pick ${left} more`;
+    }
+    sizes.forEach((s) => s.addEventListener('click', () => {
+      size = Number(s.dataset.size);
+      // Going down a size keeps the first picks and drops the rest.
+      picked().slice(size).forEach((c) => { c.checked = false; });
+      render();
+    }));
+    checks.forEach((c) => c.addEventListener('change', () => {
+      if (c.checked && picked().length > size) {
+        c.checked = false;
+        const card = c.closest('[data-build-card]');
+        card.classList.remove('is-nope'); void card.offsetWidth; card.classList.add('is-nope');
+        msg.innerHTML = `You've picked ${size}. Untick one to swap it${size < Number(sizes[sizes.length - 1].dataset.size) ? `, or switch to ${sizes[sizes.length - 1].dataset.size} themes` : ''}.`;
+        return;
+      }
+      render();
+    }));
+    go.addEventListener('click', async () => {
+      const items = picked().map((c) => ({ id: Number(c.value), quantity: 1 }));
+      if (items.length !== size) return;
+      go.disabled = true; goLabel.textContent = 'Adding…';
+      const U = window.ThemeUtils;
+      try {
+        const res = await fetch('{{ routes.cart_add_url }}.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items, sections: 'cart-drawer', sections_url: window.location.pathname })
+        });
+        const data = await res.json();
+        if (!res.ok || data.status) throw new Error(data.description || data.message || 'Could not add to cart');
+        if (U && U.Cart && U.Cart.enabled && U.Cart.enabled() && data.sections && data.sections['cart-drawer']) {
+          U.Cart.render(data.sections['cart-drawer']);
+          U.openDrawer('CartDrawer');
+          checks.forEach((c) => { c.checked = false; });
+          render();
+        } else {
+          window.location.href = '{{ routes.cart_url }}';
+        }
+      } catch (e) {
+        if (U && U.toast) U.toast(e.message); else msg.textContent = e.message;
+        render();
+      }
+    });
+    render();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Build your bundle",
+  "class": "section-rb-build",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small label", "default": "Build your bundle" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Pick the themes <em>you'll actually use.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Choose any 3 or any 5 from the full library. The bundle price is applied automatically in your cart." },
+    { "type": "collection", "id": "collection", "label": "Themes collection" },
+    { "type": "header", "content": "Prices", "info": "Display only. Cart prices come from the automatic discounts in Shopify admin, so change both together." },
+    { "type": "number", "id": "size_small", "label": "Small bundle: number of themes", "default": 3 },
+    { "type": "number", "id": "price_small", "label": "Small bundle price ($)", "default": 75 },
+    { "type": "number", "id": "size_big", "label": "Big bundle: number of themes", "default": 5 },
+    { "type": "number", "id": "price_big", "label": "Big bundle price ($)", "default": 99 },
+    { "type": "header", "content": "Ready-made bundles" },
+    { "type": "text", "id": "ready_heading", "label": "Heading", "default": "Or grab a ready-made bundle" },
+    { "type": "product", "id": "bundle_1", "label": "Bundle 1" },
+    { "type": "product", "id": "bundle_2", "label": "Bundle 2" }
+  ],
+  "presets": [{ "name": "Build your bundle" }]
+}
+{% endschema %}

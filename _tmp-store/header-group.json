@@ -1,0 +1,90 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg_themes_demo": {
+          "type": "message",
+          "settings": {
+            "text": "Shopify themes with live 3D. Try the demos free",
+            "link": "https://demo.onethng.store/"
+          }
+        },
+        "msg_themes_bundle": {
+          "type": "message",
+          "settings": {
+            "text": "Build your bundle: any 3 themes $75, any 5 $99",
+            "link": "shopify://pages/build-your-bundle"
+          }
+        }
+      },
+      "block_order": [
+        "msg_themes_demo",
+        "msg_themes_bundle"
+      ],
+      "settings": {
+        "interval": 5,
+        "text": "Free: the 5-Minute Overwhelm Reset. Grab it here"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "sticky": true,
+        "show_search": true,
+        "show_account": true,
+        "cta_label": "Bundles from $75",
+        "cta_link": "shopify://pages/build-your-bundle"
+      }
+    },
+    "tabs": {
+      "type": "bottom-tabs",
+      "blocks": {
+        "home": {
+          "type": "tab",
+          "settings": {
+            "label": "Home",
+            "link": "/",
+            "icon": "home"
+          }
+        },
+        "themes": {
+          "type": "tab",
+          "settings": {
+            "label": "Themes",
+            "link": "/#rb-themes",
+            "icon": "themes"
+          }
+        },
+        "bundle": {
+          "type": "tab",
+          "settings": {
+            "label": "Bundle",
+            "link": "/pages/build-your-bundle",
+            "icon": "bundle"
+          }
+        }
+      },
+      "block_order": [
+        "home",
+        "themes",
+        "bundle"
+      ],
+      "settings": {
+        "show_cart": true,
+        "cart_label": "Cart",
+        "show_menu": true,
+        "menu_label": "Menu",
+        "aria_label": "Shop navigation"
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "header",
+    "tabs"
+  ]
+}

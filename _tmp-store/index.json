@@ -1,0 +1,341 @@
+{
+  "sections": {
+    "stage": {
+      "type": "rb-stage",
+      "blocks": {
+        "vigor": {
+          "type": "theme",
+          "settings": {
+            "product": "vigor-shopify-theme-health-fitness-supplements",
+            "name": "Vigor",
+            "niche": "Health, fitness & supplements",
+            "pain": "Supplement shoppers don't trust a store that looks like every other one. Vigor makes your brand look as strong as your formula.",
+            "points": "3D dumbbell and capsules that move as shoppers scroll\nBuy-more-save-more and bundle offers built in\nFirst-order discount popup, no app needed",
+            "demo": "https://demo.onethng.store/vigor/",
+            "accent": "#C8FF3D",
+            "asset": "rb-vigor.webp"
+          }
+        },
+        "dewy": {
+          "type": "theme",
+          "settings": {
+            "product": "dewy-shopify-theme-beauty-skincare",
+            "name": "Dewy",
+            "niche": "Beauty & skincare",
+            "pain": "Skincare is bought on trust. A default theme makes premium formulas look cheap.",
+            "points": "Glass serum dropper in 3D that drips as shoppers scroll\nRoutine section that scrolls like an app\nBundles and a first-order popup built in",
+            "demo": "https://demo.onethng.store/dewy/",
+            "accent": "#FF9EC4",
+            "asset": "rb-dewy.webp"
+          }
+        },
+        "drape": {
+          "type": "theme",
+          "settings": {
+            "product": "drape-shopify-theme-fashion-streetwear",
+            "name": "Drape",
+            "niche": "Fashion & streetwear",
+            "pain": "In fashion, a generic store looks like a dropshipper, and shoppers scroll straight past.",
+            "points": "A 3D tee that billows and prints as shoppers scroll\nComplete-the-look bundles on every product page\nSticky add-to-cart and quick add",
+            "demo": "https://demo.onethng.store/drape/",
+            "accent": "#E9E4D8",
+            "asset": "rb-drape.webp"
+          }
+        },
+        "ember": {
+          "type": "theme",
+          "settings": {
+            "product": "ember-shopify-theme-candles-home",
+            "name": "Ember",
+            "niche": "Candles & home",
+            "pain": "Shoppers can't smell your candle through a screen, so your store has to set the mood for them.",
+            "points": "Three 3D candles that light one by one on scroll\nA story section that burns a candle down\nBundles and a first-order popup built in",
+            "demo": "https://demo.onethng.store/ember/",
+            "accent": "#FF8A3D",
+            "asset": "rb-ember.webp"
+          }
+        },
+        "fetch": {
+          "type": "theme",
+          "settings": {
+            "product": "fetch-shopify-theme-pet-products",
+            "name": "Fetch",
+            "niche": "Pet products",
+            "pain": "Pet owners buy from stores that love dogs as much as they do. A plain theme feels like a warehouse.",
+            "points": "3D toys that float, dodge the cursor and bounce when tapped\nMulti-buy discounts for repeat buys\nSlide-out cart with one-tap upsells",
+            "demo": "https://demo.onethng.store/fetch/",
+            "accent": "#FFD23F",
+            "asset": "rb-fetch.webp"
+          }
+        }
+      },
+      "block_order": [
+        "vigor",
+        "dewy",
+        "drape",
+        "ember",
+        "fetch"
+      ],
+      "settings": {
+        "eyebrow": "Shopify themes, one niche each",
+        "heading": "Your products are premium. <em>Your store should look it.</em>",
+        "text": "Five Shopify themes with a live 3D hero, scroll-stop sections and bundle offers built in. Pick your niche, upload it, start selling.",
+        "cta_primary": "Get all 5 for $99",
+        "cta_secondary": "See the themes",
+        "trust": "Instant download · Setup guide included · No apps or monthly fees",
+        "bundle_product": "5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch",
+        "end_eyebrow": "The bundle",
+        "end_heading": "All five themes. <em>Under $20 each.</em>",
+        "end_text": "$50 each bought separately. Get Vigor, Dewy, Drape, Ember and Fetch in one download.",
+        "end_cta": "Get the bundle"
+      }
+    },
+    "features": {
+      "type": "rb-features",
+      "blocks": {
+        "f0": {
+          "type": "feature",
+          "settings": {
+            "title": "Live 3D hero",
+            "text": "A real 3D scene that moves as shoppers scroll, so they stop and look instead of bouncing."
+          }
+        },
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "title": "Bundle and multi-buy offers",
+            "text": "Buy 2 save 10% and add-a-matching-product bundles on every product page. No app, no monthly fee."
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "title": "First-order discount popup",
+            "text": "Collects emails and hands out your welcome code. You set the wording, timing and code in the editor."
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "title": "Scroll-stop sections",
+            "text": "A pinned story section, text that lights up as you scroll and a comparison table that answers doubts."
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "title": "Cart that sells more",
+            "text": "Slide-out cart with a free-shipping progress bar, one-tap upsells and a sticky add-to-cart bar."
+          }
+        },
+        "f5": {
+          "type": "feature",
+          "settings": {
+            "title": "Edit it all, no code",
+            "text": "Online Store 2.0. Drag sections, change colours and fonts, and swap every word in the Shopify theme editor."
+          }
+        }
+      },
+      "block_order": [
+        "f0",
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5"
+      ],
+      "settings": {
+        "eyebrow": "In every theme",
+        "heading": "Built to sell, <em>not just to look good.</em>",
+        "text": "The tools most stores pay monthly app fees for are already inside the theme."
+      }
+    },
+    "steps": {
+      "type": "rb-steps",
+      "blocks": {
+        "s0": {
+          "type": "step",
+          "settings": {
+            "title": "Pick your niche",
+            "text": "Try the live demos on your phone first. What you see is exactly what you get."
+          }
+        },
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Buy and download",
+            "text": "Your theme file and setup guide arrive by email straight after checkout."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Upload to Shopify",
+            "text": "Online Store, Themes, Add theme, Upload zip file. It takes about a minute."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Make it yours",
+            "text": "Add your logo, colours and products in the theme editor, then publish."
+          }
+        }
+      },
+      "block_order": [
+        "s0",
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Live on your store <em>in an afternoon.</em>",
+        "text": "No developer and no code. If you can upload a file, you can launch one of these.",
+        "cta": "Try the live demos",
+        "cta_link": "https://demo.onethng.store/"
+      }
+    },
+    "offer": {
+      "type": "rb-offer",
+      "blocks": {
+        "single": {
+          "type": "plan",
+          "settings": {
+            "title": "One theme",
+            "price_text": "$50",
+            "price_note": "one-off",
+            "text": "The theme built for your niche.",
+            "points": "One complete Shopify theme\nSetup guide included\nUse it on your own stores",
+            "cta": "Choose your theme",
+            "link": "#rb-themes"
+          }
+        },
+        "bundle": {
+          "type": "plan",
+          "settings": {
+            "title": "Ready-made bundle",
+            "product": "5-shopify-themes-bundle-vigor-dewy-drape-ember-fetch",
+            "price_note": "one-off, under $20 a theme",
+            "text": "Every theme in one download. Switch niche or run more than one store.",
+            "points": "Vigor, Dewy, Drape, Ember and Fetch\nSetup guide included\n$250 if bought separately",
+            "cta": "Get the bundle",
+            "highlight": false
+          }
+        },
+        "custom": {
+          "type": "plan",
+          "settings": {
+            "title": "Custom theme",
+            "product": "custom-shopify-theme-designed-around-your-brand",
+            "price_note": "one-off",
+            "text": "A Shopify theme built from scratch around your brand.",
+            "points": "Your logo, colours and products\nBuilt from your brief\nYours alone",
+            "cta": "Start a custom theme"
+          }
+        },
+        "build": {
+          "type": "plan",
+          "settings": {
+            "title": "Build your own bundle",
+            "price_text": "from $75",
+            "price_note": "one-off",
+            "text": "Pick the themes you want from the full library.",
+            "points": "Any 3 themes for $75\nAny 5 themes for $99\nMix from every niche\nBundle price applied in your cart",
+            "cta": "Build your bundle",
+            "link": "shopify://pages/build-your-bundle",
+            "badge": "New",
+            "highlight": true
+          }
+        }
+      },
+      "block_order": [
+        "single",
+        "build",
+        "bundle",
+        "custom"
+      ],
+      "settings": {
+        "eyebrow": "Pricing",
+        "heading": "Pay once. <em>Keep it forever.</em>",
+        "text": "No subscription and no monthly app fees.",
+        "note": "Premium themes on the Shopify Theme Store usually cost $140 to $400 each."
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q0": {
+          "type": "question",
+          "settings": {
+            "question": "What exactly do I get?",
+            "answer": "<p>A Shopify theme file (.zip) and a setup guide. The bundle includes all five theme files in one download.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How do I install it?",
+            "answer": "<p>In Shopify admin go to Online Store, Themes, Add theme, Upload zip file. The setup guide walks you through every step.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do I need any apps or coding?",
+            "answer": "<p>No. The 3D hero, bundle offers, discount popup and slide-out cart are built into the theme, and you edit everything in the Shopify theme editor.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Will the 3D slow my store down?",
+            "answer": "<p>The 3D loads after the rest of your page, so your first impression stays fast.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Can I try before I buy?",
+            "answer": "<p>Yes. Every theme has a live demo. Open it on your phone, because that is where most of your shoppers are.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "How do the discounts work?",
+            "answer": "<p>Shopify charges the discount, so you create the matching code once in Shopify admin under Discounts. The setup guide shows you how.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What does the licence allow?",
+            "answer": "<p>Use the themes on your own stores. Reselling or sharing the theme files is not allowed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q0",
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6"
+      ],
+      "settings": {
+        "eyebrow": "Questions",
+        "heading": "Good to know",
+        "text": "<p>Anything else? Use the contact page. We answer every message.</p>"
+      }
+    }
+  },
+  "order": [
+    "stage",
+    "features",
+    "steps",
+    "offer",
+    "faq"
+  ]
+}
