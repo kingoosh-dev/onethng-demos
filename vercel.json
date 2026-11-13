@@ -3,11 +3,6 @@
   "trailingSlash": true,
   "redirects": [
     {
-      "source": "/etsy",
-      "destination": "/?from=etsy",
-      "permanent": false
-    },
-    {
       "source": "/:theme(vigor|dewy|drape|ember|fetch)",
       "destination": "/:theme/",
       "permanent": false
