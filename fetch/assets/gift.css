@@ -1,0 +1,18 @@
+/* Gift with purchase (2.3.0). Loaded only when it's switched on. */
+.gift-bar { margin-bottom: 18px; padding: 14px; border: 1px dashed color-mix(in srgb, var(--color-accent) 55%, transparent); border-radius: var(--radius); }
+.gift-bar__text { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: .9rem; font-weight: 600; }
+.gift-bar__text .icon { --icon-size: 18px; flex: none; color: var(--color-accent); }
+.gift-bar__track { height: 6px; overflow: hidden; border-radius: 99px; background: color-mix(in srgb, currentColor 12%, transparent); }
+.gift-bar__fill { width: var(--p, 0%); height: 100%; border-radius: inherit; background: var(--color-accent); transition: width 1s var(--ease-out); }
+.gift-bar__add { margin-top: 10px; }
+.gift-bar__add[hidden] { display: none; }
+.gift-bar__add .icon { --icon-size: 16px; }
+.cart-line__gift { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--color-accent); }
+.cart-line__gift .icon { --icon-size: 14px; }
+/* The gift is always 1: hide its quantity stepper, keep Remove. */
+[data-gift-line] .qty { display: none; }
+@media (max-width: 749px) {
+  .drawer--compact .gift-bar { margin-bottom: 8px; padding: 10px 12px; }
+  .drawer--compact .gift-bar__text { margin-bottom: 7px; font-size: .84rem; }
+}
+@media (prefers-reduced-motion: reduce) { .gift-bar__fill { transition: none; } }

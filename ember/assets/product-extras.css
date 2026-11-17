@@ -1,0 +1,25 @@
+/* Product page blocks added in 2.3.0: Size guide and Estimated delivery. Loaded only when one is used. */
+.size-guide__open { display: inline-flex; align-items: center; gap: 8px; padding: 4px 0; border: 0; background: none; color: inherit; font: inherit; font-size: .92rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.size-guide__open .icon { --icon-size: 18px; }
+.size-guide__dialog { width: min(720px, calc(100vw - 32px)); max-height: min(86vh, 860px); padding: 0; border: 0; border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); box-shadow: var(--shadow); }
+.size-guide__dialog::backdrop { background: rgba(10, 10, 10, .45); backdrop-filter: blur(2px); }
+.size-guide__dialog[open] { animation: sg-in .35s var(--ease-out); }
+.size-guide__dialog--drawer { width: min(520px, 100vw); max-width: none; height: 100dvh; max-height: none; margin: 0 0 0 auto; border-radius: 0; }
+.size-guide__dialog--drawer[open] { animation-name: sg-drawer-in; }
+.size-guide__panel { display: flex; flex-direction: column; max-height: inherit; height: 100%; }
+.size-guide__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 14px 14px 24px; border-bottom: 1px solid var(--border); }
+.size-guide__head .h4 { margin: 0; }
+.size-guide__body { padding: 20px 24px 28px; overflow: auto; }
+.size-guide__body table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+.size-guide__body th, .size-guide__body td { padding: 10px 8px; border-bottom: 1px solid var(--border); text-align: left; }
+.size-guide__body .table-wrap, .size-guide__body table { overflow-x: auto; }
+html.size-guide-open { overflow: hidden; }
+@keyframes sg-in { from { opacity: 0; transform: translateY(14px); } }
+@keyframes sg-drawer-in { from { transform: translateX(100%); } }
+
+.delivery { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border-radius: var(--radius); background: var(--color-surface); font-size: .92rem; }
+.delivery .icon { flex: none; --icon-size: 20px; color: var(--color-accent); }
+.delivery__text { margin: 0; line-height: 1.45; }
+.delivery__text strong { font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) { .size-guide__dialog[open] { animation: none; } }

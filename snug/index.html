@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head><script src="/etsy.js"></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -195,7 +195,7 @@
 >
   <div class="hero__stage" data-pin-stage>
     <div class="hero__media" aria-hidden="true">
-      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="split"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
+      <div class="hero__fallback"></div><img src="img/scene.svg" class="hero__img" loading="eager" fetchpriority="high" alt="" width="800" height="1000"><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="split"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
         <svg viewBox="0 0 100 100" focusable="false"><defs><path id="hero-badge-template--hero" d="M50 50 m-39 0 a39 39 0 1 1 78 0 a39 39 0 1 1 -78 0"/></defs><text><textPath href="#hero-badge-template--hero">Organic cotton &#8226; Organic cotton &#8226;</textPath></text></svg>
         <span class="hero__badge-line">Organic cotton</span>
       </div><div class="page-width hero__inner">
@@ -400,6 +400,53 @@
   </div></li></ul>
     </div>
   </section>
+</div>
+<div id="shopify-section-template--grow" class="shopify-section section-pm-grow"><section class="section pm-grow scheme-surface" data-pm-grow style="--pad-top: 96px; --pad-bottom: 96px;">
+  <div class="page-width">
+    <div class="section-head section-head--center">
+      <div><p class="eyebrow" data-reveal>Size guide</p><h2 class="h2" data-split>What size are they <em>right now?</em></h2><div class="subtext rte" data-reveal><p>Slide to your little one's age. We'll show their size and when they'll grow out of it.</p></div></div>
+    </div>
+
+    <div class="pm-grow__panel" data-reveal>
+      <div class="pm-grow__age">
+        <label for="grow-template--grow">Age</label>
+        <output class="pm-grow__age-out" data-age-out></output>
+      </div>
+      <input class="pm-grow__slider" id="grow-template--grow" type="range" min="0" max="36" step="1" value="4" data-age>
+
+      <ol class="pm-grow__track" role="list" style="--max: 36;"><li class="pm-grow__size" data-from="0" data-to="1" style="--from: 0; --to: 1;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">Newborn</span><span class="pm-grow__detail">Up to 56 cm</span></li><li class="pm-grow__size" data-from="1" data-to="3" style="--from: 1; --to: 3;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">0–3m</span><span class="pm-grow__detail">Up to 61 cm</span></li><li class="pm-grow__size" data-from="3" data-to="6" style="--from: 3; --to: 6;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">3–6m</span><span class="pm-grow__detail">Up to 68 cm</span></li><li class="pm-grow__size" data-from="6" data-to="12" style="--from: 6; --to: 12;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">6–12m</span><span class="pm-grow__detail">Up to 80 cm</span></li><li class="pm-grow__size" data-from="12" data-to="18" style="--from: 12; --to: 18;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">12–18m</span><span class="pm-grow__detail">Up to 86 cm</span></li><li class="pm-grow__size" data-from="18" data-to="24" style="--from: 18; --to: 24;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">18–24m</span><span class="pm-grow__detail">Up to 92 cm</span></li><li class="pm-grow__size" data-from="24" data-to="36" style="--from: 24; --to: 36;" >
+            <span class="pm-grow__bar"></span>
+            <span class="pm-grow__label">2–3y</span><span class="pm-grow__detail">Up to 98 cm</span></li></ol>
+
+      <div class="pm-grow__result" aria-live="polite">
+        <div>
+          <p class="pm-grow__k">Their size now</p>
+          <p class="pm-grow__v" data-now>—</p>
+          <p class="pm-grow__s" data-until></p>
+        </div>
+        <div>
+          <p class="pm-grow__k">Size up for room to grow</p>
+          <p class="pm-grow__v" data-next>—</p>
+          <p class="pm-grow__s">Most parents buy one ahead.</p>
+        </div><a class="btn" href="collection.html">Shop their size</a></div>
+    </div>
+  </div>
+  <script type="application/json" data-strings>{"month":"month","months":"months","until":"Fits until about [age]","none":"No size set for this age yet"}</script>
+</section>
+
+
 </div>
 <div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width split split--reverse">

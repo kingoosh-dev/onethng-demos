@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head><script src="/etsy.js"></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -195,7 +195,7 @@
 >
   <div class="hero__stage" data-pin-stage>
     <div class="hero__media" aria-hidden="true">
-      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="arch"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
+      <div class="hero__fallback"></div><img src="img/scene.svg" class="hero__img" loading="eager" fetchpriority="high" alt="" width="800" height="1000"><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="arch"></canvas><div class="hero__shade"></div></div><div class="hero__badge" aria-hidden="true">
         <svg viewBox="0 0 100 100" focusable="false"><defs><path id="hero-badge-template--hero" d="M50 50 m-39 0 a39 39 0 1 1 78 0 a39 39 0 1 1 -78 0"/></defs><text><textPath href="#hero-badge-template--hero">Fragrance free &#8226; Fragrance free &#8226;</textPath></text></svg>
         <span class="hero__badge-line">Fragrance free</span>
       </div><div class="page-width hero__inner">
@@ -304,6 +304,100 @@
     </div>
   </section>
 </div>
+<div id="shopify-section-template--routine" class="shopify-section section-pm-routine"><section class="section pm-routine scheme-surface" data-pm-routine style="--pad-top: 96px; --pad-bottom: 96px;">
+  <div class="page-width">
+    <div class="section-head section-head--center">
+      <div><p class="eyebrow" data-reveal>Build your routine</p><h2 class="h2" data-split>Your skin, <em>morning to night</em></h2><div class="subtext rte" data-reveal><p>Every step in order. Untick anything you already have.</p></div></div>
+    </div>
+
+    <div class="pm-routine__tabs" role="tablist" data-reveal>
+      <span class="pm-routine__glider" aria-hidden="true"></span>
+      <button type="button" role="tab" aria-selected="true" data-tab="am">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+        Morning
+      </button>
+      <button type="button" role="tab" aria-selected="false" data-tab="pm">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        Evening
+      </button>
+    </div>
+
+    <div class="pm-routine__grid">
+      <ol class="pm-routine__steps" role="list" data-steps><li class="pm-routine__step" data-when="both" >
+            <label class="pm-routine__card">
+              <span class="pm-routine__n" data-n></span>
+              <span class="pm-routine__img"><img src="img/p0.svg" loading="lazy" alt="Barrier Repair Serum" width="800" height="1000"></span>
+              <span class="pm-routine__body">
+                <span class="pm-routine__step-name">Cleanse</span>
+                <span class="pm-routine__title">Barrier Repair Serum</span><span class="pm-routine__note">Massage in for 60 seconds</span></span>
+              <span class="pm-routine__end">
+                <span class="pm-routine__price">£32.00</span>
+                <input type="checkbox" class="pm-routine__check" data-check checked aria-label="Cleanse">
+              </span>
+            </label><script type="application/json" data-pm-product>{"id":100,"title":"Barrier Repair Serum","price":3200,"compare":0,"variant":10000,"available":true,"url":"product-barrier-repair-serum.html","image":"img/p0.svg"}</script>
+</li><li class="pm-routine__step" data-when="am" >
+            <label class="pm-routine__card">
+              <span class="pm-routine__n" data-n></span>
+              <span class="pm-routine__img"><img src="img/p1.svg" loading="lazy" alt="Calm Gel Cleanser" width="800" height="1000"></span>
+              <span class="pm-routine__body">
+                <span class="pm-routine__step-name">Treat</span>
+                <span class="pm-routine__title">Calm Gel Cleanser</span><span class="pm-routine__note">Two drops, pat in</span></span>
+              <span class="pm-routine__end">
+                <span class="pm-routine__price">£18.00</span>
+                <input type="checkbox" class="pm-routine__check" data-check checked aria-label="Treat">
+              </span>
+            </label><script type="application/json" data-pm-product>{"id":101,"title":"Calm Gel Cleanser","price":1800,"compare":0,"variant":10100,"available":true,"url":"product-calm-gel-cleanser.html","image":"img/p1.svg"}</script>
+</li><li class="pm-routine__step" data-when="pm" >
+            <label class="pm-routine__card">
+              <span class="pm-routine__n" data-n></span>
+              <span class="pm-routine__img"><img src="img/p2.svg" loading="lazy" alt="Night Repair Cream" width="800" height="1000"></span>
+              <span class="pm-routine__body">
+                <span class="pm-routine__step-name">Repair</span>
+                <span class="pm-routine__title">Night Repair Cream</span><span class="pm-routine__note">Thin layer, avoid eyes</span></span>
+              <span class="pm-routine__end">
+                <span class="pm-routine__price">£28.00</span>
+                <input type="checkbox" class="pm-routine__check" data-check checked aria-label="Repair">
+              </span>
+            </label><script type="application/json" data-pm-product>{"id":102,"title":"Night Repair Cream","price":2800,"compare":3400,"variant":10200,"available":true,"url":"product-night-repair-cream.html","image":"img/p2.svg"}</script>
+</li><li class="pm-routine__step" data-when="both" >
+            <label class="pm-routine__card">
+              <span class="pm-routine__n" data-n></span>
+              <span class="pm-routine__img"><img src="img/p3.svg" loading="lazy" alt="Mineral SPF 50" width="800" height="1000"></span>
+              <span class="pm-routine__body">
+                <span class="pm-routine__step-name">Moisturise</span>
+                <span class="pm-routine__title">Mineral SPF 50</span><span class="pm-routine__note">While skin is still damp</span></span>
+              <span class="pm-routine__end">
+                <span class="pm-routine__price">£24.00</span>
+                <input type="checkbox" class="pm-routine__check" data-check checked aria-label="Moisturise">
+              </span>
+            </label><script type="application/json" data-pm-product>{"id":103,"title":"Mineral SPF 50","price":2400,"compare":0,"variant":10300,"available":true,"url":"product-mineral-spf-50.html","image":"img/p3.svg"}</script>
+</li><li class="pm-routine__step" data-when="am" >
+            <label class="pm-routine__card">
+              <span class="pm-routine__n" data-n></span>
+              <span class="pm-routine__img"><img src="img/p4.svg" loading="lazy" alt="Hydra Face Mist" width="800" height="1000"></span>
+              <span class="pm-routine__body">
+                <span class="pm-routine__step-name">Protect</span>
+                <span class="pm-routine__title">Hydra Face Mist</span><span class="pm-routine__note">Last step, every morning</span></span>
+              <span class="pm-routine__end">
+                <span class="pm-routine__price">£16.00</span>
+                <input type="checkbox" class="pm-routine__check" data-check checked aria-label="Protect">
+              </span>
+            </label><script type="application/json" data-pm-product>{"id":104,"title":"Hydra Face Mist","price":1600,"compare":0,"variant":10400,"available":true,"url":"product-hydra-face-mist.html","image":"img/p4.svg"}</script>
+</li></ol>
+
+      <aside class="pm-routine__sum">
+        <p class="pm-routine__sum-k" data-count></p>
+        <p class="pm-routine__sum-total">
+          <s data-was hidden></s>
+          <strong data-total>£0.00</strong>
+        </p><p class="pm-routine__save" data-save>Save 15% when you buy the full routine</p><button type="button" class="btn pm-routine__add" data-add>Add my routine</button><p class="pm-routine__fine">Free delivery on routines over £40</p></aside>
+    </div>
+  </div>
+  <script type="application/json" data-strings>{"count":"[count] steps selected","discount":15}</script>
+</section>
+
+
+</div>
 <div id="shopify-section-template--steps" class="shopify-section"><section class="section scheme-surface" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width">
     <div class="section-head">
@@ -407,6 +501,31 @@
 
 
 </section>
+<div id="shopify-section-template--results" class="shopify-section section-pm-ba"><section class="section pm-ba scheme-default" data-pm-ba style="--pad-top: 96px; --pad-bottom: 96px; --ba-ratio: 4/5;">
+  <div class="page-width pm-ba__grid">
+    <div class="pm-ba__copy"><p class="eyebrow" data-reveal>Real results</p><h2 class="h2" data-split>Four weeks. <em>Same light.</em> No filter.</h2><div class="subtext rte" data-reveal><p>Drag to compare. Swap in your own customer photos.</p></div><ul class="pm-ba__stats" role="list"><li data-reveal style="--d: 0" >
+              <strong><span data-count-to="87">87</span>%</strong>
+              <span>saw clearer skin in 4 weeks</span>
+            </li><li data-reveal style="--d: 1" >
+              <strong><span data-count-to="92">92</span>%</strong>
+              <span>said skin felt softer after 1 week</span>
+            </li></ul><a class="btn" href="collection.html">Shop the routine</a></div>
+
+    <div class="pm-ba__frame" data-frame data-reveal style="--pos: 50%;">
+      <div class="pm-ba__layer pm-ba__layer--before"><img src="img/scene.svg" loading="lazy" draggable="false" alt="" width="800" height="1000"><span class="pm-ba__tag pm-ba__tag--before">Before</span>
+      </div>
+      <div class="pm-ba__layer pm-ba__layer--after" aria-hidden="true"><img src="img/scene.svg" loading="lazy" draggable="false" alt="" width="800" height="1000"><span class="pm-ba__tag pm-ba__tag--after">After</span>
+      </div>
+      <div class="pm-ba__handle" aria-hidden="true"><span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>
+      </span></div>
+      <input class="pm-ba__range" type="range" min="0" max="100" step="0.5" value="50" aria-label="Drag to compare before and after" data-range>
+    </div>
+  </div>
+</section>
+
+
+</div>
 <div id="shopify-section-template--problem" class="shopify-section"><section class="section scheme-default" style="--pad-top: 112px; --pad-bottom: 112px;">
   <div class="page-width split split--reverse">
     <div class="split__media" data-reveal="clip" data-view><div class="sticker" aria-hidden="true">

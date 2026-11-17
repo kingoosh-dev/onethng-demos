@@ -1,0 +1,10 @@
+/* Load more / infinite scroll (2.3.0). Loaded only when the Product grid uses one of those options. */
+.load-more { display: grid; justify-items: center; gap: 12px; margin-top: 48px; text-align: center; }
+.load-more:not(.is-js) { margin-top: 24px; }
+.load-more__count { margin: 0; font-size: .9rem; color: var(--muted); }
+.load-more__bar { width: min(240px, 70%); height: 3px; overflow: hidden; border-radius: 99px; background: color-mix(in srgb, currentColor 12%, transparent); }
+.load-more__bar span { display: block; width: var(--p, 0%); height: 100%; border-radius: inherit; background: var(--color-accent); transition: width .6s var(--ease-out); }
+.load-more__btn { min-width: 200px; }
+.load-more__btn[hidden] { display: none; }
+.load-more[aria-busy="true"] .load-more__btn { pointer-events: none; opacity: .7; }
+@media (prefers-reduced-motion: reduce) { .load-more__bar span { transition: none; } }

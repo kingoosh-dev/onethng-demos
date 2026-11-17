@@ -1,0 +1,29 @@
+/* Swatches (2.3.0). Loaded only when the Swatches style or card swatches are switched on. */
+.swatches { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; --swatch-size: 40px; }
+.swatch { position: relative; display: inline-grid; padding: 3px; }
+.swatch input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.swatch__chip { position: relative; display: block; width: var(--swatch-size); height: var(--swatch-size); overflow: hidden; border-radius: 50%; background: var(--swatch) center / cover no-repeat; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14), 0 0 0 1px var(--border); transition: box-shadow .25s, transform .3s var(--ease-out), opacity .25s; }
+.swatches[data-shape="square"] .swatch__chip { border-radius: calc(var(--radius) * .5); }
+.swatch:hover .swatch__chip { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14), 0 0 0 1px currentColor; }
+.swatch input:checked + .swatch__chip { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .14), 0 0 0 2px var(--color-bg), 0 0 0 4px var(--color-fg); }
+.swatch input:focus-visible + .swatch__chip { outline: 2px solid var(--color-accent); outline-offset: 5px; }
+.swatch input:active + .swatch__chip { transform: scale(.94); }
+/* Sold out: faded with a line through it, still selectable so shoppers can see the sold-out message and sign up. */
+.swatch.is-unavailable .swatch__chip { opacity: .5; }
+.swatch.is-unavailable .swatch__chip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - 1.5px), var(--color-fg) calc(50% - 1.5px), var(--color-fg) calc(50% + 1.5px), transparent calc(50% + 1.5px)); }
+.swatch-pill.is-unavailable span { opacity: .55; text-decoration: line-through; }
+.variant-picker legend .swatch-set__value { font-weight: inherit; color: inherit; }
+
+/* Product cards */
+.card-swatches { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.card-swatch { display: block; width: 18px; height: 18px; border-radius: 50%; background: var(--swatch) center / cover no-repeat; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .16); transition: transform .25s var(--ease-out); }
+.card-swatches--square .card-swatch { border-radius: 4px; }
+.card-swatch:hover { transform: scale(1.12); }
+.card-swatch:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.card-swatches__more { font-size: .78rem; font-weight: 700; color: var(--muted); text-decoration: none; }
+.card-swatches__more:hover { color: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  .swatch__chip, .card-swatch { transition: none; }
+  .swatch input:active + .swatch__chip, .card-swatch:hover { transform: none; }
+}
