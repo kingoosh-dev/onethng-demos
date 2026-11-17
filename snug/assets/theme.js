@@ -1482,6 +1482,23 @@ Premium.on('[data-pm-burn]', function (root) {
     function layout(){ if(swipe&&items.length) root.style.setProperty('--ocr-pad',Math.max(16,(track.clientWidth-items[0].offsetWidth)/2)+'px'); }
     if(swipe){ addEventListener('resize',layout); layout(); var st=items[Math.min(2,items.length-1)]; if(st) track.scrollLeft=st.offsetLeft+st.offsetWidth/2-track.clientWidth/2; }
     document.addEventListener('click',function(e){ if(current&&!root.contains(e.target)&&view.hidden) front(null); });
+    // Scroll stop: once the shopper stops scrolling close to the rail, ease it into the middle of the screen.
+    // Scrolling itself stays completely free (no page-wide snapping).
+    if(root.classList.contains('ocr--stop')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+      var settled=false, touching=false, t=null;
+      addEventListener('touchstart',function(){ touching=true; },{passive:true});
+      addEventListener('touchend',function(){ touching=false; schedule(); },{passive:true});
+      function settle(){
+        if(touching) return;
+        var r=root.getBoundingClientRect(), vh=innerHeight;
+        if(r.bottom<0||r.top>vh){ settled=false; return; }
+        var off=(r.top+r.height/2)-vh/2;
+        if(settled||Math.abs(off)<10) return;
+        if(Math.abs(off)<vh*.32){ settled=true; scrollBy({top:off,behavior:'smooth'}); }
+      }
+      function schedule(){ clearTimeout(t); t=setTimeout(settle,160); }
+      addEventListener('scroll',schedule,{passive:true});
+    }
     function money(c){ if(window.ThemeUtils&&ThemeUtils.formatMoney) return ThemeUtils.formatMoney(c); try{ return new Intl.NumberFormat(document.documentElement.lang||undefined,{style:'currency',currency:(window.Shopify&&Shopify.currency&&Shopify.currency.active)||root.dataset.currency||'GBP'}).format(c/100);}catch(e){ return (c/100).toFixed(2);} }
     function open(it,btn){
       lastBtn=btn;
@@ -1740,16 +1757,18 @@ Premium.on('[data-pm-wheel]', function (root) {
   var upIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
   function clean(t) { t = (t || '').replace(/\s+/g, ' ').trim(); return t.length > 34 ? t.slice(0, 32).trim() + '…' : t; }
   function label(sec) {
+    var named = sec.querySelector('[data-jump]'); named = named && named.getAttribute('data-jump');
+    if (named) return clean(named);
     var e = sec.querySelector('.eyebrow, [class*="__eyebrow"]'), h = sec.querySelector('h2, .h2, h1');
     var a = e && clean(e.textContent), b = h && clean(h.textContent);
-    if (a && a.length > 2 && !/^\W*$/.test(a)) return a.replace(/^\[\s*\d+\s*\]\s*/, '').replace(/^\/\/\s*/, '');
+    if (a && a.length > 2 && !/^\W*$/.test(a)) return a.replace(/^\[\s*\d+\s*\]\s*/, '').replace(/^\/\/\s*/, '').split(' / ')[0];
     return b || '';
   }
   function build() {
     entries = [{ el: null, text: root.dataset.top || 'Back to top' }];
     var seen = {};
     [].slice.call(main.children).forEach(function (sec, i) {
-      if (i === 0 || sec.offsetHeight < 120) return;
+      if (i === 0 || sec.offsetHeight < 120 || !sec.querySelector('[data-jump]')) return;
       var t = label(sec);
       if (!t || seen[t.toLowerCase()]) return;
       seen[t.toLowerCase()] = 1; entries.push({ el: sec, text: t });
@@ -1793,7 +1812,7 @@ Premium.on('[data-pm-wheel]', function (root) {
   function onScroll() {
     ticking = false;
     var max = document.documentElement.scrollHeight - innerHeight;
-    root.classList.toggle('is-shown', max > 0 && scrollY / max >= after);
+    root.classList.toggle('is-shown', max > 0 && scrollY / max >= after && !!main.querySelector('[data-jump]'));
     if (open) current();
   }
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });

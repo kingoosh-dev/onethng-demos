@@ -1585,9 +1585,6 @@ body.no-scroll .mtabs { transform: translateY(calc(100% + 24px)); }
 .ocr__item.is-front .ocr__hang:hover .ocr__garment{transform:perspective(900px) rotateY(0deg) translateZ(30px)}
 
 /* Scroll stop: the page settles on the rail so shoppers can browse it, then scrolls on as normal. */
-html:has(.ocr--stop){scroll-snap-type:y proximity}
-.ocr--stop{scroll-snap-align:center;scroll-snap-stop:always}
-@media (prefers-reduced-motion:reduce){html:has(.ocr--stop){scroll-snap-type:none}}
 @media (max-width:749px){
   .ocr--stop{--pad-top:28px;--pad-bottom:36px}
   .ocr--stop .ocr__stage{margin-top:14px}
