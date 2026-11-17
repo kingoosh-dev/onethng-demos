@@ -1466,17 +1466,44 @@ Premium.on('[data-pm-burn]', function (root) {
     var wasFront=false, ptype='mouse';
     items.forEach(function(it){
       var btn=it.querySelector('.ocr__hang');
-      it.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse') front(it); });
+      it.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'&&!swipe) front(it); });
       btn.addEventListener('pointerdown',function(e){ ptype=e.pointerType; wasFront=(current===it); });
       btn.addEventListener('focus',function(){ if(ptype==='mouse'||!btn.matches(':focus-visible')) return; front(it); });
       btn.addEventListener('keyup',function(e){ if(e.key==='Tab') front(it); });
       btn.addEventListener('click',function(e){
+        if(swipe){
+          if(current!==it){ track.scrollTo({left:it.offsetLeft+it.offsetWidth/2-track.clientWidth/2,behavior:'smooth'}); return; }
+          open(it,btn); return;
+        }
         var touchy=(ptype==='touch'||ptype==='pen') && e.detail>0;
         if(touchy && !wasFront){ front(it); it.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); wasFront=true; return; }
         front(it); open(it,btn);
       });
     });
-    track.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse') front(null); });
+    track.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'&&!swipe) front(null); });
+    // Touch screens: the rail scrolls freely and whichever garment is in the middle turns to face the shopper.
+    var swipe=matchMedia('(hover: none), (pointer: coarse)').matches, turn=parseFloat(getComputedStyle(root).getPropertyValue('--ocr-turn'))||60, ticking=false;
+    function layout(){
+      if(!swipe||!items.length) return;
+      var slot=items[0].offsetWidth; root.style.setProperty('--ocr-pad',Math.max(16,(track.clientWidth-slot)/2)+'px'); paint();
+    }
+    function paint(){
+      ticking=false; var mid=track.scrollLeft+track.clientWidth/2, best=null, bd=1e9, slot=items[0].offsetWidth||1;
+      items.forEach(function(it){
+        var d=(it.offsetLeft+it.offsetWidth/2-mid)/(slot*1.15), a=Math.min(1,Math.abs(d)), e=a*a*(3-2*a);
+        var g=it.querySelector('.ocr__garment');
+        g.style.setProperty('--r',(turn*e).toFixed(2)+'deg'); g.style.setProperty('--z',(30*(1-e)).toFixed(1)+'px');
+        it.style.zIndex=String(100-Math.round(a*50));
+        if(Math.abs(d)<bd){ bd=Math.abs(d); best=it; }
+      });
+      front(best);
+    }
+    if(swipe){
+      root.classList.add('ocr--swipe');
+      track.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(paint); } },{passive:true});
+      addEventListener('resize',layout); layout();
+      var start=items[Math.min(1,items.length-1)]; if(start) track.scrollLeft=start.offsetLeft+start.offsetWidth/2-track.clientWidth/2; paint();
+    }
     function money(c){ if(window.ThemeUtils&&ThemeUtils.formatMoney) return ThemeUtils.formatMoney(c); try{ return new Intl.NumberFormat(document.documentElement.lang||undefined,{style:'currency',currency:(window.Shopify&&Shopify.currency&&Shopify.currency.active)||root.dataset.currency||'GBP'}).format(c/100);}catch(e){ return (c/100).toFixed(2);} }
     function open(it,btn){
       lastBtn=btn;
@@ -1778,7 +1805,7 @@ Premium.on('[data-pm-look]', function (root) {
 /* ---- premium: spin-360.js */
 Premium.on('[data-pm-spin]', function (root) {
   var view = root.querySelector('[data-view]'), frames = [].slice.call(root.querySelectorAll('img[data-frame]')), add = root.querySelector('[data-add]');
-  var ring = root.querySelector('.pm-spin__ring'), n = frames.length, pos = 0, auto = root.dataset.auto === 'true' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var n = frames.length, pos = 0, auto = root.dataset.auto === 'true' && !matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (add) add.addEventListener('click', function () { var d = Premium.data(add.parentNode); Premium.add([{ id: d.variant, quantity: 1 }], add); });
   if (root.querySelector('model-viewer')) {
     if (window.Shopify && Shopify.loadFeatures) Shopify.loadFeatures([{ name: 'model-viewer-ui', version: '1.0' }, { name: 'shopify-xr', version: '1.0' }], function () {});
@@ -1787,10 +1814,13 @@ Premium.on('[data-pm-spin]', function (root) {
   }
   var single = n <= 1; if (single) view.classList.add('is-single');
   var img = single ? (frames[0] || view.querySelector('.pm-spin__frame')) : null;
-  // pos is in degrees for one image (a gentle turn) or frame steps for a photo sequence.
+  // Photo sequence: pos is in frame steps. One photo: pos is a gentle tilt in degrees.
   function draw() {
-    ring.style.setProperty('--ring', (single ? pos : pos / Math.max(n, 1) * 360) + 'deg');
-    if (single) { if (img) img.style.setProperty('--ry', (Math.sin(pos * Math.PI / 180) * 32) + 'deg'); return; }
+    if (single) {
+      var ry = Math.max(-18, Math.min(18, Math.sin(pos * Math.PI / 180) * 18));
+      if (img) { img.style.setProperty('--ry', ry.toFixed(2) + 'deg'); img.style.setProperty('--rx', (Math.cos(pos * Math.PI / 90) * 3).toFixed(2) + 'deg'); }
+      view.style.setProperty('--shine', (ry * 1.6).toFixed(1) + '%'); return;
+    }
     var k = ((Math.round(pos) % n) + n) % n;
     frames.forEach(function (f, i) { f.classList.toggle('is-on', i === k); });
   }
@@ -1800,6 +1830,7 @@ Premium.on('[data-pm-spin]', function (root) {
   view.addEventListener('pointerdown', function (e) { stop(); dragging = true; x0 = e.clientX; p0 = pos; view.classList.add('is-drag'); view.setPointerCapture(e.pointerId); });
   view.addEventListener('pointermove', function (e) { if (!dragging) return; pos = p0 + (e.clientX - x0) * (single ? .6 : n / view.clientWidth); draw(); });
   view.addEventListener('pointerup', function () { dragging = false; view.classList.remove('is-drag'); });
+  view.addEventListener('pointercancel', function () { dragging = false; view.classList.remove('is-drag'); });
   view.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { stop(); pos += (e.key === 'ArrowRight' ? 1 : -1) * (single ? 15 : 1); draw(); e.preventDefault(); } });
   draw();
   if (auto && 'IntersectionObserver' in window) new IntersectionObserver(function (es) { if (es[0].isIntersecting && auto) { last = 0; timer = requestAnimationFrame(tick); } else cancelAnimationFrame(timer); }).observe(view);

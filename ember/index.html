@@ -195,7 +195,7 @@
 >
   <div class="hero__stage" data-pin-stage>
     <div class="hero__media" aria-hidden="true">
-      <div class="hero__fallback"></div><img src="img/scene.svg" class="hero__img" loading="eager" fetchpriority="high" alt="" width="800" height="1000"><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="title"></canvas><div class="hero__shade"></div><div class="hero__grain"></div></div><div class="page-width hero__inner">
+      <div class="hero__fallback"></div><canvas class="hero__canvas" data-hero-scene data-intensity="calm" data-layout="title"></canvas><div class="hero__shade"></div><div class="hero__grain"></div></div><div class="page-width hero__inner">
       <div class="hero__content"><p class="hero__eyebrow" data-reveal="fade"><span class="hero__dot"></span>Hand-poured in small batches</p><h1 class="h0 hero__heading" data-split>Make home feel like a <em>deep breath.</em></h1><div class="hero__lower"><div class="hero__sub" data-reveal style="--d: 3"><p>Clean-burning soy candles with a 50-hour burn, for the evenings when your head won't switch off.</p></div><div class="hero__ctas" data-reveal style="--d: 4"><a href="collection.html" class="btn btn--lg btn--magnetic"><span>Shop candles</span><svg class="icon icon--arrow-right" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16m-6-6 6 6-6 6"/></svg>
 </a><a href="collection.html" class="btn btn--lg btn--secondary"><span>Find your scent</span></a></div></div><ul class="hero__proof" role="list" data-reveal style="--d: 5"><li ><svg class="icon icon--flame" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.2 0-3.4 2.6-5.3 3.6-8.3 1 1.6 1.4 2.8 1.4 4.2 1.2-.9 2.4-2.9 2.4-6.7 3.4 2.4 5.6 6.4 5.6 10.6 0 3.8-2.6 6.4-6.5 6.4Z"/></svg>
 <span>50-hour burn</span></li><li ><svg class="icon icon--leaf" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13.2 15-14-.6 9.6-5.8 14.8-14 15"/><path d="M5 19c2.8-4 5.8-6.4 9-8"/></svg>
@@ -446,7 +446,10 @@
 </section>
 <div id="shopify-section-template--burn" class="shopify-section section-pm-burn"><section class="section pm-burn scheme-inverse" data-pm-burn data-hours="60" data-evening="3" style="--pad-top: 96px; --pad-bottom: 96px; --wax: #f3e6d3; --jar: #2b2420;">
   <div class="page-width pm-burn__grid">
-    <div class="pm-burn__copy"><p class="eyebrow" data-reveal>Slow burn</p><h2 class="h2" data-split>One candle. <em>A whole season</em> of evenings.</h2><div class="subtext rte" data-reveal><p>Drag to burn it down. Coconut-soy wax burns cooler and slower, so it lasts far longer than paraffin.</p></div><div class="pm-burn__readout" aria-live="polite">
+    <div class="pm-burn__copy"><p class="eyebrow" data-reveal>Slow burn</p><h2 class="h2" data-split>One candle. <em>A whole season</em> of evenings.</h2><div class="subtext rte" data-reveal><p>Drag to burn it down. Coconut-soy wax burns cooler and slower, so it lasts far longer than paraffin.</p></div></div>
+
+    <div class="pm-burn__controls">
+      <div class="pm-burn__readout" aria-live="polite">
         <div><strong data-h>0</strong><span>hours burned</span></div>
         <div><strong data-e>0</strong><span>cosy evenings</span></div>
         <div><strong data-p>£0.00</strong><span>per evening</span></div>
