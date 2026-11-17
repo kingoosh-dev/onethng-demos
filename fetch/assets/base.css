@@ -1507,21 +1507,28 @@ body.no-scroll .mtabs { transform: translateY(calc(100% + 24px)); }
 .pm-burn.is-out .pm-burn__flame, .pm-burn.is-out .pm-burn__glow { opacity: 0; }
 [data-wick] { transition: transform .25s linear; }
 @media (max-width: 989px) {
-  .pm-burn__grid { grid-template-columns: 1fr; grid-template-areas: 'copy' 'stage' 'controls'; }
-  .pm-burn__stage { width: min(56vw, 230px); margin: 18px auto 0; }
-  .pm-burn__readout { margin-top: 8px; }
+  .pm-burn__grid { grid-template-columns: minmax(110px, 38%) 1fr; grid-template-areas: 'copy copy' 'stage readout' 'label label' 'range range' 'buy buy'; column-gap: 16px; align-items: center; }
+  .pm-burn__controls { display: contents; }
+  .pm-burn__stage { width: 100%; margin: 18px 0 0; }
+  .pm-burn__readout { grid-area: readout; grid-template-columns: 1fr; gap: 8px; margin: 18px 0 0; }
+  .pm-burn__readout div { display: flex; align-items: baseline; gap: 8px; padding: 10px 12px; }
+  .pm-burn__readout strong { font-size: 1.6rem; }
+  .pm-burn__readout span { margin: 0; }
+  .pm-burn__label { grid-area: label; margin-top: 18px; }
+  .pm-burn__range { grid-area: range; }
+  .pm-burn__buy { grid-area: buy; }
 }
-@media (max-width: 749px) { .pm-burn__readout { gap: 8px; } .pm-burn__readout div { padding: 10px; } }
 @media (prefers-reduced-motion: reduce) { .pm-burn__flame, .pm-burn__glow { animation: none; } }
 
 /* ---- premium: clothing-rail.css */
+.ocr{--ocr-h:var(--ocr-hd,280px)}
 .ocr{--ocr-bg:var(--color-bg);--ocr-fg:currentColor;--ocr-rail:color-mix(in srgb,currentColor 22%,transparent);position:relative;overflow:hidden}
 .ocr.scheme-surface{--ocr-bg:var(--color-surface)}.ocr.scheme-inverse{--ocr-bg:var(--color-fg)}.ocr.scheme-accent{--ocr-bg:var(--color-accent)}
 .ocr__head{justify-content:center;text-align:center}
-.ocr__stage{position:relative;margin-top:28px;padding-top:6px}
-.ocr__rail{position:absolute;left:0;right:0;top:0;height:6px;pointer-events:none}
+.ocr__stage{position:relative;margin-top:28px}
+.ocr__rail{position:absolute;left:0;right:0;top:4px;height:6px;pointer-events:none;z-index:2}
 .ocr__bar{position:absolute;inset:0;background:var(--ocr-rail);border-radius:3px;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 2px 4px rgba(0,0,0,.12)}
-.ocr__track{list-style:none;margin:0;padding:0 max(20px,calc(50% - 560px));display:flex;justify-content:safe center;gap:var(--ocr-gap);overflow-x:auto;scrollbar-width:none;perspective:1400px;scroll-snap-type:x proximity}
+.ocr__track{list-style:none;margin:0;padding:0 max(20px,calc(50% - 560px));display:flex;justify-content:safe center;gap:var(--ocr-gap);overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x pan-y;padding-top:14px;padding-bottom:10px;scrollbar-width:none;perspective:1400px;scroll-snap-type:x proximity}
 .ocr__track::-webkit-scrollbar{display:none}
 .ocr__item{flex:0 0 auto;position:relative;scroll-snap-align:center;--w:calc(var(--ocr-h)*.8)}
 .ocr__hang{display:block;position:relative;width:calc(var(--w)*.44);height:calc(var(--ocr-h) + 34px);border:0;padding:0;margin:0;background:none;cursor:pointer;transition:width .55s cubic-bezier(.2,.8,.2,1);color:inherit;-webkit-tap-highlight-color:transparent}
@@ -1559,7 +1566,7 @@ body.no-scroll .mtabs { transform: translateY(calc(100% + 24px)); }
 .ocr__close{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(127,127,127,.12);color:inherit;display:grid;place-items:center;cursor:pointer;z-index:2}
 .ocr__close svg{width:18px;height:18px}
 @media (max-width:749px){
-  .ocr{--ocr-h:clamp(150px,46vw,var(--ocr-h))}
+  .ocr{--ocr-h:min(var(--ocr-hd),44vw,calc(100svh - 420px))}
   .ocr__track{justify-content:flex-start}
   .ocr__panel{grid-template-columns:1fr;padding:20px;gap:14px}
   .ocr__big{aspect-ratio:auto;height:42vh}
@@ -1574,6 +1581,16 @@ body.no-scroll .mtabs { transform: translateY(calc(100% + 24px)); }
 .ocr--swipe .ocr__hang,.ocr--swipe .ocr__item.is-front .ocr__hang{width:calc(var(--w)*.44);transition:none}
 .ocr--swipe .ocr__garment,.ocr--swipe .ocr__item.is-front .ocr__garment{transform:perspective(900px) rotateY(var(--r,var(--ocr-turn))) translateZ(var(--z,0px));transition:none;will-change:transform}
 .ocr--swipe .ocr__item.is-front .ocr__tag{left:calc(50% + 6px)}
+
+/* Scroll stop: the page settles on the rail so shoppers can browse it, then scrolls on as normal. */
+html:has(.ocr--stop){scroll-snap-type:y proximity}
+.ocr--stop{scroll-snap-align:center;scroll-snap-stop:always}
+@media (prefers-reduced-motion:reduce){html:has(.ocr--stop){scroll-snap-type:none}}
+@media (max-width:749px){
+  .ocr--stop{--pad-top:28px;--pad-bottom:36px}
+  .ocr--stop .ocr__stage{margin-top:14px}
+  .ocr--stop .ocr__foot{margin-top:8px;gap:10px}
+}
 
 /* ---- premium: exploded-view.css */
 .pm-explode__track { position: relative; height: calc(100vh + var(--n) * 28vh); }
