@@ -1463,47 +1463,25 @@ Premium.on('[data-pm-burn]', function (root) {
       if(it){ it.classList.add('is-front'); nameEl.textContent=it.dataset.title||''; }
       else nameEl.textContent=hint;
     }
-    var wasFront=false, ptype='mouse';
+    // Every device: garments slide along the rail side-on. Tap/click one and it turns to face you;
+    // tap/click it again to open the full product view. Hover on desktop gives a small nudge only.
+    var swipe=matchMedia('(hover: none), (pointer: coarse)').matches;
+    if(swipe) root.classList.add('ocr--swipe');
     items.forEach(function(it){
       var btn=it.querySelector('.ocr__hang');
-      it.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'&&!swipe) front(it); });
-      btn.addEventListener('pointerdown',function(e){ ptype=e.pointerType; wasFront=(current===it); });
-      btn.addEventListener('focus',function(){ if(ptype==='mouse'||!btn.matches(':focus-visible')) return; front(it); });
-      btn.addEventListener('keyup',function(e){ if(e.key==='Tab') front(it); });
-      btn.addEventListener('click',function(e){
-        if(swipe){
-          if(current!==it){ track.scrollTo({left:it.offsetLeft+it.offsetWidth/2-track.clientWidth/2,behavior:'smooth'}); return; }
-          open(it,btn); return;
+      btn.addEventListener('click',function(){
+        if(current!==it){
+          front(it);
+          var c=it.offsetLeft+it.offsetWidth/2-track.clientWidth/2;
+          if(swipe||c<track.scrollLeft||c>track.scrollLeft+track.clientWidth) track.scrollTo({left:c,behavior:'smooth'});
+          return;
         }
-        var touchy=(ptype==='touch'||ptype==='pen') && e.detail>0;
-        if(touchy && !wasFront){ front(it); it.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); wasFront=true; return; }
-        front(it); open(it,btn);
+        open(it,btn);
       });
     });
-    track.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'&&!swipe) front(null); });
-    // Touch screens: the rail scrolls freely and whichever garment is in the middle turns to face the shopper.
-    var swipe=matchMedia('(hover: none), (pointer: coarse)').matches, turn=parseFloat(getComputedStyle(root).getPropertyValue('--ocr-turn'))||60, ticking=false;
-    function layout(){
-      if(!swipe||!items.length) return;
-      var slot=items[0].offsetWidth; root.style.setProperty('--ocr-pad',Math.max(16,(track.clientWidth-slot)/2)+'px'); paint();
-    }
-    function paint(){
-      ticking=false; var mid=track.scrollLeft+track.clientWidth/2, best=null, bd=1e9, slot=items[0].offsetWidth||1;
-      items.forEach(function(it){
-        var d=(it.offsetLeft+it.offsetWidth/2-mid)/(slot*1.15), a=Math.min(1,Math.abs(d)), e=a*a*(3-2*a);
-        var g=it.querySelector('.ocr__garment');
-        g.style.setProperty('--r',(turn*e).toFixed(2)+'deg'); g.style.setProperty('--z',(30*(1-e)).toFixed(1)+'px');
-        it.style.zIndex=String(100-Math.round(a*50));
-        if(Math.abs(d)<bd){ bd=Math.abs(d); best=it; }
-      });
-      front(best);
-    }
-    if(swipe){
-      root.classList.add('ocr--swipe');
-      track.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(paint); } },{passive:true});
-      addEventListener('resize',layout); layout();
-      var start=items[Math.min(1,items.length-1)]; if(start) track.scrollLeft=start.offsetLeft+start.offsetWidth/2-track.clientWidth/2; paint();
-    }
+    function layout(){ if(swipe&&items.length) root.style.setProperty('--ocr-pad',Math.max(16,(track.clientWidth-items[0].offsetWidth)/2)+'px'); }
+    if(swipe){ addEventListener('resize',layout); layout(); var st=items[Math.min(2,items.length-1)]; if(st) track.scrollLeft=st.offsetLeft+st.offsetWidth/2-track.clientWidth/2; }
+    document.addEventListener('click',function(e){ if(current&&!root.contains(e.target)&&view.hidden) front(null); });
     function money(c){ if(window.ThemeUtils&&ThemeUtils.formatMoney) return ThemeUtils.formatMoney(c); try{ return new Intl.NumberFormat(document.documentElement.lang||undefined,{style:'currency',currency:(window.Shopify&&Shopify.currency&&Shopify.currency.active)||root.dataset.currency||'GBP'}).format(c/100);}catch(e){ return (c/100).toFixed(2);} }
     function open(it,btn){
       lastBtn=btn;
@@ -1751,6 +1729,104 @@ Premium.on('[data-pm-wheel]', function (root) {
   document.addEventListener('shopify:block:select', function (e) { var i = results.indexOf(e.target); if (i > -1) land(i, false); });
   wheel.classList.add('no-anim'); land(0, false); void wheel.offsetWidth; wheel.classList.remove('no-anim');
 });
+
+/* ---- premium: section-jump.js */
+(function () {
+  var root = document.querySelector('[data-sjump]');
+  if (!root) return;
+  var btn = root.querySelector('[data-sjump-btn]'), list = root.querySelector('[data-sjump-list]'), main = document.getElementById('MainContent');
+  var after = (+root.dataset.after || 70) / 100, open = false, entries = [], hot = null, pressT = 0, dragged = false, ticking = false;
+  var icon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+  var upIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>';
+  function clean(t) { t = (t || '').replace(/\s+/g, ' ').trim(); return t.length > 34 ? t.slice(0, 32).trim() + '…' : t; }
+  function label(sec) {
+    var e = sec.querySelector('.eyebrow, [class*="__eyebrow"]'), h = sec.querySelector('h2, .h2, h1');
+    var a = e && clean(e.textContent), b = h && clean(h.textContent);
+    if (a && a.length > 2 && !/^\W*$/.test(a)) return a.replace(/^\[\s*\d+\s*\]\s*/, '').replace(/^\/\/\s*/, '');
+    return b || '';
+  }
+  function build() {
+    entries = [{ el: null, text: root.dataset.top || 'Back to top' }];
+    var seen = {};
+    [].slice.call(main.children).forEach(function (sec, i) {
+      if (i === 0 || sec.offsetHeight < 120) return;
+      var t = label(sec);
+      if (!t || seen[t.toLowerCase()]) return;
+      seen[t.toLowerCase()] = 1; entries.push({ el: sec, text: t });
+    });
+    list.innerHTML = '';
+    // Furthest-down sections sit closest to the button.
+    entries.slice().reverse().forEach(function (en, k) {
+      var li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.className = 'sjump__item'; b.setAttribute('role', 'menuitem'); b.style.setProperty('--i', entries.length - k);
+      b.innerHTML = (en.el ? icon : upIcon) + '<span></span>'; b.querySelector('span').textContent = en.text;
+      b._en = en; li.appendChild(b); list.appendChild(li);
+    });
+  }
+  function current() {
+    var mid = innerHeight * .4, cur = null;
+    entries.forEach(function (en) { if (en.el && en.el.getBoundingClientRect().top < mid) cur = en; });
+    list.querySelectorAll('.sjump__item').forEach(function (b) { b.classList.toggle('is-here', b._en === cur); });
+  }
+  function show(v) {
+    if (open === v) return; open = v;
+    root.classList.toggle('is-open', v); btn.setAttribute('aria-expanded', v);
+    if (v) {
+      build(); current();
+      main.style.transformOrigin = '50% ' + (scrollY + innerHeight / 2 - main.offsetTop) + 'px';
+      main.classList.add('is-sjump');
+      var first = list.querySelector('.sjump__item'); if (first && !dragged) setTimeout(function () { list.lastElementChild && list.lastElementChild.firstChild.focus({ preventScroll: true }); }, 60);
+    } else {
+      main.classList.remove('is-sjump'); setHot(null);
+      setTimeout(function () { if (!open) main.style.transformOrigin = ''; }, 460);
+    }
+  }
+  function go(en) {
+    show(false);
+    setTimeout(function () {
+      if (!en.el) { scrollTo({ top: 0, behavior: 'smooth' }); return; }
+      var head = document.querySelector('.site-header, header'), off = head ? Math.min(head.getBoundingClientRect().height, 120) : 0;
+      scrollTo({ top: en.el.getBoundingClientRect().top + scrollY - off + 1, behavior: 'smooth' });
+    }, 180);
+  }
+  function setHot(b) { if (hot === b) return; if (hot) hot.classList.remove('is-hot'); hot = b; if (b) { b.classList.add('is-hot'); if (navigator.vibrate) try { navigator.vibrate(6); } catch (e) {} } }
+  function onScroll() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    root.classList.toggle('is-shown', max > 0 && scrollY / max >= after);
+    if (open) current();
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll); onScroll();
+  // Tap to open, or press and slide up the list and let go on a section (like a long-press menu).
+  btn.addEventListener('pointerdown', function (e) {
+    dragged = false; pressT = Date.now();
+    if (!open) { show(true); btn._openedNow = true; } else btn._openedNow = false;
+    try { btn.setPointerCapture(e.pointerId); } catch (x) {}
+  });
+  btn.addEventListener('pointermove', function (e) {
+    if (!open || !btn.hasPointerCapture || !btn.hasPointerCapture(e.pointerId)) return;
+    var el = document.elementFromPoint(e.clientX, e.clientY), b = el && el.closest('.sjump__item');
+    if (b) dragged = true; setHot(b);
+  });
+  btn.addEventListener('pointerup', function () {
+    if (hot) { var en = hot._en; setHot(null); go(en); return; }
+    if (!btn._openedNow && Date.now() - pressT < 400) show(false);
+  });
+  btn.addEventListener('pointercancel', function () { setHot(null); });
+  btn.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(!open); } });
+  list.addEventListener('click', function (e) { var b = e.target.closest('.sjump__item'); if (b) go(b._en); });
+  list.addEventListener('pointermove', function (e) { if (e.pointerType === 'mouse') setHot(e.target.closest('.sjump__item')); });
+  root.querySelector('[data-sjump-close]').addEventListener('click', function () { show(false); });
+  document.addEventListener('keydown', function (e) {
+    if (!open) return;
+    if (e.key === 'Escape') { show(false); btn.focus(); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      var items = [].slice.call(list.querySelectorAll('.sjump__item')), i = items.indexOf(document.activeElement);
+      i = e.key === 'ArrowUp' ? Math.max(0, i - 1) : Math.min(items.length - 1, i + 1); items[i].focus(); e.preventDefault();
+    }
+  });
+})();
 
 /* ---- premium: shop-the-look.js */
 Premium.on('[data-pm-look]', function (root) {
