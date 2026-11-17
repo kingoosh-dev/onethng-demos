@@ -1,0 +1,153 @@
+@font-face{font-family:'Outfit';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-100-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Outfit';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/outfit-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito Sans';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-sans-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/nunito-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Playfair Display';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/playfair-display-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Oswald';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/oswald-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-100-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-100-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Petrona';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/petrona-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'PT Sans';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/pt-sans-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'PT Sans';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/pt-sans-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'PT Sans';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/pt-sans-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'PT Sans';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/pt-sans-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Cormorant';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/cormorant-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/karla-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-100-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-100-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/fraunces-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/bricolage-grotesque-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-100-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:100;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-100-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-200-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:200;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-200-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-300-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-400-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-500-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-600-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-700-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-700-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-800-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:800;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-800-normal.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:italic;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-900-italic.woff2) format('woff2');}
+@font-face{font-family:'Geist';font-style:normal;font-weight:900;font-display:swap;src:url(http://localhost:8811/_fonts/geist-latin-900-normal.woff2) format('woff2');}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:300;font-display:swap;src:url(http://localhost:8811/_fonts/fredoka-latin-300-normal.woff2) format('woff2');}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:400;font-display:swap;src:url(http://localhost:8811/_fonts/fredoka-latin-400-normal.woff2) format('woff2');}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:500;font-display:swap;src:url(http://localhost:8811/_fonts/fredoka-latin-500-normal.woff2) format('woff2');}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:600;font-display:swap;src:url(http://localhost:8811/_fonts/fredoka-latin-600-normal.woff2) format('woff2');}
+@font-face{font-family:'Fredoka';font-style:normal;font-weight:700;font-display:swap;src:url(http://localhost:8811/_fonts/fredoka-latin-700-normal.woff2) format('woff2');}

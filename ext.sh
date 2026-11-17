@@ -1,0 +1,1 @@
+cd /home/claude/reels2; n=$1; mkdir -p clips/$n; ffmpeg -y -v error -i clips_mp4/$n.mp4 -vf "fps=30,scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920" -q:v 3 clips/$n/%04d.jpg; ls clips/$n | wc -l
